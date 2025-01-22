@@ -1,0 +1,272 @@
+from BaseClasses import Region
+
+from ..base_classes import Q1Level
+
+
+class E1M7(Q1Level):
+    name = "The House of Chthon"
+    mapfile = "e1m7"
+    keys = []
+    location_defs = [
+        {
+            "id": 1,
+            "name": "Supershotgun (1)",
+            "classname": "weapon_supershotgun",
+            "uuid": 16032468032270478390,
+            "density": 0,
+        },
+        {
+            "id": 2,
+            "name": "Large Medkit (2)",
+            "classname": "item_health",
+            "uuid": 4312536152777534631,
+            "density": 0,
+        },
+        {
+            "id": 3,
+            "name": "Large Medkit (3)",
+            "classname": "item_health",
+            "uuid": 299941491470663841,
+            "density": 0,
+        },
+        {
+            "id": 4,
+            "name": "Large Medkit (4)",
+            "classname": "item_health",
+            "uuid": 9924532992401073138,
+            "density": 0,
+        },
+        {
+            "id": 5,
+            "name": "Large Medkit (5)",
+            "classname": "item_health",
+            "uuid": 6514248037969470299,
+            "density": 0,
+        },
+        {
+            "id": 6,
+            "name": "Large Medkit (6)",
+            "classname": "item_health",
+            "uuid": 7579320988371648831,
+            "density": 0,
+        },
+        {
+            "id": 7,
+            "name": "Large Medkit (7)",
+            "classname": "item_health",
+            "uuid": 1066484321207362508,
+            "density": 0,
+        },
+        {
+            "id": 8,
+            "name": "Large Medkit (8)",
+            "classname": "item_health",
+            "uuid": 8220053246912920538,
+            "density": 0,
+        },
+        {
+            "id": 9,
+            "name": "Large Medkit (9)",
+            "classname": "item_health",
+            "uuid": 12322744154768808336,
+            "density": 0,
+        },
+        {
+            "id": 10,
+            "name": "Large Medkit (10)",
+            "classname": "item_health",
+            "uuid": 1740870852821081271,
+            "density": 0,
+        },
+        {
+            "id": 11,
+            "name": "Large Medkit (11)",
+            "classname": "item_health",
+            "uuid": 13344029792073076441,
+            "density": 0,
+        },
+        {
+            "id": 12,
+            "name": "Shells (12)",
+            "classname": "item_shells",
+            "uuid": 14735303962592957456,
+            "density": 0,
+        },
+        {
+            "id": 13,
+            "name": "Shells (13)",
+            "classname": "item_shells",
+            "uuid": 1150776380749866747,
+            "density": 0,
+        },
+        {
+            "id": 14,
+            "name": "Shells (14)",
+            "classname": "item_shells",
+            "uuid": 588581410212127907,
+            "density": 0,
+        },
+        {
+            "id": 15,
+            "name": "Shells (15)",
+            "classname": "item_shells",
+            "uuid": 2509654185863322833,
+            "density": 0,
+        },
+        {
+            "id": 16,
+            "name": "Rockets (16)",
+            "classname": "item_rockets",
+            "uuid": 8136791561750018228,
+            "density": 0,
+        },
+        {
+            "id": 17,
+            "name": "Rockets (17)",
+            "classname": "item_rockets",
+            "uuid": 6066470929291334425,
+            "density": 0,
+        },
+        {
+            "id": 18,
+            "name": "Supernailgun (18)",
+            "classname": "weapon_supernailgun",
+            "uuid": 4217033443937487493,
+            "density": 0,
+        },
+        {
+            "id": 19,
+            "name": "Spikes (19)",
+            "classname": "item_spikes",
+            "uuid": 11961394894667011257,
+            "density": 0,
+        },
+        {
+            "id": 20,
+            "name": "Spikes (20)",
+            "classname": "item_spikes",
+            "uuid": 14741864524400267877,
+            "density": 0,
+        },
+        {
+            "id": 21,
+            "name": "Grenadelauncher (21)",
+            "classname": "weapon_grenadelauncher",
+            "uuid": 2729944370855187618,
+            "density": 0,
+        },
+        {
+            "id": 22,
+            "name": "Sigil (22)",
+            "classname": "item_sigil",
+            "uuid": 3047032649193967426,
+            "density": 0,
+        },
+        {
+            "id": 23,
+            "name": "Megahealth (23)",
+            "classname": "item_health",
+            "uuid": 10814579985156192133,
+            "density": 0,
+        },
+        {
+            "id": 24,
+            "name": "Exit",
+            "classname": "trigger_changelevel",
+            "uuid": 4366537362600376306,
+            "density": 0,
+        },
+        {
+            "id": 25,
+            "name": "Spikes (25)",
+            "classname": "item_spikes",
+            "uuid": 8796404850275928853,
+            "density": 0,
+        },
+        {
+            "id": 26,
+            "name": "Rocketlauncher (26)",
+            "classname": "weapon_rocketlauncher",
+            "uuid": 6855466172336484244,
+            "density": 0,
+        },
+        {
+            "id": 27,
+            "name": "Grenadelauncher (27)",
+            "classname": "weapon_grenadelauncher",
+            "uuid": 8273795074608263975,
+            "density": 0,
+        },
+        {
+            "id": 28,
+            "name": "Supernailgun (28)",
+            "classname": "weapon_supernailgun",
+            "uuid": 13881332760500029280,
+            "density": 0,
+        },
+        {
+            "id": 29,
+            "name": "Supershotgun (29)",
+            "classname": "weapon_supershotgun",
+            "uuid": 3512850367568162593,
+            "density": 0,
+        },
+        {
+            "id": 30,
+            "name": "Nailgun (30)",
+            "classname": "weapon_nailgun",
+            "uuid": 5795556842010533199,
+            "density": 0,
+        },
+        {
+            "id": 31,
+            "name": "Quad Damage (31)",
+            "classname": "item_artifact_super_damage",
+            "uuid": 14569613609805468623,
+            "density": 0,
+        },
+    ]
+
+    has_boss = True
+
+    def main_region(self) -> Region:
+        r = self.rules
+
+        ret = self.region(
+            self.name,
+            [
+                "Grenadelauncher (21)",
+                "Quad Damage (31)",
+                "Sigil (22)",
+                "Supernailgun (28)",
+                "Shells (12)",
+                "Nailgun (30)",
+                "Spikes (19)",
+                "Spikes (25)",
+                "Shells (13)",
+                "Megahealth (23)",
+                "Supernailgun (18)",
+                "Shells (15)",
+                "Spikes (20)",
+                "Shells (14)",
+                "Supershotgun (29)",
+                "Rockets (17)",
+                "Large Medkit (9)",
+                "Large Medkit (8)",
+                "Grenadelauncher (27)",
+                "Large Medkit (7)",
+                "Large Medkit (5)",
+                "Large Medkit (6)",
+                "Supershotgun (1)",
+                "Large Medkit (3)",
+                "Large Medkit (2)",
+                "Large Medkit (4)",
+                "Rocketlauncher (26)",
+                "Large Medkit (10)",
+                "Large Medkit (11)",
+                "Rockets (16)",
+                "Exit",
+            ],
+        )
+        self.restrict("Exit", r.can_button)
+        return ret

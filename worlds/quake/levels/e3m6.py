@@ -776,6 +776,8 @@ class E3M6(Q1Level):
             ],
         )
         self.connect(past_door_area, shootswitch_secret_area, r.can_shootswitch)
+        self.restrict("Spikes (35)", r.jump)
+        self.restrict("Quad Damage (57)", r.jump)
 
         past_silver_door_area = self.region(
             "Past Silver Door",

@@ -205,6 +205,16 @@ class ProgressiveInventories(Toggle):
     default = True
 
 
+class ShellRecharge(Toggle):
+    """
+    Recharges 1 shell (ammo) every second.
+    QoL to make the early game less painful on hard+ difficulties.
+    """
+
+    display_name = "Recharge Shells"
+    default = False
+
+
 class TrapPercentage(NamedRange):
     """Percentage of filler items that should be traps"""
 
@@ -239,3 +249,4 @@ class Q1Options(PerGameCommonOptions):
     progressive_weapons: ProgressiveWeapons
     progressive_inventories: ProgressiveInventories
     trap_percentage: TrapPercentage
+    shell_recharge: ShellRecharge

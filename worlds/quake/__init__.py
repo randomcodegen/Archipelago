@@ -194,8 +194,6 @@ class Q1World(World):
         self.included_levels.extend(
             level_candidates[: level_count - len(self.included_levels)]
         )
-        # add final map on top
-        self.included_levels.append(SL.levels[1])
 
     def define_dynamic_item_props(self, item_name: str, new_props: Dict[str, Any]):
         """
@@ -277,7 +275,8 @@ class Q1World(World):
                     "button": True,
                 }
             )
-        self.slot_data["settings"]["no_save"] = not self.get_option("allow_saving")
+        # TODO: Implement no_save
+        # self.slot_data["settings"]["no_save"] = not self.get_option("allow_saving")
 
     def create_regions(self):
         self.used_locations = set()
@@ -769,12 +768,7 @@ class Q1World(World):
         required, useful = self.generate_health("Megahealth")
         itempool += required
         useful_items += useful
-        """
-        required, useful = self.generate_inventories("Jetpack")
-        itempool += required
-        useful_items += useful
-        required, useful = self.generate_inventories("Scuba Gear")
-        """
+
         # Invulnerability or Biosuit is required for some locations
         need_invuln = False
         need_bio = False

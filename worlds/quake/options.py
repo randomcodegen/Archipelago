@@ -26,8 +26,7 @@ class Difficulty(Choice):
 
 
 class LogicDifficulty(Choice):
-    """Trick difficulty for logic. Higher levels require harder tricks such as jumping on enemies or
-    better use of jetpack and scuba gear fuel"""
+    """Trick difficulty for logic. Higher levels require harder tricks such precise Rocket/Grenade Jumps and airstrafes"""
 
     display_name = "Logic Difficulty"
     option_easy = 0
@@ -58,11 +57,11 @@ class UnlockInteract(Toggle):
     default = True
 
 
-class AllowSaving(Toggle):
-    """Enables saving to store mid level progress. If disabled, levels always have to be played from the start"""
-
-    display_name = "Allow Saving"
-    default = True
+# class AllowSaving(Toggle):
+#    """Enables saving to store mid level progress. If disabled, levels always have to be played from the start"""
+#
+#    display_name = "Allow Saving"
+#    default = True
 
 
 class AreaMaps(Choice):
@@ -223,7 +222,7 @@ class Q1Options(PerGameCommonOptions):
     unlock_abilities: UnlockAbilities
     damage_remover_abilities: DamageRemoverAbilities
     unlock_interact: UnlockInteract
-    allow_saving: AllowSaving
+    # allow_saving: AllowSaving
     area_maps: AreaMaps
     goal: Goal
     goal_percentage: GoalPercentage

@@ -76,12 +76,10 @@ class Q1World(World):
         Cached version of _target_density, so we don't constantly calculate it
         """
         if self._target_density is None:
-            density = self.get_option("location_density")
+            density = self.options.location_density
             if density == self.options.location_density.option_balanced:
                 # bump up the value by 1 if secret areas are not enabled
-                if not self.get_option("include_secrets") and self.get_option(
-                    "goal"
-                ) in (
+                if not self.options.include_secrets and self.options.goal in (
                     self.options.goal.option_beat_all_levels,
                     self.options.goal.option_beat_all_bosses,
                 ):
@@ -105,21 +103,18 @@ class Q1World(World):
             return False
         if (
             location.classname == "trigger_secret"
-            and self.get_option("goal")
+            and self.options.goal
             in (
                 self.options.goal.option_beat_all_levels,
                 self.options.goal.option_beat_all_bosses,
             )
-            and not self.get_option("include_secrets")
+            and not self.options.include_secrets
         ):
             return False
         return True
 
-    def get_option(self, option_name: str) -> Any:
-        return getattr(self.multiworld, option_name)[self.player].value
-
     def calculate_levels(self):
-        level_count = self.get_option("level_count")
+        level_count = self.options.level_count
         # total number of starting levels to include, based on the total count
         if level_count <= E1.maxlevel:
             start_count = 1
@@ -129,18 +124,22 @@ class Q1World(World):
             start_count = 3
         else:
             start_count = 4
-        shuffle_start = self.get_option("shuffle_starting_levels")
-        goal_bosses = (
-            self.get_option("goal") == self.options.goal.option_beat_all_bosses
-        )
+        shuffle_start = self.options.shuffle_starting_levels
+        goal_bosses = self.options.goal == self.options.goal.option_beat_all_bosses
 
         level_candidates = []
 
         # Shuffle episodes so we pick random start levels
         episode_options = [1, 2, 3, 4]
+        ep_option_reference = [
+            self.options.episode1,
+            self.options.episode2,
+            self.options.episode3,
+            self.options.episode4,
+        ]
         self.multiworld.random.shuffle(episode_options)
         for episode_id in episode_options:
-            if self.get_option(f"episode{episode_id}"):
+            if ep_option_reference[episode_id - 1]:
                 episode = all_episodes[episode_id - 1]
                 if not shuffle_start and len(self.starting_levels) < start_count:
                     # add the first level to the starting levels, and the rest into the randomize pool
@@ -149,11 +148,11 @@ class Q1World(World):
                     if (
                         self.multiworld.players == 1
                         and episode_id == 1
-                        and self.get_option("episode1")
-                        and not self.get_option("episode2")
-                        and not self.get_option("episode3")
-                        and not self.get_option("episode4")
-                        and self.get_option("location_density") < 5
+                        and self.options.episode1
+                        and not self.options.episode2
+                        and not self.options.episode3
+                        and not self.options.episode4
+                        and self.options.location_density < 5
                     ):
                         choice = self.multiworld.random.randrange(1, E1.maxlevel)
                         self.starting_levels.append(episode.levels[choice])
@@ -180,9 +179,9 @@ class Q1World(World):
                     ]
                 )
         # If the hub/end level is included, add it here
-        if self.get_option("include_hub"):
+        if self.options.include_hub:
             self.included_levels.append(SL.levels[0])
-        if self.get_option("include_end"):
+        if self.options.include_end:
             self.included_levels.append(SL.levels[1])
         # randomize the levels so we can pull from them
         self.multiworld.random.shuffle(level_candidates)
@@ -227,7 +226,7 @@ class Q1World(World):
     def generate_early(self) -> None:
         # Difficulty settings
         # Adds a mult factor for healing/armor items based on difficulty
-        factor = self.DIFF_TO_FACTOR_MAPPING.get(self.get_option("difficulty"))
+        factor = self.DIFF_TO_FACTOR_MAPPING.get(self.options.difficulty)
         self.define_dynamic_item_props("Small Medkit", {"factor": factor})
         self.define_dynamic_item_props("Large Medkit", {"factor": factor})
         self.define_dynamic_item_props("Megahealth", {"factor": factor})
@@ -244,13 +243,14 @@ class Q1World(World):
 
         # Initial level unlocks
         for level in self.starting_levels:
-            self.multiworld.start_inventory[self.player].value[level.unlock] = 1
+            self.options.start_inventory.value[level.unlock] = 1
         for level in self.included_levels:
-            if self.get_option("area_maps") == self.options.area_maps.option_start_with:
-                self.multiworld.start_inventory[self.player].value[level.map] = 1
-        self.slot_data["settings"]["difficulty"] = self.get_option("skill_level")
+            if self.options.area_maps == self.options.area_maps.option_start_with:
+                self.options.start_inventory.value[level.map] = 1
+        self.slot_data["settings"]["difficulty"] = self.options.skill_level.value
         self.slot_data["settings"]["lock"] = {}
-        if self.get_option("unlock_abilities"):
+        self.slot_data["settings"]["shell_recharge"] = self.options.shell_recharge.value
+        if self.options.unlock_abilities:
             self.slot_data["settings"]["lock"].update(
                 {
                     "crouch": True,
@@ -261,14 +261,14 @@ class Q1World(World):
                     "rocketjump": True,
                 }
             )
-        if self.get_option("damage_remover_abilities"):
+        if self.options.damage_remover_abilities:
             self.slot_data["settings"]["lock"].update(
                 {
                     "rocketdmgsaver": True,
                     "grenadedmgsaver": True,
                 }
             )
-        if self.get_option("unlock_interact"):
+        if self.options.unlock_interact:
             self.slot_data["settings"]["lock"].update(
                 {
                     "door": True,
@@ -276,7 +276,7 @@ class Q1World(World):
                 }
             )
         # TODO: Implement no_save
-        # self.slot_data["settings"]["no_save"] = not self.get_option("allow_saving")
+        # self.slot_data["settings"]["no_save"] = not self.options.allow_saving.value
 
     def create_regions(self):
         self.used_locations = set()
@@ -293,17 +293,15 @@ class Q1World(World):
             self.item_name_to_id[level.unlock] for level in self.included_levels
         ]
 
-        goal_exits = self.get_option("goal") in {
+        goal_exits = self.options.goal in {
             self.options.goal.option_beat_all_levels,
             self.options.goal.option_all,
         }
-        goal_secrets = self.get_option("goal") in {
+        goal_secrets = self.options.goal in {
             self.options.goal.option_collect_all_secrets,
             self.options.goal.option_all,
         }
-        goal_bosses = (
-            self.get_option("goal") == self.options.goal.option_beat_all_bosses
-        )
+        goal_bosses = self.options.goal == self.options.goal.option_beat_all_bosses
         goal_counts = {"Exit": 0, "Secret": 0, "Boss": 0}
         for level in self.included_levels:
             for location in level.locations.values():
@@ -317,7 +315,7 @@ class Q1World(World):
                     and level.has_boss
                 ):
                     goal_counts["Boss"] += 1
-        goal_percentage = self.get_option("goal_percentage")
+        goal_percentage = self.options.goal_percentage
         if goal_percentage < 100:
             for goal_type in ("Exit", "Secret", "Boss"):
                 goal_counts[goal_type] = math.ceil(
@@ -368,7 +366,7 @@ class Q1World(World):
         return "Nothing"
 
     def create_junk(self, count: int) -> List[Q1Item]:
-        difficulty = self.get_option("difficulty")
+        difficulty = self.options.difficulty
         # TODO: Create difficulty based distribution of items
         if difficulty == self.options.difficulty.option_extreme:
             ratios = {
@@ -465,7 +463,7 @@ class Q1World(World):
         for key, value in trap_ratios.items():
             trap_pool += [key] * value
         # and just generate items at the appropriate ratios
-        trap_count = math.floor((self.get_option("trap_percentage") / 100.0) * count)
+        trap_count = math.floor((self.options.trap_percentage / 100.0) * count)
         return [
             self.create_item(self.multiworld.random.choice(pool))
             for _ in range(count - trap_count)
@@ -502,7 +500,7 @@ class Q1World(World):
 
     def generate_health(self, inv_type: str) -> Tuple[List[Q1Item], List[Q1Item]]:
         required, total = self.HEALTH_DIFF_TO_REQ_MAPPING.get(
-            self.get_option("difficulty"), self.options.difficulty.option_medium
+            self.options.difficulty, self.options.difficulty.option_medium
         )[inv_type]
         required_list = [self.create_item(inv_type, True) for _ in range(required)]
         # Fill pool with capacity up to total amount
@@ -546,11 +544,11 @@ class Q1World(World):
         self, inv_type: str, prog_override_amount: int = 0
     ) -> Tuple[List[Q1Item], List[Q1Item]]:
         required, total = self.INV_DIFF_TO_REQ_MAPPING.get(
-            self.get_option("difficulty"), self.options.difficulty.option_medium
+            self.options.difficulty, self.options.difficulty.option_medium
         )[inv_type]
 
         # One base item and rest is capacity, unless we have progressive inventories
-        progressive = self.get_option("progressive_inventories")
+        progressive = self.options.progressive_inventories
         if progressive:
             main_name = f"Progressive {inv_type}"
             cap_name = main_name
@@ -639,7 +637,7 @@ class Q1World(World):
         expansions_per_weapon = math.ceil(available_slots * 0.035)
         for weapon in self.WEAPON_NAMES:
             start, target = self.DIFF_TO_MAX_MAPPING.get(
-                self.get_option("difficulty"), self.options.difficulty.option_medium
+                self.options.difficulty, self.options.difficulty.option_medium
             )[weapon]
             ammo = self.WPN_TO_AMMO_MAPPING[weapon]
             self.slot_data["settings"]["maximum"][ammo.lower()] = start
@@ -654,7 +652,7 @@ class Q1World(World):
                 {"capacity": capacity_per, "ammo": math.ceil(capacity_per / 2.0)},
             )
             # and add the right count to our pool
-            if self.get_option("progressive_weapons"):
+            if self.options.progressive_weapons:
                 ret_items[f"Progressive {weapon}"] = count
             else:
                 ret_items[f"{ammo} Capacity"] = count
@@ -673,17 +671,15 @@ class Q1World(World):
         used_locations = self.used_locations.copy()
         # Place goal items and level keys
         # ToDo remove this code duplications
-        goal_exits = self.get_option("goal") in {
+        goal_exits = self.options.goal in {
             self.options.goal.option_beat_all_levels,
             self.options.goal.option_all,
         }
-        goal_secrets = self.get_option("goal") in {
+        goal_secrets = self.options.goal in {
             self.options.goal.option_collect_all_secrets,
             self.options.goal.option_all,
         }
-        goal_bosses = (
-            self.get_option("goal") == self.options.goal.option_beat_all_bosses
-        )
+        goal_bosses = self.options.goal == self.options.goal.option_beat_all_bosses
         for level in self.included_levels:
             for location in level.locations.values():
                 if (
@@ -721,12 +717,12 @@ class Q1World(World):
                     prefixed_event, self.player
                 ).place_locked_item(self.create_event(prefixed_event))
             itempool += [self.create_item(item) for item in level.items]
-            if level.unlock not in self.multiworld.start_inventory[self.player].value:
+            if level.unlock not in self.options.start_inventory.value:
                 itempool.append(self.create_item(level.unlock))
-            if self.get_option("area_maps") == self.options.area_maps.option_unlockable:
+            if self.options.area_maps == self.options.area_maps.option_unlockable:
                 useful_items.append(self.create_item(level.map))
 
-        if self.get_option("unlock_abilities"):
+        if self.options.unlock_abilities:
             itempool += self.create_item_list(
                 [
                     "Jump",
@@ -737,16 +733,16 @@ class Q1World(World):
                 ]
             )
 
-        if self.get_option("unlock_interact"):
+        if self.options.unlock_interact:
             itempool += self.create_item_list(["Door", "Button", "Shoot Switch"])
 
-        if self.get_option("damage_remover_abilities"):
+        if self.options.damage_remover_abilities:
             itempool += self.create_item_list(
                 ["Grenade Damage Remover", "Rocket Damage Remover"]
             )
 
         # Add progression items
-        progressive_weapons = self.get_option("progressive_weapons")
+        progressive_weapons = self.options.progressive_weapons
         # Place explosive weapons into the required itempool
         if progressive_weapons:
             itempool += self.create_item_list(

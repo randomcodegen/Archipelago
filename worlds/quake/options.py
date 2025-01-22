@@ -6,7 +6,7 @@ from Options import Choice, NamedRange, PerGameCommonOptions, Toggle
 class SkillLevel(Choice):
     """In-Game difficulty. Primarily affects number of Enemies spawned"""
 
-    display_name = "SkillLevel"
+    display_name = "Skill Level"
     option_easy = 0
     option_medium = 1
     option_hard = 2

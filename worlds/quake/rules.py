@@ -132,9 +132,7 @@ class Rules(object):
             def __init__(self, amount_req: int):
                 self.amount_req = amount_req
                 self.amount = 0
-                self.factor = world.DIFF_TO_FACTOR_MAPPING.get(
-                    world.get_option("difficulty")
-                )
+                self.factor = world.DIFF_TO_FACTOR_MAPPING.get(world.options.difficulty)
 
             def __call__(self, state: CollectionState) -> bool:
                 self.amount = (
@@ -157,7 +155,7 @@ class Rules(object):
 
         self.invuln = CanInvuln
 
-        if world.get_option("unlock_abilities"):
+        if world.options.unlock_abilities:
             self.can_jump = HasRule("Jump")
             self.can_dive = HasRule("Dive")
             self.can_rj = HasRule("Rocket Jump") & HasGroupRule("Rocket Launcher")
@@ -170,7 +168,7 @@ class Rules(object):
             self.can_gj = self.true
             self.can_run = self.true
 
-        if world.get_option("unlock_interact"):
+        if world.options.unlock_interact:
             self.can_door = HasRule("Door")
             self.can_button = HasRule("Button")
             self.can_shootswitch = HasRule("Shoot Switch")
@@ -179,7 +177,7 @@ class Rules(object):
             self.can_button = self.true
             self.can_shootswitch = self.true
 
-        if world.get_option("damage_remover_abilities"):
+        if world.options.damage_remover_abilities:
             self.can_remove_grenadedmg = HasRule("Grenade Damage Remover")
             self.can_remove_rocketdmg = HasRule("Rocket Damage Remover")
         else:
@@ -196,7 +194,7 @@ class Rules(object):
         difficulty_map = {"easy": 0, "medium": 1, "hard": 2, "extreme": 3}
         self.difficulty = lambda difficulty: (
             self.true
-            if difficulty_map.get(difficulty, 0) <= world.get_option("logic_difficulty")
+            if difficulty_map.get(difficulty, 0) <= world.options.logic_difficulty
             else self.false
         )
 
@@ -209,7 +207,7 @@ class Rules(object):
         skill_map = {"easy": 0, "medium": 1, "hard": 2, "nightmare": 3}
         self.skill = lambda skill: (
             self.true
-            if skill_map.get(skill, 0) <= world.get_option("skill_level")
+            if skill_map.get(skill, 0) <= world.options.skill_level
             else self.false
         )
 

@@ -854,7 +854,7 @@ class E4M8(Q1Level):
         self.connect(
             ret,
             past_button_area,
-            (r.can_button & r.jump)
+            (r.can_button & r.can_jump)
             | r.can_rj_hard
             | r.can_gj_extr
             | (r.bigjump & r.difficulty("medium")),

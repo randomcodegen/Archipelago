@@ -212,7 +212,7 @@ class ShellRecharge(Toggle):
     """
 
     display_name = "Recharge Shells"
-    default = False
+    default = True
 
 
 class TrapPercentage(NamedRange):

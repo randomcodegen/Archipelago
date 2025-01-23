@@ -801,8 +801,18 @@ class E4M7(Q1Level):
         )
         self.connect(ret, dive_area, r.can_dive)
 
-        past_door_area = self.region(
-            "Past Door",
+        past_door_area1 = self.region(
+            "Past Door 1",
+            [
+                "Spikes (31)",
+                "Shells (9)",
+                "Spikes (8)",
+            ],
+        )
+        self.connect(ret, past_door_area1, r.can_door | (r.can_dive & r.can_button))
+
+        past_door_area2 = self.region(
+            "Past Door 2",
             [
                 "Rockets (52)",
                 "Rockets (53)",
@@ -812,12 +822,10 @@ class E4M7(Q1Level):
                 "Supershotgun (96)",
                 "Large Medkit (14)",
                 "Quad Damage (38)",
-                "Spikes (8)",
-                "Shells (9)",
-                "Spikes (31)",
             ],
         )
-        self.connect(ret, past_door_area, r.can_door)
+        self.connect(ret, past_door_area2, r.can_door)
+
         self.restrict("Rockets (52)", r.jump)
         self.restrict("Rockets (53)", r.jump)
         self.restrict("Spikes (31)", r.can_dive | (r.jump & r.difficulty("hard")))
@@ -828,7 +836,8 @@ class E4M7(Q1Level):
                 "Grenadelauncher (97)",
             ],
         )
-        self.connect(ret, past_button_area, r.can_button)
+        self.connect(past_door_area2, past_button_area, r.can_button)
+
         jump_area = self.region(
             "Button Jump",
             [

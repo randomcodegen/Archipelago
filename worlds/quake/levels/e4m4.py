@@ -974,7 +974,7 @@ class E4M4(Q1Level):
         )
         self.connect(ret, lake_middle_platform_area, r.jump)
 
-        lake_platfor_door_area = self.region(
+        lake_platform_door_area = self.region(
             "Lake Platform Past Door",
             [
                 "Spikes (54)",
@@ -983,7 +983,7 @@ class E4M4(Q1Level):
                 "Spikes (55)",
             ],
         )
-        self.connect(lake_middle_platform_area, lake_platfor_door_area, r.can_door)
+        self.connect(lake_middle_platform_area, lake_platform_door_area, r.can_door)
 
         lake_side_area = self.region(
             "Lake Side Area",
@@ -996,11 +996,11 @@ class E4M4(Q1Level):
                 "Invulnerability (87)",
             ],
         )
-
+        # this butto requires door because of a trigger on top
         self.connect(
             lake_middle_platform_area,
             lake_side_area,
-            r.can_gj_extr | r.can_rj_hard | (r.can_button & r.jump),
+            r.can_gj_extr | r.can_rj_hard | (r.can_button & r.can_door & r.jump),
         )
 
         lake_side_secret = self.region(

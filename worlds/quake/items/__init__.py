@@ -178,7 +178,7 @@ progressive_weapons = {
     ),
     "Progressive Nailgun": ItemDef(
         "Progressive Nailgun",
-        net_id(242),
+        net_id(243),
         "progressive",
         {"items": [202, 222]},
         unique=True,
@@ -186,7 +186,7 @@ progressive_weapons = {
     ),
     "Progressive Super Nailgun": ItemDef(
         "Progressive Super Nailgun",
-        net_id(243),
+        net_id(244),
         "progressive",
         {"items": [203, 222]},
         unique=True,
@@ -194,7 +194,7 @@ progressive_weapons = {
     ),
     "Progressive Grenade Launcher": ItemDef(
         "Progressive Grenade Launcher",
-        net_id(244),
+        net_id(245),
         "progressive",
         {"items": [204, 223]},
         silent=True,
@@ -203,7 +203,7 @@ progressive_weapons = {
     ),
     "Progressive Rocket Launcher": ItemDef(
         "Progressive Rocket Launcher",
-        net_id(245),
+        net_id(246),
         "progressive",
         {"items": [205, 223]},
         silent=True,
@@ -212,7 +212,7 @@ progressive_weapons = {
     ),
     "Progressive Thunderbolt": ItemDef(
         "Progressive Thunderbolt",
-        net_id(246),
+        net_id(247),
         "progressive",
         {"items": [206, 224]},
         silent=True,

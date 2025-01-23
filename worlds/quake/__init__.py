@@ -846,7 +846,8 @@ class Q1World(World):
                 try:
                     menu_region.connect(level_region, None, self.rules.level(level))
                 except:
-                    print("Failed to connect to menu: ", level_region.name)
+                    pass
+                    # print("Failed to connect to menu: ", level_region.name)
                 for event in level.events:
                     prefixed_event = f"{level.prefix} {event}"
                     event_loc = self.multiworld.get_location(
@@ -855,4 +856,5 @@ class Q1World(World):
                     try:
                         event_loc.place_locked_item(self.create_event(prefixed_event))
                     except:
-                        print("Failed to place locked item at event ", event_loc.name)
+                        pass
+                        # print("Failed to place locked item at event ", event_loc.name)

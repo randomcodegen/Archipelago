@@ -332,7 +332,7 @@ class E1M4(Q1Level):
         },
         {
             "id": 47,
-            "name": "Exit",
+            "name": "Secret Exit",
             "classname": "trigger_changelevel",
             "uuid": 3150179961539064980,
             "density": 0,

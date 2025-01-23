@@ -156,7 +156,8 @@ class Q1Level(object):
             try:
                 self.add_location(loc, region)
             except:
-                print("Failed to add location ", loc, " to region ", region.name)
+                pass
+                # print("Failed to add location ", loc, " to region ", region.name)
 
     def get_location(self, name) -> Optional[Location]:
         try:
@@ -194,7 +195,8 @@ class Q1Level(object):
         try:
             start.connect(end, None, self._resolve_rule_type(rules))
         except:
-            print("Failed to connect", start.name, " to ", end.name)
+            pass
+            # ("Failed to connect", start.name, " to ", end.name)
 
     def restrict(
         self,

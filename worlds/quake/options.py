@@ -4,7 +4,8 @@ from Options import Choice, NamedRange, PerGameCommonOptions, Toggle
 
 
 class SkillLevel(Choice):
-    """In-Game difficulty. Primarily affects number of Enemies spawned"""
+    """In-Game difficulty.
+    Primarily affects number of Enemies spawned"""
 
     display_name = "Skill Level"
     option_easy = 0
@@ -15,7 +16,8 @@ class SkillLevel(Choice):
 
 
 class Difficulty(Choice):
-    """Randomizer difficulty. Higher levels offer less resources and worse items in the pool"""
+    """Randomizer difficulty.
+    Higher levels offer less resources and worse items in the pool"""
 
     display_name = "Difficulty"
     option_easy = 0
@@ -26,7 +28,9 @@ class Difficulty(Choice):
 
 
 class LogicDifficulty(Choice):
-    """Trick difficulty for logic. Higher levels require harder tricks such precise Rocket/Grenade Jumps and airstrafes"""
+    """Trick difficulty for logic.
+    Higher levels require harder tricks such precise Rocket/Grenade Jumps and airstrafes
+    """
 
     display_name = "Logic Difficulty"
     option_easy = 0
@@ -99,16 +103,17 @@ class GoalPercentage(NamedRange):
 
 
 class IncludeSecrets(Toggle):
-    """Include secret areas into the location pool. This only has an effect if they are not already
-    included as goal locations"""
+    """Include secret areas into the location pool.
+    This only has an effect if they are not already included as goal locations"""
 
     display_name = "Include Secrets as Locations"
     default = False
 
 
 class LocationDensity(Choice):
-    """Choose the amount of vanilla pickup spots that get converted into location checks. Higher values may create
-    an item density that is (potentially much) higher than other Archipelago games"""
+    """Choose the amount of vanilla pickup spots that get converted into location checks.
+    Higher values may create an item density that is (potentially much) higher than other Archipelago games
+    """
 
     display_name = "Location Density"
     option_iconic = 0
@@ -208,11 +213,21 @@ class ProgressiveInventories(Toggle):
 class ShellRecharge(Toggle):
     """
     Recharges 1 shell (ammo) every second.
-    QoL to make the early game less painful on hard+ difficulties.
+    QoL to make the early game less painful on harder difficulties.
     """
 
     display_name = "Recharge Shells"
-    default = True
+    default = False
+
+
+class PowerupRecharge(Toggle):
+    """
+    Recharges 1 of each powerup every 60 seconds.
+    This is incredibly overpowered, only use it if you struggle with the game.
+    """
+
+    display_name = "Recharge Powerups"
+    default = False
 
 
 class TrapPercentage(NamedRange):
@@ -250,3 +265,4 @@ class Q1Options(PerGameCommonOptions):
     progressive_inventories: ProgressiveInventories
     trap_percentage: TrapPercentage
     shell_recharge: ShellRecharge
+    powerup_recharge: PowerupRecharge

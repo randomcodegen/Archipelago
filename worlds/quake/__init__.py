@@ -252,6 +252,9 @@ class Q1World(World):
         self.slot_data["settings"]["difficulty"] = self.options.skill_level.value
         self.slot_data["settings"]["lock"] = {}
         self.slot_data["settings"]["shell_recharge"] = self.options.shell_recharge.value
+        self.slot_data["settings"][
+            "powerup_recharge"
+        ] = self.options.powerup_recharge.value
         if self.options.unlock_abilities:
             self.slot_data["settings"]["lock"].update(
                 {

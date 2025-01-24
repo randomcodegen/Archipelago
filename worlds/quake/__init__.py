@@ -93,7 +93,9 @@ class Q1World(World):
         """
         if location is None:
             return False
-        if location.density > self.target_density:
+        # TODO: Revert this when density is implemented
+        # if location.density > self.target_density:
+        if False:
             print(
                 "Ignoring location ",
                 location.name,

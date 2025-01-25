@@ -460,8 +460,8 @@ class E1M6(Q1Level):
 
         # can get to this without button ability through the gap above
         self.connect(ret, past_button_upper_area, r.bigjump | r.can_button)
-        self.restrict("Supernailgun (3)", r.can_door)
-        self.restrict("Spikes (28)", r.can_door)
+        self.restrict("Supernailgun (3)", r.bigjump | (r.can_button & r.can_door))
+        self.restrict("Spikes (28)", r.bigjump | (r.can_button & r.can_door))
 
         past_button_area = self.region(
             "Past Button Area",

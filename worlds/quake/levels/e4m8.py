@@ -823,9 +823,6 @@ class E4M8(Q1Level):
         self.connect(button_elevator_area, elevator_jump_area, r.jump)
         self.connect(ret, elevator_jump_area, r.can_button)
 
-        self.restrict("Large Medkit (102)", r.can_door)
-        self.restrict("Cells (86)", r.can_door)
-        self.restrict("Large Medkit (103)", r.can_door)
         self.restrict("Rockets (94)", r.can_door)
         self.restrict("Invulnerability (61)", r.can_door)
         self.restrict("Cells (87)", r.can_door)
@@ -859,7 +856,6 @@ class E4M8(Q1Level):
             | r.can_gj_extr
             | (r.bigjump & r.difficulty("medium")),
         )
-        self.restrict("Invisibility (101)", r.can_door)
 
         jump_button_secret = self.region(
             "Jump Button",

@@ -756,10 +756,7 @@ class E1M5(Q1Level):
         )
 
         self.connect(inside_portal_area, past_button_area, r.can_button)
-
-        # TODO: Do these actually require can_door?
-        self.restrict("Secret (79)", r.can_door)
-        self.restrict("Rockets (36)", r.can_door)
+        self.restrict("Small Medkit (37)", r.can_door)
 
         past_elevator_area = self.region(
             "Past Elevator Area",

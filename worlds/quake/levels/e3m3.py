@@ -468,8 +468,6 @@ class E3M3(Q1Level):
             ],
         )
         self.connect(ret, past_button_area, r.can_button)
-        self.restrict("Rockets (33)", r.can_door)
-        self.restrict("Large Medkit (5)", r.can_door)
         self.restrict("Spikes (3)", r.can_door)
         self.restrict("Large Medkit (4)", r.can_door)
         self.restrict("Secret (23)", r.can_dive)

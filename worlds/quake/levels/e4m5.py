@@ -825,8 +825,6 @@ class E4M5(Q1Level):
                 "Spikes (91)",
             ],
         )
-        self.restrict("Large Medkit (30)", r.can_door)
-        self.restrict("Large Medkit (35)", r.can_door)
         self.restrict("Spikes (91)", r.can_door)
 
         final_area = self.region(

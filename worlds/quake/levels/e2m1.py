@@ -627,8 +627,6 @@ class E2M1(Q1Level):
             final_area,
             (r.bigjump & r.difficulty("medium") | (r.can_jump & r.difficulty("hard"))),
         )
-        # this requires door because a trigger is linked to it
-        self.restrict("Lightning (78)", r.can_door)
 
         upper_floor_area = self.region(
             "Upper Floor Area",

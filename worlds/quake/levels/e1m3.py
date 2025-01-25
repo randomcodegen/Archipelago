@@ -566,9 +566,6 @@ class E1M3(Q1Level):
         self.restrict("Large Medkit (70)", r.can_shootswitch)
         self.restrict("Rockets (71)", r.can_shootswitch)
         self.restrict("Large Medkit (74)", r.can_door)
-        self.restrict(
-            "Gold Key (1)", r.jump | r.can_door
-        )  # with the way triggers are blocked this needs jump/door
 
         underwater_secret = self.region(
             "Underwater Secret",
@@ -598,7 +595,6 @@ class E1M3(Q1Level):
             ],
         )
 
-        # TODO: Is this door requirement right?
         self.restrict("Rockets (54)", r.can_door)
 
         dd_ele_area = self.region(

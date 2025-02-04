@@ -577,9 +577,6 @@ class E2M3(Q1Level):
             ],
         )
         self.connect(ret, dive_area, r.can_dive)
-        self.connect(
-            past_button_door_area, dive_area, r.can_dive | r.difficulty("hard")
-        )
 
         past_button_area = self.region(
             "Past Button",
@@ -711,6 +708,10 @@ class E2M3(Q1Level):
             past_button_door_area,
             self.event("Open Big Door") | (r.bigjump & r.difficulty("hard")),
         )
+        self.connect(
+            past_button_door_area, dive_area, r.can_dive | r.difficulty("hard")
+        )
+
         self.restrict("Large Medkit (46)", r.difficulty("hard") | r.can_dive)
         self.restrict("Large Medkit (47)", r.difficulty("hard") | r.can_dive)
         # obscure knowledge for gibbing with quad dmg

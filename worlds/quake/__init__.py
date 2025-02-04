@@ -94,14 +94,7 @@ class Q1World(World):
         if location is None:
             return False
         # TODO: Revert this when density is implemented
-        # if location.density > self.target_density:
-        if False:
-            print(
-                "Ignoring location ",
-                location.name,
-                " because density is ",
-                location.density,
-            )
+        if location.density > self.target_density:
             return False
         if (
             location.classname == "trigger_secret"

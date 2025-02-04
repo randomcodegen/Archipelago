@@ -13,7 +13,7 @@ class E2M3(Q1Level):
             "name": "Large Medkit (1)",
             "classname": "item_health",
             "uuid": 5911236173412116537,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 2,
@@ -27,7 +27,7 @@ class E2M3(Q1Level):
             "name": "Shells (3)",
             "classname": "item_shells",
             "uuid": 6267764163917675493,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 4,
@@ -41,7 +41,7 @@ class E2M3(Q1Level):
             "name": "Megahealth (5)",
             "classname": "item_health",
             "uuid": 17892134499342102292,
-            "density": 0,
+            "density": 2,
         },
         {
             "id": 6,
@@ -62,35 +62,35 @@ class E2M3(Q1Level):
             "name": "Nailgun (8)",
             "classname": "weapon_nailgun",
             "uuid": 5785290351702252566,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 9,
             "name": "Rocketlauncher (9)",
             "classname": "weapon_rocketlauncher",
             "uuid": 12623382620585893961,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 10,
             "name": "Grenadelauncher (10)",
             "classname": "weapon_grenadelauncher",
             "uuid": 9312214024796691772,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 11,
             "name": "Spikes (11)",
             "classname": "item_spikes",
             "uuid": 10145968705134592210,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 12,
             "name": "Rockets (12)",
             "classname": "item_rockets",
             "uuid": 18265987794544067890,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 13,
@@ -104,84 +104,84 @@ class E2M3(Q1Level):
             "name": "Large Medkit (14)",
             "classname": "item_health",
             "uuid": 3381951564936514251,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 15,
             "name": "Large Medkit (15)",
             "classname": "item_health",
             "uuid": 12722675033181568144,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 16,
             "name": "Shells (16)",
             "classname": "item_shells",
             "uuid": 17632332068136293689,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 17,
             "name": "Small Medkit (17)",
             "classname": "item_health",
             "uuid": 14042082239299142880,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 18,
             "name": "Large Medkit (18)",
             "classname": "item_health",
             "uuid": 357600099601309042,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 19,
             "name": "Spikes (19)",
             "classname": "item_spikes",
             "uuid": 12215659972825660974,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 20,
             "name": "Rockets (20)",
             "classname": "item_rockets",
             "uuid": 11603287086674078425,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 21,
             "name": "Megahealth (21)",
             "classname": "item_health",
             "uuid": 11079391361456415561,
-            "density": 0,
+            "density": 2,
         },
         {
             "id": 22,
             "name": "Rockets (22)",
             "classname": "item_rockets",
             "uuid": 8986791847135781504,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 23,
             "name": "Grenadelauncher (23)",
             "classname": "weapon_grenadelauncher",
             "uuid": 18410550064757845612,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 24,
             "name": "Rockets (24)",
             "classname": "item_rockets",
             "uuid": 294300189250709793,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 25,
             "name": "Large Medkit (25)",
             "classname": "item_health",
             "uuid": 5680690627800391111,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 26,
@@ -195,7 +195,7 @@ class E2M3(Q1Level):
             "name": "Small Medkit (27)",
             "classname": "item_health",
             "uuid": 6600923541625903340,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 28,
@@ -209,49 +209,49 @@ class E2M3(Q1Level):
             "name": "Large Medkit (29)",
             "classname": "item_health",
             "uuid": 13162114022429208528,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 30,
             "name": "Large Medkit (30)",
             "classname": "item_health",
             "uuid": 8222784840565284382,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 31,
             "name": "Shells (31)",
             "classname": "item_shells",
             "uuid": 6056914730080841936,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 32,
             "name": "Rockets (32)",
             "classname": "item_rockets",
             "uuid": 10575490820858546595,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 33,
             "name": "Large Medkit (33)",
             "classname": "item_health",
             "uuid": 8027440473261433351,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 34,
             "name": "Large Medkit (34)",
             "classname": "item_health",
             "uuid": 11369023945274062363,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 35,
             "name": "Large Medkit (35)",
             "classname": "item_health",
             "uuid": 11960507011013602508,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 36,
@@ -265,14 +265,14 @@ class E2M3(Q1Level):
             "name": "Large Medkit (37)",
             "classname": "item_health",
             "uuid": 8968381302586175130,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 38,
             "name": "Large Medkit (38)",
             "classname": "item_health",
             "uuid": 9572762448829629582,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 39,
@@ -286,7 +286,7 @@ class E2M3(Q1Level):
             "name": "Spikes (40)",
             "classname": "item_spikes",
             "uuid": 3743890434107353394,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 41,
@@ -300,7 +300,7 @@ class E2M3(Q1Level):
             "name": "Supernailgun (42)",
             "classname": "weapon_supernailgun",
             "uuid": 14476495501296469476,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 43,
@@ -321,21 +321,21 @@ class E2M3(Q1Level):
             "name": "Spikes (45)",
             "classname": "item_spikes",
             "uuid": 13692391488085754583,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 46,
             "name": "Large Medkit (46)",
             "classname": "item_health",
             "uuid": 2968169719798754003,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 47,
             "name": "Large Medkit (47)",
             "classname": "item_health",
             "uuid": 13580822875731285244,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 48,
@@ -349,7 +349,7 @@ class E2M3(Q1Level):
             "name": "Rockets (49)",
             "classname": "item_rockets",
             "uuid": 12032843391752658858,
-            "density": 0,
+            "density": 2,
         },
         {
             "id": 50,
@@ -381,7 +381,7 @@ class E2M3(Q1Level):
         },
         {
             "id": 54,
-            "name": "Secret Exit",
+            "name": "Exit",
             "classname": "trigger_changelevel",
             "uuid": 3398952533708778163,
             "density": 0,
@@ -391,7 +391,7 @@ class E2M3(Q1Level):
             "name": "Spikes (55)",
             "classname": "item_spikes",
             "uuid": 7905417649023544770,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 56,
@@ -426,28 +426,28 @@ class E2M3(Q1Level):
             "name": "Quad Damage (60)",
             "classname": "item_artifact_super_damage",
             "uuid": 4262992238236922475,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 61,
             "name": "Lightning (61)",
             "classname": "weapon_lightning",
             "uuid": 11951901569730081780,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 62,
             "name": "Cells (62)",
             "classname": "item_cells",
             "uuid": 7679226119367256345,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 63,
             "name": "Cells (63)",
             "classname": "item_cells",
             "uuid": 6611392486184746704,
-            "density": 0,
+            "density": 5,
         },
         {
             "id": 64,
@@ -468,21 +468,21 @@ class E2M3(Q1Level):
             "name": "Large Medkit (66)",
             "classname": "item_health",
             "uuid": 13633269570846369827,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 67,
             "name": "Large Medkit (67)",
             "classname": "item_health",
             "uuid": 10192191090186503236,
-            "density": 0,
+            "density": 4,
         },
         {
             "id": 68,
             "name": "Large Medkit (68)",
             "classname": "item_health",
             "uuid": 8096682305804216143,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 69,
@@ -496,49 +496,49 @@ class E2M3(Q1Level):
             "name": "Spikes (70)",
             "classname": "item_spikes",
             "uuid": 15031650970405639277,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 71,
             "name": "Large Medkit (71)",
             "classname": "item_health",
             "uuid": 12548359808716674137,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 72,
             "name": "Large Medkit (72)",
             "classname": "item_health",
             "uuid": 12880004402423243584,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 73,
             "name": "Large Medkit (73)",
             "classname": "item_health",
             "uuid": 7913373504000905749,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 74,
             "name": "Large Medkit (74)",
             "classname": "item_health",
             "uuid": 12690135696663026437,
-            "density": 0,
+            "density": 3,
         },
         {
             "id": 75,
             "name": "Rockets (75)",
             "classname": "item_rockets",
             "uuid": 8215709723826686261,
-            "density": 0,
+            "density": 1,
         },
         {
             "id": 76,
             "name": "Shells (76)",
             "classname": "item_shells",
             "uuid": 13932087608506579039,
-            "density": 0,
+            "density": 3,
         },
     ]
 
@@ -570,9 +570,6 @@ class E2M3(Q1Level):
         dive_area = self.region(
             "Dive Area",
             [
-                "Large Medkit (46)",
-                "Large Medkit (47)",
-                "Rockets (41)",
                 "Secret (59)",
                 "Grenadelauncher (10)",
                 "Red Armor (50)",
@@ -580,6 +577,9 @@ class E2M3(Q1Level):
             ],
         )
         self.connect(ret, dive_area, r.can_dive)
+        self.connect(
+            past_button_door_area, dive_area, r.can_dive | r.difficulty("hard")
+        )
 
         past_button_area = self.region(
             "Past Button",
@@ -591,12 +591,25 @@ class E2M3(Q1Level):
 
         past_bridge_area = self.region(
             "Past Bridge",
-            ["Shells (7)", "Spikes (55)", "Open Big Door"],
+            [
+                "Shells (7)",
+                "Spikes (55)",
+                "Open Big Door",
+                "Rockets (41)",
+            ],
         )
         self.connect(
-            ret, past_bridge_area, r.can_button | (r.bigjump & r.difficulty("hard"))
+            ret,
+            past_bridge_area,
+            r.can_button
+            | r.can_rj_hard
+            | r.can_gj_extr
+            | (r.bigjump & r.difficulty("medium")),
         )
         self.connect(past_button_area, past_bridge_area)
+        # drop into water from above to grab
+        self.restrict("Rockets (41)", r.can_dive | r.difficulty("hard"))
+        self.restrict("Open Big Door", r.can_button)
 
         bridge_upper_area = self.region(
             "Bridge Upper",
@@ -688,14 +701,18 @@ class E2M3(Q1Level):
                 "Large Medkit (15)",
                 "Secret (69)",
                 "Rockets (49)",
+                "Large Medkit (46)",
+                "Large Medkit (47)",
             ],
         )
         # bigjump route from outside
         self.connect(
             past_bridge_area,
             past_button_door_area,
-            r.can_door & r.can_button | (r.bigjump & r.difficulty("hard")),
+            self.event("Open Big Door") | (r.bigjump & r.difficulty("hard")),
         )
+        self.restrict("Large Medkit (46)", r.difficulty("hard") | r.can_dive)
+        self.restrict("Large Medkit (47)", r.difficulty("hard") | r.can_dive)
         # obscure knowledge for gibbing with quad dmg
         self.restrict(
             "Rockets (49)",

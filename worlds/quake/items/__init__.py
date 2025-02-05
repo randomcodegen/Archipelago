@@ -357,7 +357,7 @@ abilities = {
         {"enables": "grenadedmgremover"},
         persistent=True,
         unique=True,
-        progression=False,
+        progression=True,
     ),
     "Rocket Damage Remover": ItemDef(
         "Rocket Damage Remover",
@@ -366,7 +366,7 @@ abilities = {
         {"enables": "rocketdmgremover"},
         persistent=True,
         unique=True,
-        progression=False,
+        progression=True,
     ),
     "Run": ItemDef(
         "Run",
@@ -554,7 +554,6 @@ inventory_items_progressive = {
     ),
 }
 
-# TODO: Create item groups and progressive items
 item_groups["Biosuit"] = {"Biosuit", "Progressive Biosuit"}
 item_groups["Biosuit Capacity"] = {"Biosuit", "Biosuit Capacity", "Progressive Biosuit"}
 item_groups["Quad Damage"] = {"Quad Damage", "Progressive Quad Damage"}

@@ -534,7 +534,8 @@ class E1M6(Q1Level):
         self.connect(
             ret,
             dark_path_area,
-            (r.difficulty("medium") | r.can_button) & (r.skill("medium") | r.can_door),
+            (r.difficulty("medium") | r.can_button)
+            & (r.skill_eq("medium") | r.can_door),
         )
 
         self.restrict("Large Medkit (15)", r.can_door)

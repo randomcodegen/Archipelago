@@ -56,15 +56,33 @@ class Q1World(World):
         }
         self.rules: Optional[Rules] = None
         # Filled later from options
-        # self.fuel_per_pickup: Dict[str, int] = {}
         self._target_density: Optional[int] = None
 
         self.seed = getattr(world, "re_gen_passthrough", {}).get(
             "Quake 1", world.random.getrandbits(64)
         )
-        self.random = Random(self.seed)
+
+        world.random = Random(self.seed)
 
         super().__init__(world, player)
+
+    def interpret_slot_data(self, slot_data: Dict[str, Any]):
+        # If the seed is not specified in the slot data, this mean the world was generated before Universal Tracker support.
+        seed_str = slot_data.get("ut_s")  # Get the string value
+        if seed_str is not None:
+            try:
+                seed = int(seed_str)  # Try converting to an integer
+            except ValueError:
+                try:
+                    seed = float(seed_str)  # If not an int, try float
+                except ValueError:
+                    print(
+                        f"Could not convert '{seed_str}' to a number."
+                    )  # If it's neither!
+                    seed = 0
+        else:
+            print("Key 'ut_s' not found in slot_data.")
+        return seed
 
     @classmethod
     def local_id(cls, ap_id: int) -> int:
@@ -338,9 +356,24 @@ class Q1World(World):
         "Cells",
     )
 
+    # TODO: Improve
+    # Hacky way to fix UT progression items
+    ut_overwrite_prog_list = []
+    other_items = ["Small Medkit", "Large Medkit", "Megahealth"]
+    for item_set in item_name_groups.values():
+        ut_overwrite_prog_list.extend(item_set)
+
+    ut_overwrite_prog_list.extend(other_items)
+
     def create_item(self, item: str, progression: bool = False) -> Q1Item:
         item_def = all_items.get(item)
-        if progression:
+        # Hacky way to fix UT
+        if (
+            hasattr(self.multiworld, "re_gen_passthrough")
+            and item in self.ut_overwrite_prog_list
+        ):
+            classification = ItemClassification.progression
+        elif progression:
             classification = ItemClassification.progression
         elif item_def.progression:
             classification = ItemClassification.progression
@@ -828,46 +861,3 @@ class Q1World(World):
     def fill_slot_data(self) -> Dict[str, Any]:
         self.slot_data.update({"ut_s": str(self.seed)})
         return self.slot_data
-
-    # Used to supply the Universal Tracker with level shuffle data
-    def interpret_slot_data(self, slot_data: Dict[str, Any]):
-        # If the seed is not specified in the slot data, this mean the world was generated before Universal Tracker support.
-        seed_str = slot_data.get("ut_s")  # Get the string value
-        if seed_str is not None:
-            try:
-                seed = int(seed_str)  # Try converting to an integer
-            except ValueError:
-                try:
-                    seed = float(seed_str)  # If not an int, try float
-                except ValueError:
-                    print(
-                        f"Could not convert '{seed_str}' to a number."
-                    )  # If it's neither!
-                    seed = 0
-        else:
-            print("Key 'ut_s' not found in slot_data.")
-        """
-        self.slot_data["ut"] = 1
-        menu_region = self.multiworld.get_region("Menu", self.player)
-        unlocklist = slot_data["levels"]
-        print(unlocklist)
-        for level in all_levels:
-            if self.item_name_to_id[level.unlock] in unlocklist:
-                level_region = level.create_region(self)
-                try:
-                    menu_region.connect(level_region, None, self.rules.level(level))
-                except:
-                    pass
-                    # print("Failed to connect to menu: ", level_region.name)
-                for event in level.events:
-                    prefixed_event = f"{level.prefix} {event}"
-                    event_loc = self.multiworld.get_location(
-                        prefixed_event, self.player
-                    )
-                    try:
-                        event_loc.place_locked_item(self.create_event(prefixed_event))
-                    except:
-                        pass
-                        # print("Failed to place locked item at event ", event_loc.name)
-        """
-        return seed

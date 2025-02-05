@@ -210,9 +210,19 @@ class Rules(object):
         """ RJ/GJ boosted with a regular jump or powerups"""
 
         skill_map = {"easy": 0, "medium": 1, "hard": 2, "nightmare": 3}
-        self.skill = lambda skill: (
+        self.skill_lt = lambda skill: (
             self.true
             if skill_map.get(skill, 0) <= world.options.skill_level
+            else self.false
+        )
+        self.skill_gt = lambda skill: (
+            self.true
+            if skill_map.get(skill, 0) >= world.options.skill_level
+            else self.false
+        )
+        self.skill_eq = lambda skill: (
+            self.true
+            if skill_map.get(skill, 0) == world.options.skill_level
             else self.false
         )
 

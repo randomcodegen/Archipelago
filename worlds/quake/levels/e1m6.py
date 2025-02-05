@@ -530,11 +530,11 @@ class E1M6(Q1Level):
                 "Large Medkit (15)",
             ],
         )
-        # on easy skill this door is closed because no enemy spawns
+        # an ogre opens this door on skill 1
         self.connect(
             ret,
             dark_path_area,
-            r.difficulty("medium") | r.can_button | (r.skill("easy") & r.can_door),
+            (r.difficulty("medium") | r.can_button) & (r.skill("medium") | r.can_door),
         )
 
         self.restrict("Large Medkit (15)", r.can_door)

@@ -142,6 +142,11 @@ class Rules(object):
                 )
                 # TODO: Work on health% generation for more precise total values
                 # print("HP required:", self.amount_req, "amount:", self.amount)
+
+                # TODO: Fix this hack
+                # self.heal() does not work in UT
+                # if "ut" in world.slot_data:
+                #    return 1
                 return self.amount > self.amount_req
 
         self.heal = CanHeal
@@ -211,12 +216,14 @@ class Rules(object):
             else self.false
         )
 
+        # TODO: Fix this
+        # self.heal() does not work in UT
+
         # helper for difficult grenade jumps (it's almost all of them)
         self.can_gj_ez = self.can_gj & self.difficulty("easy") & self.heal(100)
         self.can_gj_med = self.can_gj & self.difficulty("medium") & self.heal(100)
         self.can_gj_hard = self.can_gj & self.difficulty("hard") & self.heal(100)
         self.can_gj_extr = self.can_gj & self.difficulty("extreme") & self.heal(100)
-
         # helper for difficult rocket jumps (most of them are hard difficulty)
         self.can_rj_ez = self.can_rj & self.difficulty("easy") & self.heal(100)
         self.can_rj_med = self.can_rj & self.difficulty("medium") & self.heal(100)

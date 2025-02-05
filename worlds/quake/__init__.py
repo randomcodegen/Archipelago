@@ -1,7 +1,6 @@
-import io
 import json
 import math
-from pathlib import Path
+from random import Random
 from .levels import E1, E2, E3, SL
 from typing import Any, Dict, List, Optional, Set, Tuple
 
@@ -59,6 +58,11 @@ class Q1World(World):
         # Filled later from options
         # self.fuel_per_pickup: Dict[str, int] = {}
         self._target_density: Optional[int] = None
+
+        self.seed = getattr(world, "re_gen_passthrough", {}).get(
+            "Quake 1", world.random.getrandbits(64)
+        )
+        self.random = Random(self.seed)
 
         super().__init__(world, player)
 
@@ -137,27 +141,9 @@ class Q1World(World):
             if ep_option_reference[episode_id - 1]:
                 episode = all_episodes[episode_id - 1]
                 if not shuffle_start and len(self.starting_levels) < start_count:
-                    # add the first level to the starting levels, and the rest into the randomize pool
-                    # TODO: Test if this works on every generation
-                    # special case for solo worlds with no dm spawns and episode 1 only
-                    if (
-                        self.multiworld.players == 1
-                        and episode_id == 1
-                        and self.options.episode1
-                        and not self.options.episode2
-                        and not self.options.episode3
-                        and not self.options.episode4
-                        and self.options.location_density < 5
-                    ):
-                        choice = self.multiworld.random.randrange(1, E1.maxlevel)
-                        self.starting_levels.append(episode.levels[choice])
-                        self.included_levels.append(episode.levels[choice])
-                        episode.levels.pop(choice)
-                        episode_pool = episode.levels[: episode.maxlevel - 1]
-                    else:
-                        self.starting_levels.append(episode.levels[0])
-                        self.included_levels.append(episode.levels[0])
-                        episode_pool = episode.levels[1 : episode.maxlevel]
+                    self.starting_levels.append(episode.levels[0])
+                    self.included_levels.append(episode.levels[0])
+                    episode_pool = episode.levels[1 : episode.maxlevel]
                 else:
                     episode_pool = episode.levels[: episode.maxlevel]
                 # If our goal is to kill bosses, include the boss levels!
@@ -173,13 +159,24 @@ class Q1World(World):
                         if level not in self.included_levels
                     ]
                 )
-        # If the hub/end level is included, add it here
+
+        # randomize the levels so we can pull from them
+        self.multiworld.random.shuffle(level_candidates)
+
+        # if we start with only e1m1, nothing is reachable without dm spawns
+        # adjust starting level
+        if self.options.location_density < 5 and len(self.included_levels) == 1:
+            if E1.levels[0] in self.included_levels:
+                self.included_levels[0] = level_candidates[0]
+                self.starting_levels[0] = level_candidates[0]
+                level_candidates[0] = E1.levels[0]
+
+        # If the hub/end level is included, add it here, these dont add any sphere 1 checks
         if self.options.include_hub:
             self.included_levels.append(SL.levels[0])
         if self.options.include_end:
             self.included_levels.append(SL.levels[1])
-        # randomize the levels so we can pull from them
-        self.multiworld.random.shuffle(level_candidates)
+
         # if we have random starting levels, sample them from the start of the shuffled list
         # this conveniently excludes boss levels from being immediately unlocked in all bosses mode!
         if shuffle_start:
@@ -751,7 +748,7 @@ class Q1World(World):
             )
         else:
             itempool += self.create_item_list(["Grenade Launcher", "Rocket Launcher"])
-        # TODO: Implement this part if required
+
         # Get progression inventory based on difficulty settings
         required, useful = self.generate_health("Small Medkit")
         itempool += required
@@ -829,12 +826,28 @@ class Q1World(World):
         self.multiworld.itempool += itempool
 
     def fill_slot_data(self) -> Dict[str, Any]:
+        self.slot_data.update({"ut_s": str(self.seed)})
         return self.slot_data
 
     # Used to supply the Universal Tracker with level shuffle data
     def interpret_slot_data(self, slot_data: Dict[str, Any]):
-        print(slot_data)
-        print("")
+        # If the seed is not specified in the slot data, this mean the world was generated before Universal Tracker support.
+        seed_str = slot_data.get("ut_s")  # Get the string value
+        if seed_str is not None:
+            try:
+                seed = int(seed_str)  # Try converting to an integer
+            except ValueError:
+                try:
+                    seed = float(seed_str)  # If not an int, try float
+                except ValueError:
+                    print(
+                        f"Could not convert '{seed_str}' to a number."
+                    )  # If it's neither!
+                    seed = 0
+        else:
+            print("Key 'ut_s' not found in slot_data.")
+        """
+        self.slot_data["ut"] = 1
         menu_region = self.multiworld.get_region("Menu", self.player)
         unlocklist = slot_data["levels"]
         print(unlocklist)
@@ -856,3 +869,5 @@ class Q1World(World):
                     except:
                         pass
                         # print("Failed to place locked item at event ", event_loc.name)
+        """
+        return seed

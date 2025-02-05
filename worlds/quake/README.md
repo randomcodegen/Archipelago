@@ -1,4 +1,4 @@
-Duke Nukem 3D Randomizer for Archipelago
+Quake 1 Randomizer for Archipelago
 ========================================
 
 Installation

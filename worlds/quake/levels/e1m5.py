@@ -727,7 +727,7 @@ class E1M5(Q1Level):
                 "Large Medkit (3)",
             ],
         )
-        self.connect(ret, inside_portal_area, r.can_door)
+        self.connect(ret, inside_portal_area)
         self.restrict(
             "Supernailgun (40)", r.can_button | (r.bigjump & r.difficulty("hard"))
         )

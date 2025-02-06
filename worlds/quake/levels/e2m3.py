@@ -672,6 +672,7 @@ class E2M3(Q1Level):
         self.connect(
             third_bridge_area, third_bridge_door_area, r.can_door & r.can_shootswitch
         )
+        self.restrict("Yellow Armor (58)", r.can_dive)
 
         secret_exit_area = self.region(
             "Secret Exit Area",
@@ -775,6 +776,8 @@ class E2M3(Q1Level):
         )
         self.restrict("Invulnerability (65)", r.can_dive)
         self.restrict("Biosuit (64)", r.can_dive)
-        self.connect(outside_ledges_area, third_bridge_door_area, r.can_door)
+        self.connect(
+            outside_ledges_area, third_bridge_door_area, r.can_door & r.can_dive
+        )
 
         return ret

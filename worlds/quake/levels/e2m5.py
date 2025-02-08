@@ -752,6 +752,9 @@ class E2M5(Q1Level):
             ],
         )
         self.connect(past_acid_lake, past_elevator_area, r.can_button)
+        self.restrict("Large Medkit (66)", r.can_door)
+        self.restrict("Large Medkit (65)", r.can_door)
+        self.restrict("Large Medkit (67)", r.can_door)
 
         past_gold_door_area = self.region(
             "Past Gold Door",
@@ -763,7 +766,7 @@ class E2M5(Q1Level):
                 "Exit",
             ],
         )
-        self.connect(first_floor_area, past_gold_door_area, self.gold_key)
+        self.connect(past_elevator_area, past_gold_door_area, self.gold_key)
         self.restrict("Exit", r.can_door)
 
         return ret

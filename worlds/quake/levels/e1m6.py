@@ -530,12 +530,12 @@ class E1M6(Q1Level):
                 "Large Medkit (15)",
             ],
         )
-        # an ogre opens this door on skill 1
+        # r.can_button & r.can_door is required to return from grabbing the key
+        # this lights up the path
         self.connect(
             ret,
             dark_path_area,
-            (r.difficulty("medium") | r.can_button)
-            & (r.skill_eq("medium") | r.can_door),
+            (r.difficulty("medium") | r.can_button) & r.can_door,
         )
 
         self.restrict("Large Medkit (15)", r.can_door)

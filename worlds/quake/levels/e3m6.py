@@ -871,5 +871,6 @@ class E3M6(Q1Level):
         self.connect(
             past_button_area, past_gold_door_area, r.bigjump & r.difficulty("hard")
         )
+        self.restrict("Exit", r.can_door)
 
         return ret

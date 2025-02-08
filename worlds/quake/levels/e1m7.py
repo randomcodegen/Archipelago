@@ -268,5 +268,5 @@ class E1M7(Q1Level):
                 "Exit",
             ],
         )
-        self.restrict("Exit", r.can_button)
+        self.restrict("Exit", r.can_button & r.can_door)
         return ret

@@ -913,10 +913,6 @@ class E4M4(Q1Level):
                 "Rockets (50)",
                 "Cells (90)",
                 "Spikes (51)",
-                "Rocketlauncher (63)",
-                "Spikes (65)",
-                "Supernailgun (102)",
-                "Green Armor (117)",
                 "Secret (72)",
                 "Red Armor (53)",
                 "Lightning (97)",
@@ -996,11 +992,10 @@ class E4M4(Q1Level):
                 "Invulnerability (87)",
             ],
         )
-        # this butto requires door because of a trigger on top
         self.connect(
             lake_middle_platform_area,
             lake_side_area,
-            r.can_gj_extr | r.can_rj_hard | (r.can_button & r.can_door & r.jump),
+            r.can_gj_extr | r.can_rj_hard | (r.can_button & r.jump),
         )
 
         lake_side_secret = self.region(
@@ -1014,5 +1009,17 @@ class E4M4(Q1Level):
         self.connect(
             lake_side_area, lake_side_secret, r.can_gj_med | r.can_rj_med | r.bigjump
         )
+
+        past_ending_door = self.region(
+            "Past Ending Door",
+            [
+                "Rocketlauncher (63)",
+                "Spikes (65)",
+                "Supernailgun (102)",
+                "Green Armor (117)",
+            ],
+        )
+        self.connect(ret, past_ending_door, r.can_door)
+        self.connect(lake_side_secret, past_ending_door)
 
         return ret

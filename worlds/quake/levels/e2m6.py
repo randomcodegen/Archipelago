@@ -623,7 +623,7 @@ class E2M6(Q1Level):
             ret,
             first_bridge_area,
             r.can_door
-            | (r.can_rj_ez & r.difficulty("extreme"))
+            | (r.can_gj_extr | r.can_rj_hard)
             | (r.bigjump & r.difficulty("hard")),
         )
 
@@ -707,7 +707,7 @@ class E2M6(Q1Level):
         self.connect(
             first_bridge_area,
             second_bridge_area,
-            (r.jump & r.difficulty("extreme")) | (r.bigjump & r.difficulty("hard")),
+            (r.can_gj_extr | r.can_rj_hard) | (r.bigjump & r.difficulty("hard")),
         )
         self.connect(castle_bar_area, second_bridge_area, r.can_door)
 
@@ -769,22 +769,22 @@ class E2M6(Q1Level):
             "Third Bridge",
             [
                 "Megahealth (68)",
-                "Rockets (74)",
                 "Spikes (73)",
+                "Cells (67)",
+                "Supernailgun (46)",
+                "Rockets (74)",
             ],
         )
         self.connect(
             first_bridge_area,
             third_bridge_area,
-            (r.jump & r.difficulty("extreme")) | (r.bigjump & r.difficulty("hard")),
+            (r.can_gj_extr | r.can_rj_hard) | (r.bigjump & r.difficulty("hard")),
         )
         self.connect(past_gold_door_area, third_bridge_area)
 
         past_big_elevator_area = self.region(
             "Past Big Elevator",
             [
-                "Cells (67)",
-                "Supernailgun (46)",
                 "Large Medkit (75)",
                 "Spikes (76)",
                 "Sigil (2)",

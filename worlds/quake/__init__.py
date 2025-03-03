@@ -1,8 +1,9 @@
 import json
 import math
 from random import Random
-from .levels import E1, E2, E3, SL
+from .levels import E1, E2, E3, SL, HIPE1, HIPE2, HIPE3, HIPSL
 from typing import Any, Dict, List, Optional, Set, Tuple
+from BaseClasses import CollectionState
 
 # Compatibility across Python versions
 try:
@@ -17,7 +18,7 @@ from . import resources
 from .base_classes import Q1Item, Q1Level, LocationDef
 from .id import GAME_ID, local_id, net_id
 from .items import all_items, item_groups
-from .levels import all_episodes, all_levels
+from .levels import all_episodes_q1, all_episodes_hip
 from .options import Difficulty, Q1Options
 from .rules import Rules
 
@@ -55,14 +56,145 @@ class Q1World(World):
             "settings": {"dynamic": {}, "maximum": {}},
         }
         self.rules: Optional[Rules] = None
-        # Filled later from options
-        self._target_density: Optional[int] = None
 
         self.seed = getattr(world, "re_gen_passthrough", {}).get(
             "Quake 1", world.random.getrandbits(64)
         )
 
         world.random = Random(self.seed)
+
+        # store location spawn preset data as a list of dicts
+        self.location_presets = [
+            # iconic
+            {
+                "item_armor1": 100,
+                "item_armor2": 100,
+                "item_armorInv": 100,
+                "weapon_lightning": 100,
+                "weapon_nailgun": 100,
+                "weapon_supernailgun": 100,
+                "weapon_supershotgun": 100,
+                "weapon_grenadelauncher": 100,
+                "weapon_rocketlauncher": 100,
+                "item_artifact_envirosuit": 100,
+                "item_artifact_invisibility": 100,
+                "item_artifact_invulnerability": 100,
+                "item_artifact_super_damage": 100,
+                "item_key1": 100,
+                "item_key2": 100,
+                "item_sigil": 100,
+                "item_weapon": 100,
+                # hipnotic
+                "item_artifact_empathy_shields": 100,
+                "item_hornofconjuring": 100,
+                "item_artifact_wetsuit": 100,
+                "weapon_laser_gun": 100,
+                "weapon_mjolnir": 100,
+                "weapon_proximity_gun": 100,
+            },
+            # balanced
+            {
+                "item_armor1": 100,
+                "item_armor2": 100,
+                "item_armorInv": 100,
+                "weapon_lightning": 100,
+                "weapon_nailgun": 100,
+                "weapon_supernailgun": 100,
+                "weapon_supershotgun": 100,
+                "weapon_grenadelauncher": 100,
+                "weapon_rocketlauncher": 100,
+                "item_health (Small Medkit)": 25,
+                "item_health (Large Medkit)": 25,
+                "item_health (Megahealth)": 25,
+                "item_cells": 25,
+                "item_rockets": 25,
+                "item_shells": 25,
+                "item_spikes": 25,
+                "item_artifact_envirosuit": 100,
+                "item_artifact_invisibility": 100,
+                "item_artifact_invulnerability": 100,
+                "item_artifact_super_damage": 100,
+                "item_key1": 100,
+                "item_key2": 100,
+                "item_sigil": 100,
+                "item_weapon": 100,
+                # hipnotic
+                "item_artifact_empathy_shields": 100,
+                "item_hornofconjuring": 100,
+                "item_artifact_wetsuit": 100,
+                "weapon_laser_gun": 100,
+                "weapon_mjolnir": 100,
+                "weapon_proximity_gun": 100,
+            },
+            # dense
+            {
+                "item_armor1": 100,
+                "item_armor2": 100,
+                "item_armorInv": 100,
+                "weapon_lightning": 100,
+                "weapon_nailgun": 100,
+                "weapon_supernailgun": 100,
+                "weapon_supershotgun": 100,
+                "weapon_grenadelauncher": 100,
+                "weapon_rocketlauncher": 100,
+                "item_health (Small Medkit)": 50,
+                "item_health (Large Medkit)": 50,
+                "item_health (Megahealth)": 50,
+                "item_cells": 50,
+                "item_rockets": 50,
+                "item_shells": 50,
+                "item_spikes": 50,
+                "item_artifact_envirosuit": 100,
+                "item_artifact_invisibility": 100,
+                "item_artifact_invulnerability": 100,
+                "item_artifact_super_damage": 100,
+                "item_key1": 100,
+                "item_key2": 100,
+                "item_sigil": 100,
+                "item_weapon": 100,
+                # hipnotic
+                "item_artifact_empathy_shields": 100,
+                "item_hornofconjuring": 100,
+                "item_artifact_wetsuit": 100,
+                "weapon_laser_gun": 100,
+                "weapon_mjolnir": 100,
+                "weapon_proximity_gun": 100,
+            },
+            # all
+            {
+                "item_armor1": 100,
+                "item_armor2": 100,
+                "item_armorInv": 100,
+                "weapon_lightning": 100,
+                "weapon_nailgun": 100,
+                "weapon_supernailgun": 100,
+                "weapon_supershotgun": 100,
+                "weapon_grenadelauncher": 100,
+                "weapon_rocketlauncher": 100,
+                "item_health (Small Medkit)": 100,
+                "item_health (Large Medkit)": 100,
+                "item_health (Megahealth)": 100,
+                "item_cells": 100,
+                "item_rockets": 100,
+                "item_shells": 100,
+                "item_spikes": 100,
+                "item_artifact_envirosuit": 100,
+                "item_artifact_invisibility": 100,
+                "item_artifact_invulnerability": 100,
+                "item_artifact_super_damage": 100,
+                "item_key1": 100,
+                "item_key2": 100,
+                "item_sigil": 100,
+                "item_weapon": 100,
+                # hipnotic
+                "item_artifact_empathy_shields": 100,
+                "item_hornofconjuring": 100,
+                "item_artifact_wetsuit": 100,
+                "weapon_laser_gun": 100,
+                "weapon_mjolnir": 100,
+                "weapon_proximity_gun": 100,
+            },
+        ]
 
         super().__init__(world, player)
 
@@ -92,32 +224,19 @@ class Q1World(World):
     def net_id(cls, short_id: int) -> int:
         return net_id(short_id)
 
-    @property
-    def target_density(self) -> int:
-        """
-        Cached version of _target_density, so we don't constantly calculate it
-        """
-        if self._target_density is None:
-            density = self.options.location_density
-            if density == self.options.location_density.option_balanced:
-                # bump up the value by 1 if secret areas are not enabled
-                if not self.options.include_secrets and self.options.goal in (
-                    self.options.goal.option_beat_all_levels,
-                    self.options.goal.option_beat_all_bosses,
-                ):
-                    density += 1
-            self._target_density = density
-        return self._target_density
-
     def use_location(self, location: Optional[LocationDef] = None) -> bool:
         """
-        Specify if a certain location should be included, based on world settings
+        Specify if a certain location should be included, based on world settings.
+        This filters items out by multiplayer spawns and secret-goal settings.
         """
         if location is None:
             return False
-        # TODO: Revert this when density is implemented
-        if location.density > self.target_density:
-            return False
+        if (
+            location.classname != "trigger_changelevel"
+            and location.classname != "trigger_secret"
+        ):
+            if location.mp and not self.options.include_mp_items:
+                return False
         if (
             location.classname == "trigger_secret"
             and self.options.goal
@@ -132,33 +251,36 @@ class Q1World(World):
 
     def calculate_levels(self):
         level_count = self.options.level_count
-        # total number of starting levels to include, based on the total count
-        if level_count <= E1.maxlevel:
-            start_count = 1
-        elif level_count <= E1.maxlevel + E2.maxlevel:
-            start_count = 2
-        elif level_count <= E1.maxlevel + E2.maxlevel + E3.maxlevel:
-            start_count = 3
-        else:
-            start_count = 4
+        start_count = self.options.starting_level_count
+
         shuffle_start = self.options.shuffle_starting_levels
         goal_bosses = self.options.goal == self.options.goal.option_beat_all_bosses
 
         level_candidates = []
 
         # Shuffle episodes so we pick random start levels
-        episode_options = [1, 2, 3, 4]
+        if self.options.basegame == self.options.basegame.option_quake:
+            episode_options = [1, 2, 3, 4]
+            all_episodes = all_episodes_q1
+            special_levels = SL()
+        elif self.options.basegame == self.options.basegame.option_hipnotic:
+            episode_options = [1, 2, 3]
+            all_episodes = all_episodes_hip
+            special_levels = HIPSL()
+
         ep_option_reference = [
             self.options.episode1,
             self.options.episode2,
             self.options.episode3,
             self.options.episode4,
         ]
+
         self.multiworld.random.shuffle(episode_options)
         for episode_id in episode_options:
             if ep_option_reference[episode_id - 1]:
                 episode = all_episodes[episode_id - 1]
                 if not shuffle_start and len(self.starting_levels) < start_count:
+                    # add the first level to the starting levels, and the rest into the randomize pool
                     self.starting_levels.append(episode.levels[0])
                     self.included_levels.append(episode.levels[0])
                     episode_pool = episode.levels[1 : episode.maxlevel]
@@ -181,28 +303,19 @@ class Q1World(World):
         # randomize the levels so we can pull from them
         self.multiworld.random.shuffle(level_candidates)
 
-        # if we start with only e1m1, nothing is reachable without dm spawns
-        # adjust starting level
-        if self.options.location_density < 5 and len(self.included_levels) == 1:
-            if E1.levels[0] in self.included_levels:
-                self.included_levels[0] = level_candidates[0]
-                self.starting_levels[0] = level_candidates[0]
-                level_candidates[0] = E1.levels[0]
-
-        # If the hub/end level is included, add it here, these dont add any sphere 1 checks
-        if self.options.include_hub:
-            self.included_levels.append(SL.levels[0])
-        if self.options.include_end:
-            self.included_levels.append(SL.levels[1])
-
-        # if we have random starting levels, sample them from the start of the shuffled list
-        # this conveniently excludes boss levels from being immediately unlocked in all bosses mode!
         if shuffle_start:
             self.starting_levels = level_candidates[:start_count]
+
         # and then fill the included levels to the desired count
         self.included_levels.extend(
             level_candidates[: level_count - len(self.included_levels)]
         )
+
+        # If the hub/end level is included, add it
+        if self.options.include_hub:
+            self.included_levels.append(special_levels.levels[0])
+        if self.options.include_end:
+            self.included_levels.append(special_levels.levels[1])
 
     def define_dynamic_item_props(self, item_name: str, new_props: Dict[str, Any]):
         """
@@ -251,15 +364,15 @@ class Q1World(World):
         # Generate level pool
         self.calculate_levels()
 
-        # Initial level unlocks
-        for level in self.starting_levels:
-            self.options.start_inventory.value[level.unlock] = 1
         for level in self.included_levels:
             if self.options.area_maps == self.options.area_maps.option_start_with:
                 self.options.start_inventory.value[level.map] = 1
         self.slot_data["settings"]["difficulty"] = self.options.skill_level.value
         self.slot_data["settings"]["lock"] = {}
         self.slot_data["settings"]["shell_recharge"] = self.options.shell_recharge.value
+        self.slot_data["settings"][
+            "traps_as_progressive"
+        ] = self.options.traps_as_progressive.value
         self.slot_data["settings"][
             "powerup_recharge"
         ] = self.options.powerup_recharge.value
@@ -305,7 +418,6 @@ class Q1World(World):
         self.slot_data["levels"] = [
             self.item_name_to_id[level.unlock] for level in self.included_levels
         ]
-
         goal_exits = self.options.goal in {
             self.options.goal.option_beat_all_levels,
             self.options.goal.option_all,
@@ -334,20 +446,67 @@ class Q1World(World):
                 goal_counts[goal_type] = math.ceil(
                     0.01 * goal_percentage * goal_counts[goal_type]
                 )
-
         self.slot_data["goal"] = {
-            "Exit": {"id": self.item_name_to_id["Exit"], "count": goal_counts["Exit"]},
+            "Exit": {
+                "id": self.item_name_to_id["Exit"],
+                "count": goal_counts["Exit"],
+            },
             "Secret": {
                 "id": self.item_name_to_id["Secret"],
                 "count": goal_counts["Secret"],
             },
-            "Boss": {"id": self.item_name_to_id["Boss"], "count": goal_counts["Boss"]},
+            "Boss": {
+                "id": self.item_name_to_id["Boss"],
+                "count": goal_counts["Boss"],
+            },
         }
         self.multiworld.completion_condition[self.player] = (
             self.rules.count("Exit", goal_counts["Exit"])
             & self.rules.count("Secret", goal_counts["Secret"])
             & self.rules.count("Boss", goal_counts["Boss"])
         )
+
+        # Reroll if our random level unlock does not unlock enough sphere 1 locations
+        num_early_locs = 0
+        depth = 0
+        levels_tried = []
+
+        while depth < len(self.included_levels):
+            state = CollectionState(self.multiworld)
+            # print("Attempt ", depth + 1)
+            for level in self.starting_levels:
+                # print("Starting Level: ", level.prefix, level.name)
+                state.collect(self.create_item(level.unlock))
+            for level in self.starting_levels:
+                levels_tried.append(level)
+
+            sweep_locations = self.get_locations()
+            state.sweep_for_advancements(locations=sweep_locations)
+
+            num_early_locs = sum(
+                1
+                for loc in self.multiworld.get_reachable_locations(state, self.player)
+                if loc.address and not loc.item
+            )
+
+            # print("Number of early locations: ", num_early_locs)
+            depth += 1
+
+            # Break out of the loop if we found a valid sphere 1
+            if num_early_locs > 0:
+                break
+
+            # Remove candidates if they didnt work
+            level_candidate = self.multiworld.random.choice(self.included_levels)
+            while level_candidate in levels_tried:
+                level_candidate = self.multiworld.random.choice(self.included_levels)
+            self.starting_levels.pop()
+            self.starting_levels.append(level_candidate)
+
+        for level in self.starting_levels:
+            # print("Final Starting Level: ", level.prefix, level.name)
+            self.options.start_inventory.value[level.unlock] = 1
+            self.multiworld.push_precollected(self.create_item(level.unlock))
 
     AMMO_NAMES = (
         "Shells",
@@ -593,7 +752,7 @@ class Q1World(World):
         ]
         return required_list, useful_list
 
-    # TODO: Adjust this with new values for Quake
+    # TODO: Update these
     DIFF_TO_MAX_MAPPING = {
         Difficulty.option_easy: {
             "Shotgun": (25, 50),
@@ -602,7 +761,10 @@ class Q1World(World):
             "Super Nailgun": (30, 100),
             "Grenade Launcher": (5, 50),
             "Rocket Launcher": (5, 50),
+            "Proximity Gun": (5, 50),
             "Thunderbolt": (15, 200),
+            "Mjolnir": (15, 200),
+            "Laser Cannon": (15, 200),
         },
         Difficulty.option_medium: {
             "Shotgun": (25, 50),
@@ -611,7 +773,10 @@ class Q1World(World):
             "Super Nailgun": (30, 100),
             "Grenade Launcher": (5, 50),
             "Rocket Launcher": (5, 50),
+            "Proximity Gun": (5, 50),
             "Thunderbolt": (15, 200),
+            "Mjolnir": (15, 200),
+            "Laser Cannon": (15, 200),
         },
         Difficulty.option_hard: {
             "Shotgun": (25, 50),
@@ -620,7 +785,10 @@ class Q1World(World):
             "Super Nailgun": (30, 100),
             "Grenade Launcher": (5, 50),
             "Rocket Launcher": (5, 50),
+            "Proximity Gun": (5, 50),
             "Thunderbolt": (15, 200),
+            "Mjolnir": (15, 200),
+            "Laser Cannon": (15, 200),
         },
         Difficulty.option_extreme: {
             "Shotgun": (25, 50),
@@ -629,19 +797,12 @@ class Q1World(World):
             "Super Nailgun": (30, 100),
             "Grenade Launcher": (5, 50),
             "Rocket Launcher": (5, 50),
+            "Proximity Gun": (5, 50),
             "Thunderbolt": (15, 200),
+            "Mjolnir": (15, 200),
+            "Laser Cannon": (15, 200),
         },
     }
-
-    WEAPON_NAMES = (
-        "Shotgun",
-        "Super Shotgun",
-        "Nailgun",
-        "Super Nailgun",
-        "Grenade Launcher",
-        "Rocket Launcher",
-        "Thunderbolt",
-    )
 
     # Map Weapon Name to Ammo Type
     WPN_TO_AMMO_MAPPING = {
@@ -651,8 +812,22 @@ class Q1World(World):
         "Super Nailgun": "Spikes",
         "Grenade Launcher": "Rockets",
         "Rocket Launcher": "Rockets",
+        "Proximity Gun": "Rockets",
         "Thunderbolt": "Cells",
+        "Mjolnir": "Cells",
+        "Laser Cannon": "Cells",
     }
+
+    hip_weapons = ["Proximity Gun", "Mjolnir", "Laser Cannon"]
+    WEAPON_NAMES = [
+        "Shotgun",
+        "Super Shotgun",
+        "Nailgun",
+        "Super Nailgun",
+        "Grenade Launcher",
+        "Rocket Launcher",
+        "Thunderbolt",
+    ]
 
     def useful_items_per_difficulty(self, available_slots: int) -> List[Q1Item]:
         if available_slots <= 0:
@@ -663,6 +838,10 @@ class Q1World(World):
         # We want about 35% of remaining slots to be filled with ammo expansions, so calculated the amount we get
         # for each of the 10 weapons
         expansions_per_weapon = math.ceil(available_slots * 0.035)
+
+        if self.options.basegame == self.options.basegame.option_hipnotic:
+            self.WEAPON_NAMES.extend(self.hip_weapons)
+
         for weapon in self.WEAPON_NAMES:
             start, target = self.DIFF_TO_MAX_MAPPING.get(
                 self.options.difficulty, self.options.difficulty.option_medium
@@ -745,8 +924,7 @@ class Q1World(World):
                     prefixed_event, self.player
                 ).place_locked_item(self.create_event(prefixed_event))
             itempool += [self.create_item(item) for item in level.items]
-            if level.unlock not in self.options.start_inventory.value:
-                itempool.append(self.create_item(level.unlock))
+            itempool.append(self.create_item(level.unlock))
             if self.options.area_maps == self.options.area_maps.option_unlockable:
                 useful_items.append(self.create_item(level.map))
 
@@ -779,8 +957,12 @@ class Q1World(World):
                     "Progressive Rocket Launcher",
                 ]
             )
+            if self.options.basegame == self.options.basegame.option_hipnotic:
+                itempool.append(self.create_item("Progressive Proximity Gun"))
         else:
             itempool += self.create_item_list(["Grenade Launcher", "Rocket Launcher"])
+            if self.options.basegame == self.options.basegame.option_hipnotic:
+                itempool.append(self.create_item("Proximity Gun"))
 
         # Get progression inventory based on difficulty settings
         required, useful = self.generate_health("Small Medkit")

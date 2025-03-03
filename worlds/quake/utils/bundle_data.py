@@ -21,8 +21,8 @@ ID_MAP = BASE_DIR / "resources" / "id_map.json"
 
 def update_ids():
     sprite_id_idx = 1
-    secret_id_idx = 4000
-    exit_id_idx = 3900
+    secret_id_idx = 11000
+    exit_id_idx = 10000
 
     all_ids = {"locations": {}, "items": {}}
     all_uuids = {"locations": {}}

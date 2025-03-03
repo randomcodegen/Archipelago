@@ -32,6 +32,25 @@ from .e4m8 import E4M8
 from .start import start
 from .end import end
 
+# hipnotic
+from .hip1m1 import hip1m1
+from .hip1m2 import hip1m2
+from .hip1m3 import hip1m3
+from .hip1m4 import hip1m4
+from .hip1m5 import hip1m5
+from .hip2m1 import hip2m1
+from .hip2m2 import hip2m2
+from .hip2m3 import hip2m3
+from .hip2m4 import hip2m4
+from .hip2m5 import hip2m5
+from .hip2m6 import hip2m6
+from .hip3m1 import hip3m1
+from .hip3m2 import hip3m2
+from .hip3m3 import hip3m3
+from .hip3m4 import hip3m4
+from .hipstart import hipstart
+from .hipend import hipend
+
 
 class E1(Q1Episode):
     name = "Doomed Dimension"
@@ -58,12 +77,49 @@ class E4(Q1Episode):
 
 
 class SL(Q1Episode):
-    name = "Special Levels"
+    name = "Special Levels Quake 1"
     levels = [start(), end()]
     maxlevel = len(levels)
 
 
-all_episodes = [E1(), E2(), E3(), E4()]
-all_eps_incl_special = [E1(), E2(), E3(), E4(), SL()]
-all_levels = [level for ep in all_episodes for level in ep.levels]
+# Hipnotic
+class HIPE1(Q1Episode):
+    name = "Fortress of the Dead"
+    levels = [hip1m1(), hip1m2(), hip1m3(), hip1m4(), hip1m5()]
+    maxlevel = len(levels)
+
+
+class HIPE2(Q1Episode):
+    name = "Dominion of Darkness"
+    levels = [hip2m1(), hip2m2(), hip2m3(), hip2m4(), hip2m5(), hip2m6()]
+    maxlevel = len(levels)
+
+
+class HIPE3(Q1Episode):
+    name = "The Rift"
+    levels = [hip3m1(), hip3m2(), hip3m3(), hip3m4()]
+    maxlevel = len(levels)
+
+
+class HIPSL(Q1Episode):
+    name = "Special Levels Hipnotic"
+    levels = [hipstart(), hipend()]
+    maxlevel = len(levels)
+
+
+all_episodes_q1 = [E1(), E2(), E3(), E4()]
+all_episodes_hip = [HIPE1(), HIPE2(), HIPE3()]
+
+all_eps_incl_special = [
+    E1(),
+    E2(),
+    E3(),
+    E4(),
+    SL(),
+    HIPE1(),
+    HIPE2(),
+    HIPE3(),
+    HIPSL(),
+]
+
 all_levels_incl_special = [level for ep in all_eps_incl_special for level in ep.levels]

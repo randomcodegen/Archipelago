@@ -4,9 +4,9 @@ from ..base_classes import ItemDef
 from ..id import net_id
 from ..levels import all_levels_incl_special
 
-automap_base_id = 3600
-unlock_base_id = 3700
-key_base_id = 3800
+automap_base_id = 7000
+unlock_base_id = 8000
+key_base_id = 9000
 
 # Filled step by step below for readability
 item_groups = {}
@@ -157,6 +157,32 @@ weapons = {
         unique=True,
         persistent=True,
     ),
+    # hipnotic
+    "Proximity Gun": ItemDef(
+        "Proximity Gun",
+        net_id(207),
+        "weapon",
+        {"ammonum": 2, "ammo": 5, "flags": 65536},
+        unique=True,
+        persistent=True,
+        progression=True,
+    ),
+    "Mjolnir": ItemDef(
+        "Mjolnir",
+        net_id(208),
+        "weapon",
+        {"ammonum": 3, "ammo": 15, "flags": 128},
+        unique=True,
+        persistent=True,
+    ),
+    "Laser Cannon": ItemDef(
+        "Laser Cannon",
+        net_id(209),
+        "weapon",
+        {"ammonum": 3, "ammo": 15, "flags": 8388608},
+        unique=True,
+        persistent=True,
+    ),
 }
 
 progressive_weapons = {
@@ -181,7 +207,7 @@ progressive_weapons = {
         net_id(243),
         "progressive",
         {"items": [202, 222]},
-        unique=True,
+        silent=True,
         persistent=True,
     ),
     "Progressive Super Nailgun": ItemDef(
@@ -189,7 +215,7 @@ progressive_weapons = {
         net_id(244),
         "progressive",
         {"items": [203, 222]},
-        unique=True,
+        silent=True,
         persistent=True,
     ),
     "Progressive Grenade Launcher": ItemDef(
@@ -216,7 +242,31 @@ progressive_weapons = {
         "progressive",
         {"items": [206, 224]},
         silent=True,
-        unique=True,
+        persistent=True,
+    ),
+    "Progressive Proximity Gun": ItemDef(
+        "Progressive Proximity Gun",
+        net_id(248),
+        "progressive",
+        {"items": [207, 223]},
+        silent=True,
+        persistent=True,
+        progression=True,
+    ),
+    "Progressive Mjolnir": ItemDef(
+        "Progressive Mjolnir",
+        net_id(249),
+        "progressive",
+        {"items": [208, 224]},
+        silent=True,
+        persistent=True,
+    ),
+    "Progressive Laser Cannon": ItemDef(
+        "Progressive Laser Cannon",
+        net_id(250),
+        "progressive",
+        {"items": [209, 224]},
+        silent=True,
         persistent=True,
     ),
 }
@@ -285,6 +335,9 @@ item_groups["Super Nailgun"] = {"Super Nailgun", "Progressive Super Nailgun"}
 item_groups["Grenade Launcher"] = {"Grenade Launcher", "Progressive Grenade Launcher"}
 item_groups["Rocket Launcher"] = {"Rocket Launcher", "Progressive Rocket Launcher"}
 item_groups["Thunderbolt"] = {"Thunderbolt", "Progressive Thunderbolt"}
+item_groups["Proximity Gun"] = {"Proximity Gun", "Progressive Proximity Gun"}
+item_groups["Mjolnir"] = {"Mjolnir", "Progressive Mjolnir"}
+item_groups["Laser Cannon"] = {"Laser Cannon", "Progressive Laser Cannon"}
 
 abilities = {
     "Jump": ItemDef(
@@ -471,6 +524,16 @@ inventory_items = {
         persistent=True,
         unique=True,
     ),
+    # hipnotic
+    # not adding wetsuit since its just the biosuit
+    "Empathy Shields": ItemDef(
+        "Empathy Shields",
+        net_id(306),
+        "inventory",
+        {"invnum": 5, "capacity": 1},
+        persistent=True,
+        unique=True,
+    ),
 }
 
 inventory_items_capacity = {
@@ -505,6 +568,13 @@ inventory_items_capacity = {
     "Backpack Capacity": ItemDef(
         "Backpack Capacity",
         net_id(325),
+        "invcapacity",
+        {"invnum": 4, "capacity": 1},
+        persistent=True,
+    ),
+    "Empathy Shields Capacity": ItemDef(
+        "Empathy Shields Capacity",
+        net_id(326),
         "invcapacity",
         {"invnum": 4, "capacity": 1},
         persistent=True,
@@ -552,6 +622,14 @@ inventory_items_progressive = {
         persistent=True,
         silent=True,
     ),
+    "Progressive Empathy Shields": ItemDef(
+        "Progressive Empathy Shields",
+        net_id(346),
+        "progressive",
+        {"items": [306, 326]},
+        persistent=True,
+        silent=True,
+    ),
 }
 
 item_groups["Biosuit"] = {"Biosuit", "Progressive Biosuit"}
@@ -579,6 +657,12 @@ item_groups["Backpack Capacity"] = {
     "Backpack",
     "Backpack Capacity",
     "Progressive Backpack",
+}
+item_groups["Empathy Shields"] = {"Empathy Shields", "Progressive Empathy Shields"}
+item_groups["Empathy Shields Capacity"] = {
+    "Empathy Shields",
+    "Empathy Shields Capacity",
+    "Progressive Empathy Shields",
 }
 
 traps = {

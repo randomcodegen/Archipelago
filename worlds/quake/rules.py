@@ -164,7 +164,12 @@ class Rules(object):
             self.can_jump = HasRule("Jump")
             self.can_dive = HasRule("Dive")
             self.can_rj = HasRule("Rocket Jump") & HasGroupRule("Rocket Launcher")
-            self.can_gj = HasRule("Grenade Jump") & HasGroupRule("Grenade Launcher")
+            if world.options.basegame == world.options.basegame.option_hipnotic:
+                self.can_gj = HasRule("Grenade Jump") & (
+                    HasGroupRule("Grenade Launcher") | HasGroupRule("Proximity Gun")
+                )
+            else:
+                self.can_gj = HasRule("Grenade Jump") & HasGroupRule("Grenade Launcher")
             self.can_run = HasRule("Run")
         else:
             self.can_jump = self.true
@@ -247,6 +252,8 @@ class Rules(object):
         self.grenadelauncher = self.has_group("Grenade Launcher")
         self.rocketlauncher = self.has_group("Rocket Launcher")
         self.thunderbolt = self.has_group("Thunderbolt")
+        # hipnotic
+        self.proximitygun = self.has_group("Proximity Gun")
 
         # General Stuff
         self.level = lambda level_cls: HasRule(level_cls.unlock)

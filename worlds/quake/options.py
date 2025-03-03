@@ -1,6 +1,13 @@
 from dataclasses import dataclass
 
-from Options import Choice, NamedRange, PerGameCommonOptions, Toggle
+from Options import (
+    Choice,
+    NamedRange,
+    PerGameCommonOptions,
+    Toggle,
+    OptionDict,
+    StartInventoryPool,
+)
 
 
 class SkillLevel(Choice):
@@ -38,6 +45,14 @@ class LogicDifficulty(Choice):
     option_hard = 2
     option_extreme = 3
     default = 1
+
+
+class BaseGame(Choice):
+    """Pick which game/expansion to play"""
+
+    display_name = "Pick Q1/Expansion"
+    option_quake = 0
+    option_hipnotic = 1
 
 
 class UnlockAbilities(Toggle):
@@ -95,10 +110,6 @@ class GoalPercentage(NamedRange):
     display_name = "Percentage of Goals required"
     range_start = 25
     range_end = 100
-    special_range_names: {
-        "half": 50,
-        "all": 100,
-    }
     default = 100
 
 
@@ -110,45 +121,133 @@ class IncludeSecrets(Toggle):
     default = False
 
 
-class LocationDensity(Choice):
-    """Choose the amount of vanilla pickup spots that get converted into location checks.
-    Higher values may create an item density that is (potentially much) higher than other Archipelago games
+class IncludedLocations(Choice):
+    """Presets for included locations.
+    Iconic includes all keys, weapons, sigils, armor and powerups.
+    Balanced adds 25 % ammo + health.
+    Dense adds 50% ammo + health.
+    All adds 100% ammo + health.
+    Use the custom option if you want to make use of CustomIncludedLocations.
     """
 
-    display_name = "Location Density"
+    display_name = "Included Locations"
     option_iconic = 0
     option_balanced = 1
-    # 2 is reserved internally for balanced with secrets disabled as checks. It is implicitly selected as a variant
-    # of balanced based on other options
-    option_dense = 3
-    option_all = 4
-    option_include_mp_only_pickups = 5
+    option_dense = 2
+    option_all = 3
+    option_custom = 4
     default = 1
 
 
+class IncludeMPItems(Toggle):
+    """Set if included locations should also contain multiplayer item spawns."""
+
+    display_name = "Include multiplayer items as locations"
+    default = False
+
+
+class CustomIncludedLocations(OptionDict):
+    """A list of itemnames that will be replaced with AP locations.
+    The number after the itemname is the percentage of items of that type, which will get turned into AP locations.
+    Quake 1 Items: ["item_armor1", "item_armor2", "item_armorInv", "weapon_lightning", "weapon_nailgun", "weapon_supernailgun", "weapon_supershotgun", "weapon_grenadelauncher",
+        "weapon_rocketlauncher", "item_health (Small Medkit)", "item_health (Large Medkit)", "item_health (Megahealth)", "item_cells", "item_rockets", "item_shells", "item_spikes",
+        "item_artifact_envirosuit", "item_artifact_invisibility", "item_artifact_invulnerability", "item_artifact_super_damage", "item_key1", "item_key2", "item_sigil"]
+    Hipnotic Items: ["item_artifact_empathy_shields", "item_hornofconjuring", "item_artifact_wetsuit", "weapon_laser_gun", "weapon_mjolnir", "weapon_proximity_gun"]
+    """
+
+    default = {
+        # quake 1
+        "item_armor1": 100,
+        "item_armor2": 100,
+        "item_armorInv": 100,
+        "weapon_lightning": 100,
+        "weapon_nailgun": 100,
+        "weapon_supernailgun": 100,
+        "weapon_supershotgun": 100,
+        "weapon_grenadelauncher": 100,
+        "weapon_rocketlauncher": 100,
+        "item_health (Small Medkit)": 100,
+        "item_health (Large Medkit)": 100,
+        "item_health (Megahealth)": 100,
+        "item_cells": 100,
+        "item_rockets": 100,
+        "item_shells": 100,
+        "item_spikes": 100,
+        "item_artifact_envirosuit": 100,
+        "item_artifact_invisibility": 100,
+        "item_artifact_invulnerability": 100,
+        "item_artifact_super_damage": 100,
+        "item_key1": 100,
+        "item_key2": 100,
+        "item_sigil": 100,
+        "item_weapon": 100,
+        # hipnotic
+        "item_artifact_empathy_shields": 100,
+        "item_hornofconjuring": 100,
+        "item_artifact_wetsuit": 100,
+        "weapon_laser_gun": 100,
+        "weapon_mjolnir": 100,
+        "weapon_proximity_gun": 100,
+    }
+    valid_keys = [
+        # quake 1
+        "item_armor1",
+        "item_armor2",
+        "item_armorInv",
+        "weapon_lightning",
+        "weapon_nailgun",
+        "weapon_supernailgun",
+        "weapon_supershotgun",
+        "weapon_grenadelauncher",
+        "weapon_rocketlauncher",
+        "item_health (Small Medkit)",
+        "item_health (Large Medkit)",
+        "item_health (Megahealth)",
+        "item_cells",
+        "item_rockets",
+        "item_shells",
+        "item_spikes",
+        "item_artifact_envirosuit",
+        "item_artifact_invisibility",
+        "item_artifact_invulnerability",
+        "item_artifact_super_damage",
+        "item_key1",
+        "item_key2",
+        "item_sigil",
+        "item_weapon",
+        # hipnotic
+        "item_artifact_empathy_shields",
+        "item_hornofconjuring",
+        "item_artifact_wetsuit",
+        "weapon_laser_gun",
+        "weapon_mjolnir",
+        "weapon_proximity_gun",
+    ]
+
+
 class Episode1(Toggle):
-    """Include Episode 1: Doomed Dimension in the randomizer"""
+    """Include Episode 1 in the randomizer"""
 
     display_name = "Use Episode 1"
     default = True
 
 
 class Episode2(Toggle):
-    """Include Episode 2: Realm of Black Magic in the randomizer"""
+    """Include Episode 2 in the randomizer"""
 
     display_name = "Use Episode 2"
     default = True
 
 
 class Episode3(Toggle):
-    """Include Episode 3: Netherworld in the randomizer"""
+    """Include Episode 3 in the randomizer"""
 
     display_name = "Use Episode 3"
     default = True
 
 
 class Episode4(Toggle):
-    """Include Episode 4: The Elder World in the randomizer"""
+    """Include Episode 4 in the randomizer"""
 
     display_name = "Use Episode 4"
     default = True
@@ -178,9 +277,17 @@ class LevelCount(NamedRange):
     range_start = 2
     range_end = 32
     default = 9
-    special_range_names: {
-        "all": 32,
-    }
+
+
+class StartingLevelCount(NamedRange):
+    """
+    The number of levels that are unlocked from the start.
+    """
+
+    display_name = "Starting Level Count"
+    range_start = 1
+    range_end = 32
+    default = 1
 
 
 class ShuffleStartingLevels(Toggle):
@@ -239,11 +346,19 @@ class TrapPercentage(NamedRange):
     default = 10
 
 
+class ShowTrapsAsProgressive(Toggle):
+    """Traps show up as progressive items in-game."""
+
+    display_name = "Traps as Progression"
+    default = True
+
+
 @dataclass
 class Q1Options(PerGameCommonOptions):
     difficulty: Difficulty
     logic_difficulty: LogicDifficulty
     skill_level: SkillLevel
+    basegame: BaseGame
     unlock_abilities: UnlockAbilities
     damage_remover_abilities: DamageRemoverAbilities
     unlock_interact: UnlockInteract
@@ -251,7 +366,10 @@ class Q1Options(PerGameCommonOptions):
     area_maps: AreaMaps
     goal: Goal
     goal_percentage: GoalPercentage
-    location_density: LocationDensity
+    # location_density: LocationDensity
+    included_locations_preset: IncludedLocations
+    include_mp_items: IncludeMPItems
+    custom_included_locations: CustomIncludedLocations
     include_secrets: IncludeSecrets
     episode1: Episode1
     episode2: Episode2
@@ -261,8 +379,10 @@ class Q1Options(PerGameCommonOptions):
     include_end: IncludeEnd
     level_count: LevelCount
     shuffle_starting_levels: ShuffleStartingLevels
+    starting_level_count: StartingLevelCount
     progressive_weapons: ProgressiveWeapons
     progressive_inventories: ProgressiveInventories
     trap_percentage: TrapPercentage
+    traps_as_progressive: ShowTrapsAsProgressive
     shell_recharge: ShellRecharge
     powerup_recharge: PowerupRecharge

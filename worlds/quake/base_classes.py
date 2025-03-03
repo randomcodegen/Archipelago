@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Dict, List, Optional, Set, Union
 
@@ -34,19 +35,7 @@ class LocationDef:
     name: str
     classname: str  # "item_*", "weapon_*", "trigger_changelevel", "trigger_secret"
     uuid: int
-    density: int = (
-        0  # defines what density settings it appears in. Higher values require more locations enabled
-    )
-
-
-# Density levels:
-# 0: Iconic locations - Always included
-# 1: Balanced with secrets - Default density with location checks at secret areas. Handpicked for interesting places to
-#    visit.
-# 2: Balanced without secrets - Default density with no checks at secret areas. Includes additional pickups in (most)
-#    secret areas to account for missing checks from the area itself
-# 3: Dense - More checks, including some nearby duplicates
-# 4: All - All single player locations, can sometimes have big clusters in single spot
+    mp: int = 0  # 1 if the location only spawns in multiplayer
 
 
 @dataclass(frozen=True)
@@ -95,7 +84,7 @@ class Q1Level(object):
                 classname=loc_def["classname"],
                 game_id=loc_def["id"],
                 uuid=loc_def["uuid"],
-                density=loc_def.get("density", 0),
+                mp=loc_def["mp"],
             )
         return ret
 
@@ -141,6 +130,43 @@ class Q1Level(object):
                 )
             )
         elif self.world.use_location(self.locations.get(location)):
+            # special name case for health items as they are managed by spawnflags
+            # and the classname varies from the dict entry
+            if self.locations[location].classname == "item_health":
+                match = re.search(r"(Megahealth|Small Medkit|Large Medkit)", location)
+                if match:
+                    classname = "item_health " + "(" + match.group(1) + ")"
+            else:
+                classname = self.locations[location].classname
+
+            # always include secrets and exits
+            if classname == "trigger_secret" or classname == "trigger_changelevel":
+                pass
+
+            # handle custom included locations preset
+            elif self.world.options.included_locations_preset.value == 4:
+                if classname in self.world.options.custom_included_locations.value:
+                    # handle item locations, where less than 100% are included
+                    spawn_percentage = (
+                        self.world.options.custom_included_locations.value[classname]
+                        / 100
+                    )
+                    if not self.world.multiworld.random.random() < spawn_percentage:
+                        return
+                else:
+                    return
+            else:
+                # handle non-custom preset spawn percentages
+                # grab the correct preset dict
+                preset_dict = self.world.location_presets[
+                    self.world.options.included_locations_preset.value
+                ]
+                if not classname in preset_dict:
+                    return
+                spawn_percentage = preset_dict[classname] / 100
+                if not self.world.multiworld.random.random() < spawn_percentage:
+                    return
+            # if all checks pass, add location
             region.locations.append(
                 Q1Location(
                     self.world.player,

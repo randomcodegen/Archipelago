@@ -76,6 +76,7 @@ class Q1World(World):
                 "weapon_supershotgun": 100,
                 "weapon_grenadelauncher": 100,
                 "weapon_rocketlauncher": 100,
+                "item_health (Megahealth)": 100,
                 "item_artifact_envirosuit": 100,
                 "item_artifact_invisibility": 100,
                 "item_artifact_invulnerability": 100,
@@ -105,7 +106,7 @@ class Q1World(World):
                 "weapon_rocketlauncher": 100,
                 "item_health (Small Medkit)": 25,
                 "item_health (Large Medkit)": 25,
-                "item_health (Megahealth)": 25,
+                "item_health (Megahealth)": 100,
                 "item_cells": 25,
                 "item_rockets": 25,
                 "item_shells": 25,
@@ -139,7 +140,7 @@ class Q1World(World):
                 "weapon_rocketlauncher": 100,
                 "item_health (Small Medkit)": 50,
                 "item_health (Large Medkit)": 50,
-                "item_health (Megahealth)": 50,
+                "item_health (Megahealth)": 100,
                 "item_cells": 50,
                 "item_rockets": 50,
                 "item_shells": 50,
@@ -479,8 +480,9 @@ class Q1World(World):
                 state.collect(self.create_item(level.unlock))
             for level in self.starting_levels:
                 levels_tried.append(level)
-
-            sweep_locations = self.get_locations()
+            # TODO: Re-enable this when AP 0.6.0 goes live
+            # sweep_locations = self.get_locations()
+            sweep_locations = self.multiworld.get_locations()
             state.sweep_for_advancements(locations=sweep_locations)
 
             num_early_locs = sum(

@@ -400,6 +400,7 @@ class Q1World(World):
                 {
                     "door": True,
                     "button": True,
+                    "shootswitch": True,
                 }
             )
         # TODO: Implement no_save
@@ -930,19 +931,25 @@ class Q1World(World):
             if self.options.area_maps == self.options.area_maps.option_unlockable:
                 useful_items.append(self.create_item(level.map))
 
+        unlock_abilities_array = [
+            "Jump",
+            "Dive",
+            "Grenade Jump",
+            "Rocket Jump",
+            "Run",
+        ]
         if self.options.unlock_abilities:
-            itempool += self.create_item_list(
-                [
-                    "Jump",
-                    "Dive",
-                    "Grenade Jump",
-                    "Rocket Jump",
-                    "Run",
-                ]
-            )
+            itempool += self.create_item_list(unlock_abilities_array)
+        else:
+            for unlock in unlock_abilities_array:
+                self.multiworld.push_precollected(self.create_item(unlock))
 
+        unlock_interact_array = ["Door", "Button", "Shoot Switch"]
         if self.options.unlock_interact:
-            itempool += self.create_item_list(["Door", "Button", "Shoot Switch"])
+            itempool += self.create_item_list(unlock_interact_array)
+        else:
+            for unlock in unlock_interact_array:
+                self.multiworld.push_precollected(self.create_item(unlock))
 
         if self.options.damage_remover_abilities:
             itempool += self.create_item_list(

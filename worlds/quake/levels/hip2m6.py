@@ -690,7 +690,11 @@ class hip2m6(Q1Level):
         self.restrict("Secret (3)", r.can_dive & r.can_door & r.can_shootswitch)
         self.restrict("Quad Damage (4)", r.can_dive & r.can_door & r.can_shootswitch)
         self.restrict("Secret (32)", r.can_dive & r.can_door & r.can_shootswitch)
-        self.restrict("Mjolnir (34)", r.can_dive & r.can_door & r.can_shootswitch)
+        self.restrict(
+            "Mjolnir (34)",
+            (r.can_dive & r.can_door & r.can_shootswitch)
+            | (r.bigjump & r.difficulty("hard")),
+        )
         self.restrict(
             "Invulnerability (63)", r.can_dive & r.can_door & r.can_shootswitch
         )

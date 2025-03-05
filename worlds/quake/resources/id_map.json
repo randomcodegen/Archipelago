@@ -3824,7 +3824,7 @@
   "items": {
     "Nothing": 0,
     "Heal (+1)": 403,
-    "Armor (+1)": 403,
+    "Armor (+1)": 404,
     "Shotgun Ammo (+1)": 405,
     "Nail Ammo (+1)": 406,
     "Rocket Ammo (+1)": 407,
@@ -3860,11 +3860,11 @@
     "Rockets Ammo": 263,
     "Cells Ammo": 264,
     "Small Medkit": 400,
-    "Large Medkit": 401,
-    "Megahealth": 402,
-    "Green Armor": 404,
-    "Yellow Armor": 405,
-    "Red Armor": 406,
+    "Large Medkit": 440,
+    "Megahealth": 441,
+    "Green Armor": 442,
+    "Yellow Armor": 443,
+    "Red Armor": 444,
     "Quad Damage": 301,
     "Invulnerability": 302,
     "Biosuit": 303,
@@ -4075,5 +4075,5 @@
     "Dynamic15": 614,
     "Dynamic16": 615
   },
-  "checksum": "b5ee4ed34603a21d4e6515e08c2ed5f0737715f4ffb6b60feb3e7cda1ab3638e"
+  "checksum": "4bcaa4fa1f76d97ba0b2b96fcce6a6de02e3371a7143b37d42f8bbe6c1a95362"
 }

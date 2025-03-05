@@ -2,7 +2,7 @@
   "game": "Quake 1",
   "name": "Quake 1",
   "game_id": 1,
-  "checksum": "b5ee4ed34603a21d4e6515e08c2ed5f0737715f4ffb6b60feb3e7cda1ab3638e",
+  "checksum": "4bcaa4fa1f76d97ba0b2b96fcce6a6de02e3371a7143b37d42f8bbe6c1a95362",
   "episodes": {
     "e1": {
       "name": "Doomed Dimension",
@@ -20218,50 +20218,28 @@
       "invnum": 5,
       "capacity": 15
     },
-    "401": {
-      "name": "Large Medkit",
-      "type": "inventory",
-      "persistent": true,
-      "silent": true,
-      "invnum": 5,
-      "capacity": 25
-    },
-    "402": {
-      "name": "Megahealth",
-      "type": "inventory",
-      "persistent": true,
-      "silent": true,
-      "invnum": 5,
-      "capacity": 100
-    },
     "403": {
+      "name": "Heal (+1)",
+      "type": "health",
+      "heal": 1,
+      "overheal": true
+    },
+    "404": {
       "name": "Armor (+1)",
       "type": "armor",
       "armor": 1
     },
-    "404": {
-      "name": "Green Armor",
-      "type": "inventory",
-      "persistent": true,
-      "silent": true,
-      "invnum": 6,
-      "capacity": 15
-    },
     "405": {
-      "name": "Yellow Armor",
-      "type": "inventory",
-      "persistent": true,
-      "silent": true,
-      "invnum": 6,
-      "capacity": 25
+      "name": "Shotgun Ammo (+1)",
+      "type": "ammo",
+      "amount": 1,
+      "ammonum": 0
     },
     "406": {
-      "name": "Red Armor",
-      "type": "inventory",
-      "persistent": true,
-      "silent": true,
-      "invnum": 6,
-      "capacity": 100
+      "name": "Nail Ammo (+1)",
+      "type": "ammo",
+      "amount": 1,
+      "ammonum": 1
     },
     "407": {
       "name": "Rocket Ammo (+1)",
@@ -20274,6 +20252,46 @@
       "type": "ammo",
       "amount": 1,
       "ammonum": 3
+    },
+    "440": {
+      "name": "Large Medkit",
+      "type": "inventory",
+      "persistent": true,
+      "silent": true,
+      "invnum": 5,
+      "capacity": 25
+    },
+    "441": {
+      "name": "Megahealth",
+      "type": "inventory",
+      "persistent": true,
+      "silent": true,
+      "invnum": 5,
+      "capacity": 100
+    },
+    "442": {
+      "name": "Green Armor",
+      "type": "inventory",
+      "persistent": true,
+      "silent": true,
+      "invnum": 6,
+      "capacity": 15
+    },
+    "443": {
+      "name": "Yellow Armor",
+      "type": "inventory",
+      "persistent": true,
+      "silent": true,
+      "invnum": 6,
+      "capacity": 25
+    },
+    "444": {
+      "name": "Red Armor",
+      "type": "inventory",
+      "persistent": true,
+      "silent": true,
+      "invnum": 6,
+      "capacity": 100
     },
     "500": {
       "name": "Low Health Trap",

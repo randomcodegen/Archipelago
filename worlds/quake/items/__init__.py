@@ -100,7 +100,7 @@ junk_items = {
     ),
     "Armor (+1)": ItemDef(
         "Armor (+1)",
-        net_id(403),
+        net_id(404),
         "armor",
         {"armor": 1},
     ),
@@ -467,7 +467,7 @@ healing_items = {
     ),
     "Large Medkit": ItemDef(
         "Large Medkit",
-        net_id(401),
+        net_id(440),
         "inventory",
         {"invnum": 5, "capacity": 25},
         persistent=True,
@@ -475,7 +475,7 @@ healing_items = {
     ),
     "Megahealth": ItemDef(
         "Megahealth",
-        net_id(402),
+        net_id(441),
         "inventory",
         {"invnum": 5, "capacity": 100},
         persistent=True,
@@ -483,7 +483,7 @@ healing_items = {
     ),
     "Green Armor": ItemDef(
         "Green Armor",
-        net_id(404),
+        net_id(442),
         "inventory",
         {"invnum": 6, "capacity": 15},
         persistent=True,
@@ -491,7 +491,7 @@ healing_items = {
     ),
     "Yellow Armor": ItemDef(
         "Yellow Armor",
-        net_id(405),
+        net_id(443),
         "inventory",
         {"invnum": 6, "capacity": 25},
         persistent=True,
@@ -499,7 +499,7 @@ healing_items = {
     ),
     "Red Armor": ItemDef(
         "Red Armor",
-        net_id(406),
+        net_id(444),
         "inventory",
         {"invnum": 6, "capacity": 100},
         persistent=True,

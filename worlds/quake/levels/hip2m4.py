@@ -550,6 +550,7 @@ class hip2m4(Q1Level):
         )
         self.restrict("Secret (56)", r.invuln(1))
         self.restrict("Megahealth (57)", r.invuln(1))
+        self.restrict((r.difficulty("hard") & r.can_jump) | r.bigjump)
 
         past_silver_door_area = self.region(
             "Past Silver Door",

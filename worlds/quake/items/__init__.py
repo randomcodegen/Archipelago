@@ -108,25 +108,25 @@ junk_items = {
         "Shotgun Ammo (+1)",
         net_id(405),
         "ammo",
-        {"amount": 1, "ammonum": 0},
+        {"ammo": 1, "ammonum": 0},
     ),
     "Nail Ammo (+1)": ItemDef(
         "Nail Ammo (+1)",
         net_id(406),
         "ammo",
-        {"amount": 1, "ammonum": 1},
+        {"ammo": 1, "ammonum": 1},
     ),
     "Rocket Ammo (+1)": ItemDef(
         "Rocket Ammo (+1)",
         net_id(407),
         "ammo",
-        {"amount": 1, "ammonum": 2},
+        {"ammo": 1, "ammonum": 2},
     ),
     "Cell Ammo (+1)": ItemDef(
         "Cell Ammo (+1)",
         net_id(408),
         "ammo",
-        {"amount": 1, "ammonum": 3},
+        {"ammo": 1, "ammonum": 3},
     ),
 }
 

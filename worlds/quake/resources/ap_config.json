@@ -20232,25 +20232,25 @@
     "405": {
       "name": "Shotgun Ammo (+1)",
       "type": "ammo",
-      "amount": 1,
+      "ammo": 1,
       "ammonum": 0
     },
     "406": {
       "name": "Nail Ammo (+1)",
       "type": "ammo",
-      "amount": 1,
+      "ammo": 1,
       "ammonum": 1
     },
     "407": {
       "name": "Rocket Ammo (+1)",
       "type": "ammo",
-      "amount": 1,
+      "ammo": 1,
       "ammonum": 2
     },
     "408": {
       "name": "Cell Ammo (+1)",
       "type": "ammo",
-      "amount": 1,
+      "ammo": 1,
       "ammonum": 3
     },
     "440": {

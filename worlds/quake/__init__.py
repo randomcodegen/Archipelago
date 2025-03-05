@@ -564,9 +564,9 @@ class Q1World(World):
                 "Mini Heal (+1)": 40,
                 "Mini Ammo (+1)": 40,
                 "Green Armor": 2,
-                "Small Medkit": 30,
-                "Large Medkit": 10,
-                "Megahealth": 1,
+                # "Small Medkit": 30,
+                # "Large Medkit": 10,
+                # "Megahealth": 1,
                 "Quad Damage": 1,
                 "Invulnerability": 1,
                 "Biosuit": 1,
@@ -587,9 +587,9 @@ class Q1World(World):
                 "Mini Ammo (+1)": 30,
                 "Green Armor": 3,
                 "Yellow Armor": 2,
-                "Small Medkit": 30,
-                "Large Medkit": 10,
-                "Megahealth": 2,
+                # "Small Medkit": 30,
+                # "Large Medkit": 10,
+                # "Megahealth": 2,
                 "Quad Damage": 2,
                 "Invulnerability": 2,
                 "Biosuit": 2,
@@ -605,11 +605,11 @@ class Q1World(World):
             }
         elif difficulty == self.options.difficulty.option_medium:
             ratios = {
-                "Small Medkit": 40,
-                "Large Medkit": 20,
                 "Green Armor": 4,
                 "Yellow Armor": 3,
                 "Red Armor": 1,
+                # "Small Medkit": 40,
+                # "Large Medkit": 20,
                 "Megahealth": 3,
                 "Quad Damage": 3,
                 "Invulnerability": 3,
@@ -626,11 +626,11 @@ class Q1World(World):
             }
         else:
             ratios = {
-                "Small Medkit": 50,
-                "Large Medkit": 30,
                 "Green Armor": 5,
                 "Yellow Armor": 4,
                 "Red Armor": 2,
+                # "Small Medkit": 50,
+                # "Large Medkit": 30,
                 "Megahealth": 10,
                 "Quad Damage": 5,
                 "Invulnerability": 5,

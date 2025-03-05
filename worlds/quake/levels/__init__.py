@@ -48,6 +48,7 @@ from .hip3m1 import hip3m1
 from .hip3m2 import hip3m2
 from .hip3m3 import hip3m3
 from .hip3m4 import hip3m4
+from .hipdm1 import hipdm1
 from .hipstart import hipstart
 from .hipend import hipend
 
@@ -97,7 +98,7 @@ class HIPE2(Q1Episode):
 
 class HIPE3(Q1Episode):
     name = "The Rift"
-    levels = [hip3m1(), hip3m2(), hip3m3(), hip3m4()]
+    levels = [hip3m1(), hip3m2(), hip3m3(), hip3m4(), hipdm1()]
     maxlevel = len(levels)
 
 

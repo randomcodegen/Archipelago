@@ -92,17 +92,41 @@ goal_items = {
 
 junk_items = {
     "Nothing": ItemDef("Nothing", net_id(0), "filler", {}, silent=True),
-    "Mini Heal (+1)": ItemDef(
-        "Mini Heal (+1)",
+    "Heal (+1)": ItemDef(
+        "Heal (+1)",
         net_id(403),
         "health",
         {"heal": 1, "overheal": True},
     ),
-    "Mini Ammo (+1)": ItemDef(
-        "Mini Ammo (+1)",
-        net_id(404),
+    "Armor (+1)": ItemDef(
+        "Armor (+1)",
+        net_id(403),
+        "armor",
+        {"armor": 1},
+    ),
+    "Shotgun Ammo (+1)": ItemDef(
+        "Shotgun Ammo (+1)",
+        net_id(405),
         "ammo",
-        {"amount": 1},
+        {"amount": 1, "ammonum": 0},
+    ),
+    "Nail Ammo (+1)": ItemDef(
+        "Nail Ammo (+1)",
+        net_id(406),
+        "ammo",
+        {"amount": 1, "ammonum": 1},
+    ),
+    "Rocket Ammo (+1)": ItemDef(
+        "Rocket Ammo (+1)",
+        net_id(407),
+        "ammo",
+        {"amount": 1, "ammonum": 2},
+    ),
+    "Cell Ammo (+1)": ItemDef(
+        "Cell Ammo (+1)",
+        net_id(408),
+        "ammo",
+        {"amount": 1, "ammonum": 3},
     ),
 }
 

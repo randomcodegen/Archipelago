@@ -550,7 +550,14 @@ class hip2m4(Q1Level):
         )
         self.restrict("Secret (56)", r.invuln(1))
         self.restrict("Megahealth (57)", r.invuln(1))
-        self.restrict((r.difficulty("hard") & r.can_jump) | r.bigjump)
+        self.restrict(
+            "Hornofconjuring (7)",
+            (r.difficulty("hard") & r.can_jump) | r.bigjump | (r.skill_eq(0) & r.jump),
+        )
+        self.restrict(
+            "Secret (41)",
+            (r.difficulty("hard") & r.can_jump) | r.bigjump | (r.skill_eq(0) & r.jump),
+        )
 
         past_silver_door_area = self.region(
             "Past Silver Door",

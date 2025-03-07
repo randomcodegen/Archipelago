@@ -507,7 +507,7 @@ class Q1World(World):
             self.starting_levels.append(level_candidate)
 
         for level in self.starting_levels:
-            # print("Final Starting Level: ", level.prefix, level.name)
+            print("Final Starting Level: ", level.prefix, level.name)
             self.options.start_inventory.value[level.unlock] = 1
             self.multiworld.push_precollected(self.create_item(level.unlock))
 
@@ -949,7 +949,10 @@ class Q1World(World):
                     prefixed_event, self.player
                 ).place_locked_item(self.create_event(prefixed_event))
             itempool += [self.create_item(item) for item in level.items]
-            itempool.append(self.create_item(level.unlock))
+            # Starting level unlocks were included earlier
+            if level not in self.starting_levels:
+                print("Add level unlock to pool ", level.unlock)
+                itempool.append(self.create_item(level.unlock))
             if self.options.area_maps == self.options.area_maps.option_unlockable:
                 useful_items.append(self.create_item(level.map))
 

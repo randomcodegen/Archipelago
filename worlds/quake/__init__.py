@@ -248,9 +248,13 @@ class Q1World(World):
             and not self.options.include_secrets
         ):
             return False
+        # dont include all kills if the option is disabled
+        if location.classname == "all_kills" and not self.options.include_allkills:
+            return False
         return True
 
     def calculate_levels(self):
+
         level_count = self.options.level_count
         start_count = self.options.starting_level_count
 
@@ -275,6 +279,14 @@ class Q1World(World):
             self.options.episode3,
             self.options.episode4,
         ]
+
+        # check for user error in episode selection (yaml)
+        if not any(ep_option_reference[i - 1] for i in episode_options):
+            valid_indices = [opt - 1 for opt in episode_options]
+            random_index = self.multiworld.random.choice(valid_indices)
+            random_option = ep_option_reference[random_index]
+            random_option.value = True
+            # raise RuntimeError("No episode selected. Please fix your yaml.")
 
         self.multiworld.random.shuffle(episode_options)
         for episode_id in episode_options:
@@ -727,28 +739,28 @@ class Q1World(World):
             "Invulnerability": (0, 5),
             "Biosuit": (0, 5),
             "Invisibility": (0, 5),
-            "Backpack": (0, 5),
+            "Backpack": (5, 10),
         },
         Difficulty.option_medium: {
             "Quad Damage": (0, 3),
             "Invulnerability": (0, 3),
             "Biosuit": (0, 3),
             "Invisibility": (0, 3),
-            "Backpack": (0, 3),
+            "Backpack": (5, 8),
         },
         Difficulty.option_hard: {
             "Quad Damage": (0, 2),
             "Invulnerability": (0, 2),
             "Biosuit": (0, 2),
             "Invisibility": (0, 2),
-            "Backpack": (0, 2),
+            "Backpack": (5, 6),
         },
         Difficulty.option_extreme: {
             "Quad Damage": (0, 1),
             "Invulnerability": (0, 1),
             "Biosuit": (0, 1),
             "Invisibility": (0, 1),
-            "Backpack": (0, 1),
+            "Backpack": (5, 5),
         },
     }
 

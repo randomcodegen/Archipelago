@@ -202,3 +202,4 @@ Thumbs.db
 [Dd]esktop.ini
 worlds/quake/utils/logic.py
 worlds/quake/utils/logic_template.txt
+fuzz.py

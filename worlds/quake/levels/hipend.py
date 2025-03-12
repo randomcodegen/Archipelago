@@ -288,9 +288,16 @@ class hipend(Q1Level):
             "uuid": 13397806965560897404,
             "mp": 0,
         },
-        # manually added for the exit to exist
         {
             "id": 41,
+            "name": "All Kills (41)",
+            "classname": "all_kills",
+            "uuid": 4209832524753352918,
+            "mp": 0,
+        },
+        # manually added for the exit to exist
+        {
+            "id": 42,
             "name": "Exit",
             "classname": "trigger_changelevel",
             "uuid": 13397806965560897405,
@@ -342,6 +349,7 @@ class hipend(Q1Level):
                 "Rockets (18)",
                 "Rocketlauncher (17)",
                 "Exit",
+                "All Kills (41)",
             ],
         )
 
@@ -350,5 +358,7 @@ class hipend(Q1Level):
             "Rocketlauncher (17)", r.can_door | (r.bigjump & r.difficulty("hard"))
         )
         self.restrict("Exit", r.can_door | (r.bigjump & r.difficulty("hard")))
+
+        self.restrict("All Kills (41)", r.difficult_combat)
 
         return ret

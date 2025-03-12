@@ -568,6 +568,13 @@ class E2M1(Q1Level):
             "uuid": 7372249635066669512,
             "mp": 0,
         },
+        {
+            "id": 81,
+            "name": "All Kills (81)",
+            "classname": "all_kills",
+            "uuid": 15671326731056046532,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -620,12 +627,16 @@ class E2M1(Q1Level):
                 "Large Medkit (77)",
                 "Spikes (76)",
                 "Exit",
+                "All Kills (81)",
             ],
         )
         self.connect(
             ret,
             final_area,
             (r.bigjump & r.difficulty("medium") | (r.can_jump & r.difficulty("hard"))),
+        )
+        self.restrict(
+            "All Kills (81)", self.gold_key & r.can_button & r.can_door & r.backpack(5)
         )
 
         upper_floor_area = self.region(
@@ -717,6 +728,7 @@ class E2M1(Q1Level):
             ],
         )
         self.connect(final_area, past_silver_door_area, r.can_button)
+        self.connect(past_silver_door_area, final_area, r.can_button)
         self.connect(silver_door_area, past_silver_door_area, self.silver_key)
 
         return ret

@@ -540,6 +540,13 @@ class hip1m1(Q1Level):
             "uuid": 12500454105329173360,
             "mp": 0,
         },
+        {
+            "id": 77,
+            "name": "All Kills (77)",
+            "classname": "all_kills",
+            "uuid": 1965040492323622617,
+            "mp": 0,
+        },
     ]
 
     events = ["Pipe Broken"]
@@ -686,8 +693,14 @@ class hip1m1(Q1Level):
                 "Small Medkit (34)",
                 "Grenadelauncher (17)",
                 "Gold Key (2)",
+                "All Kills (77)",
             ],
         )
         self.connect(past_door_area, pump_room_area, self.event("Pipe Broken"))
+
+        self.restrict(
+            "All Kills (77)",
+            r.backpack(5) & (self.gold_key | (r.bigjump & r.difficulty("extreme"))),
+        )
 
         return ret

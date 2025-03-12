@@ -750,6 +750,13 @@ class hip2m2(Q1Level):
             "uuid": 7535735957221391200,
             "mp": 0,
         },
+        {
+            "id": 107,
+            "name": "All Kills (107)",
+            "classname": "all_kills",
+            "uuid": 18304061567422109772,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -899,12 +906,18 @@ class hip2m2(Q1Level):
                 "Secret (9)",
                 "Megahealth (91)",
                 "Exit",
+                "All Kills (107)",
             ],
         )
         self.connect(past_button_area, past_gold_door_area, self.gold_key)
         self.restrict("Secret (9)", r.can_shootswitch)
         self.restrict("Megahealth (91)", r.can_shootswitch)
         self.restrict("Exit", r.can_button)
+        self.restrict(
+            "All Kills (107)",
+            r.difficult_combat
+            & (r.can_button & (self.silver_key | (r.bigjump & r.difficulty("hard")))),
+        )
 
         tower_area = self.region(
             "Tower Area",

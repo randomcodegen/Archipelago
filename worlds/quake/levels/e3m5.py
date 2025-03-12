@@ -771,6 +771,13 @@ class E3M5(Q1Level):
             "uuid": 2051183509164307297,
             "mp": 0,
         },
+        {
+            "id": 110,
+            "name": "All Kills (110)",
+            "classname": "all_kills",
+            "uuid": 14667958664321143562,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -909,6 +916,7 @@ class E3M5(Q1Level):
                 "Spikes (19)",
                 "Large Medkit (21)",
                 "Large Medkit (20)",
+                "All Kills (110)",
             ],
         )
         self.connect(past_button_area, past_door_area, r.can_door)
@@ -921,5 +929,7 @@ class E3M5(Q1Level):
         self.restrict("Spikes (19)", r.can_shootswitch)
         self.restrict("Large Medkit (21)", r.can_shootswitch)
         self.restrict("Large Medkit (20)", r.can_shootswitch)
+
+        self.restrict("All Kills (110)", r.difficult_combat)
 
         return ret

@@ -386,6 +386,13 @@ class E2M2(Q1Level):
             "uuid": 5897484177831578046,
             "mp": 0,
         },
+        {
+            "id": 55,
+            "name": "All Kills (55)",
+            "classname": "all_kills",
+            "uuid": 10352180870007310314,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -489,9 +496,17 @@ class E2M2(Q1Level):
                 "Rockets (47)",
                 "Rockets (46)",
                 "Exit",
+                "All Kills (55)",
             ],
         )
         self.connect(castle_inside_area, past_gold_door_area, self.gold_key)
         self.restrict("Exit", r.can_door)
+
+        self.restrict(
+            "All Kills (55)",
+            (r.can_gib & r.backpack(5)) &
+            # need to go inside castle as well for all kills
+            (r.can_shootswitch | self.gold_key),
+        )
 
         return ret

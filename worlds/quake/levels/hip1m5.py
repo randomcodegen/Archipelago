@@ -673,6 +673,13 @@ class hip1m5(Q1Level):
             "uuid": 8490694592190884024,
             "mp": 0,
         },
+        {
+            "id": 96,
+            "name": "All Kills (96)",
+            "classname": "all_kills",
+            "uuid": 4313451559484177453,
+            "mp": 0,
+        },
     ]
     events = [
         "Hit Button 1",
@@ -736,6 +743,7 @@ class hip1m5(Q1Level):
             ],
         )
         self.connect(ret, past_gold_door_area, self.gold_key)
+        self.restrict("All Kills (96)", r.backpack(5) & ())
 
         dive_area = self.region(
             "Dive Area",
@@ -890,9 +898,16 @@ class hip1m5(Q1Level):
                 "Sewage System Open",
                 "Small Medkit (27)",
                 "Small Medkit (28)",
+                "All Kills (96)",
             ],
         )
         self.connect(past_threebutton_door_area, past_button_area, r.can_button)
+        self.restrict(
+            "All Kills (96)",
+            r.backpack(5)
+            & self.gold_key
+            & (self.silver_key | (r.bigjump & r.difficulty("hard"))),
+        )
 
         box_jump_area = self.region(
             "Box Jump Area",

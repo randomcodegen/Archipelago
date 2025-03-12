@@ -295,6 +295,13 @@ class hipstart(Q1Level):
             "uuid": 224364119275418085,
             "mp": 1,
         },
+        {
+            "id": 42,
+            "name": "All Kills (42)",
+            "classname": "all_kills",
+            "uuid": 11891092947304516721,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -306,6 +313,7 @@ class hipstart(Q1Level):
                 "Large Medkit (6)",
                 "Supershotgun (8)",
                 "Large Medkit (7)",
+                "All Kills (42)",
             ],
         )
 

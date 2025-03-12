@@ -575,6 +575,13 @@ class E4M1(Q1Level):
             "uuid": 1236350357210915656,
             "mp": 0,
         },
+        {
+            "id": 82,
+            "name": "All Kills (82)",
+            "classname": "all_kills",
+            "uuid": 6465982793973390474,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -714,10 +721,18 @@ class E4M1(Q1Level):
                 "Spikes (31)",
                 "Secret (39)",
                 "Exit",
+                "All Kills (82)",
             ],
         )
         self.connect(past_gold_door_area, past_button_area, r.can_button & r.can_dive)
         self.restrict("Spikes (31)", r.can_shootswitch)
         self.restrict("Secret (39)", r.can_shootswitch)
+        self.restrict(
+            "All Kills (82)",
+            # past gold door
+            (self.gold_key | r.difficulty("extreme"))
+            # upper area
+            & (r.can_door | (r.jump & r.difficulty("hard"))) & r.backpack(5),
+        )
 
         return ret

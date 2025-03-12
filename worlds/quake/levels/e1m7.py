@@ -225,6 +225,13 @@ class E1M7(Q1Level):
             "uuid": 14569613609805468623,
             "mp": 1,
         },
+        {
+            "id": 32,
+            "name": "All Kills (32)",
+            "classname": "all_kills",
+            "uuid": 16179328443958122727,
+            "mp": 0,
+        },
     ]
 
     has_boss = True
@@ -266,6 +273,7 @@ class E1M7(Q1Level):
                 "Large Medkit (11)",
                 "Rockets (16)",
                 "Exit",
+                "All Kills (32)",
             ],
         )
         self.restrict("Exit", r.can_button & r.can_door)

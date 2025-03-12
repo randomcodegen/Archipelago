@@ -603,6 +603,13 @@ class E1M5(Q1Level):
             "uuid": 18351153984695979974,
             "mp": 0,
         },
+        {
+            "id": 86,
+            "name": "All Kills (86)",
+            "classname": "all_kills",
+            "uuid": 9108454064193211222,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -779,11 +786,14 @@ class E1M5(Q1Level):
                 "Secret (79)",
                 "Green Armor (75)",
                 "Exit",
+                "All Kills (86)",
             ],
         )
         self.connect(past_elevator_area, past_gold_key_door_area, self.gold_key)
 
         self.restrict("Secret (79)", r.can_shootswitch)
         self.restrict("Green Armor (75)", r.can_shootswitch)
+
+        self.restrict("All Kills (86)", r.backpack(5))
 
         return ret

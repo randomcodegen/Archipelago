@@ -351,6 +351,13 @@ class E3M7(Q1Level):
             "uuid": 2498169379708619563,
             "mp": 1,
         },
+        {
+            "id": 50,
+            "name": "All Kills (50)",
+            "classname": "all_kills",
+            "uuid": 8808661641529010137,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -445,8 +452,11 @@ class E3M7(Q1Level):
                 "Spikes (26)",
                 "Invulnerability (27)",
                 "Exit",
+                "All Kills (50)",
             ],
         )
         self.connect(past_second_button_area, past_shootswitch_area, r.can_shootswitch)
+
+        self.restrict("All Kills (50)", r.difficult_combat)
 
         return ret

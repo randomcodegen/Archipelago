@@ -582,6 +582,13 @@ class E2M5(Q1Level):
             "uuid": 1084390958740763712,
             "mp": 1,
         },
+        {
+            "id": 83,
+            "name": "All Kills (83)",
+            "classname": "all_kills",
+            "uuid": 15383799816635148176,
+            "mp": 0,
+        },
     ]
 
     must_bio = True
@@ -764,9 +771,11 @@ class E2M5(Q1Level):
                 "Large Medkit (40)",
                 "Rockets (42)",
                 "Exit",
+                "All Kills (83)",
             ],
         )
         self.connect(past_elevator_area, past_gold_door_area, self.gold_key)
         self.restrict("Exit", r.can_door)
+        self.restrict("All Kills (83)", r.difficult_combat)
 
         return ret

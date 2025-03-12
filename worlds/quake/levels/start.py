@@ -218,6 +218,13 @@ class start(Q1Level):
             "uuid": 3893124854393944523,
             "mp": 1,
         },
+        {
+            "id": 31,
+            "name": "All Kills (31)",
+            "classname": "all_kills",
+            "uuid": 11891092947304516721,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -242,6 +249,7 @@ class start(Q1Level):
                 "Spikes (17)",
                 "Small Medkit (20)",
                 "Exit",
+                "All Kills (31)",
             ],
         )
         self.restrict("Nailgun (16)", r.can_jump | r.can_rj_hard | r.can_gj_extr)

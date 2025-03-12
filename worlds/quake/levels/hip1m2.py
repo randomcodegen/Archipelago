@@ -659,6 +659,13 @@ class hip1m2(Q1Level):
             "uuid": 16623053246904728262,
             "mp": 0,
         },
+        {
+            "id": 94,
+            "name": "All Kills (94)",
+            "classname": "all_kills",
+            "uuid": 2351434457984010148,
+            "mp": 0,
+        },
     ]
     events = ["Laser Bridge Active"]
 
@@ -833,6 +840,7 @@ class hip1m2(Q1Level):
                 "Large Medkit (89)",
                 "Large Medkit (88)",
                 "Exit",
+                "All Kills (94)",
             ],
         )
         self.connect(
@@ -843,6 +851,12 @@ class hip1m2(Q1Level):
                 r.can_button
                 | (r.quad_dmg(1) & r.invuln(1) & (r.can_rj_extr | r.can_gj_extr))
             ),
+        )
+        # also need access to the laser bridge area for all kills
+        self.restrict(
+            "All Kills (94)",
+            r.backpack(5) & self.event("Laser Bridge Active")
+            | (r.can_rj_extr & r.can_jump),
         )
 
         secret_exit_area = self.region(

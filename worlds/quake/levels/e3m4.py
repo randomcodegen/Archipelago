@@ -498,6 +498,13 @@ class E3M4(Q1Level):
             "uuid": 8748131738589919283,
             "mp": 0,
         },
+        {
+            "id": 71,
+            "name": "All Kills (71)",
+            "classname": "all_kills",
+            "uuid": 15837167611730766266,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -637,7 +644,7 @@ class E3M4(Q1Level):
         self.connect(
             bridge_four_area,
             bridge_four_upper_area,
-            r.can_button | (r.can_rj_ez & r.difficulty("extreme")),
+            r.can_button | (r.can_rj & r.difficulty("extreme")),
         )
         self.restrict("Large Medkit (29)", r.can_shootswitch)
         self.restrict("Large Medkit (30)", r.can_shootswitch)
@@ -719,6 +726,7 @@ class E3M4(Q1Level):
                 "Large Medkit (34)",
                 "Exit",
                 "Secret Exit",
+                "All Kills (71)",
             ],
         )
         # only requires can_button
@@ -728,5 +736,6 @@ class E3M4(Q1Level):
             r.can_button,
         )
         self.restrict("Exit", r.can_door)
+        self.restrict("All Kills (71)", r.difficult_combat & r.can_shootswitch)
 
         return ret

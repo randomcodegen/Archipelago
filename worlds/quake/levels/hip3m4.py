@@ -729,6 +729,13 @@ class hip3m4(Q1Level):
             "uuid": 13019172088417136261,
             "mp": 0,
         },
+        {
+            "id": 104,
+            "name": "All Kills (104)",
+            "classname": "all_kills",
+            "uuid": 4236181338959832682,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -897,11 +904,14 @@ class hip3m4(Q1Level):
                 "Spikes (94)",
                 "Secret (2)",
                 "Invulnerability (55)",
+                "All Kills (104)",
             ],
         )
         self.connect(past_silver_door_area, dive_area, r.can_dive)
 
         self.restrict("Secret (2)", r.jump & r.can_button)
         self.restrict("Invulnerability (55)", r.jump & r.can_button)
+
+        self.restrict("All Kills (104)", r.difficult_combat)
 
         return ret

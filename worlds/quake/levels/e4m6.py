@@ -694,6 +694,13 @@ class E4M6(Q1Level):
             "uuid": 5443801904280597366,
             "mp": 0,
         },
+        {
+            "id": 99,
+            "name": "All Kills (99)",
+            "classname": "all_kills",
+            "uuid": 14575534883812614608,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -894,6 +901,7 @@ class E4M6(Q1Level):
                 "Shells (12)",
                 "Cells (46)",
                 "Megahealth (13)",
+                "All Kills (99)",
             ],
         )
         self.connect(
@@ -902,6 +910,7 @@ class E4M6(Q1Level):
         self.connect(
             past_gold_door_area, top_teleporter_area, r.bigjump & r.difficulty("hard")
         )
+        self.restrict("All Kills (99)", r.difficult_combat)
 
         past_altar_area = self.region(
             "Past Altar",

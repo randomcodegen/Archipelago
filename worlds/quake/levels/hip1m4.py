@@ -582,6 +582,13 @@ class hip1m4(Q1Level):
             "uuid": 11213501750944260653,
             "mp": 0,
         },
+        {
+            "id": 83,
+            "name": "All Kills (83)",
+            "classname": "all_kills",
+            "uuid": 12461792791099758352,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -751,8 +758,11 @@ class hip1m4(Q1Level):
                 "Shells (56)",
                 "Proximity (65)",
                 "Exit",
+                "All Kills (83)",
             ],
         )
         self.connect(past_gold_door_area, past_gold_button_area, r.can_button)
+        # dive for rotfish
+        self.restrict("All Kills (83)", r.backpack(5) & r.can_dive)
 
         return ret

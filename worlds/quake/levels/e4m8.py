@@ -729,6 +729,13 @@ class E4M8(Q1Level):
             "uuid": 17544056790685361505,
             "mp": 0,
         },
+        {
+            "id": 104,
+            "name": "All Kills (104)",
+            "classname": "all_kills",
+            "uuid": 14052636215002211996,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -846,6 +853,7 @@ class E4M8(Q1Level):
                 "Invisibility (101)",
                 # TODO: Silver Key might need some ammo requirements
                 "Silver Key (55)",
+                "All Kills (104)",
             ],
         )
         self.connect(
@@ -856,6 +864,7 @@ class E4M8(Q1Level):
             | r.can_gj_extr
             | (r.bigjump & r.difficulty("medium")),
         )
+        self.restrict("All Kills (104)", r.difficult_combat & r.can_button & r.can_door)
 
         jump_button_secret = self.region(
             "Jump Button",

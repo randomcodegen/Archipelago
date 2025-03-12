@@ -708,6 +708,13 @@ class E3M6(Q1Level):
             "uuid": 11885286033156767501,
             "mp": 0,
         },
+        {
+            "id": 101,
+            "name": "All Kills (101)",
+            "classname": "all_kills",
+            "uuid": 9235368034346429053,
+            "mp": 0,
+        },
     ]
     has_boss = True
 
@@ -865,6 +872,7 @@ class E3M6(Q1Level):
                 "Sigil (95)",
                 "Lightning (89)",
                 "Exit",
+                "All Kills (101)",
             ],
         )
         self.connect(past_silver_door_area, past_gold_door_area, self.gold_key)
@@ -872,5 +880,6 @@ class E3M6(Q1Level):
             past_button_area, past_gold_door_area, r.bigjump & r.difficulty("hard")
         )
         self.restrict("Exit", r.can_door)
+        self.restrict("All Kills (101)", r.difficult_combat)
 
         return ret

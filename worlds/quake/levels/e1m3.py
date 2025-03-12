@@ -526,6 +526,13 @@ class E1M3(Q1Level):
             "uuid": 15277506365520976249,
             "mp": 0,
         },
+        {
+            "id": 75,
+            "name": "All Kills (75)",
+            "classname": "all_kills",
+            "uuid": 6006854588914090942,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -682,6 +689,7 @@ class E1M3(Q1Level):
                 "Megahealth (61)",
                 "Shells (40)",
                 "Exit",
+                "All Kills (75)",
             ],
         )
 
@@ -690,5 +698,6 @@ class E1M3(Q1Level):
             past_elevator_area,
             r.can_button,
         )
+        self.restrict("All Kills (75)", r.can_gib & r.backpack(5))
 
         return ret

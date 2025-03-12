@@ -477,6 +477,13 @@ class hip2m4(Q1Level):
             "uuid": 5566912806222034796,
             "mp": 1,
         },
+        {
+            "id": 68,
+            "name": "All Kills (68)",
+            "classname": "all_kills",
+            "uuid": 15028427888759203171,
+            "mp": 0,
+        },
     ]
     must_invuln = True
 
@@ -605,6 +612,7 @@ class hip2m4(Q1Level):
                 "Rockets (29)",
                 "Proximity (58)",
                 "Exit",
+                "All Kills (68)",
             ],
         )
         self.connect(past_silver_door_area, past_gold_door_area, self.gold_key)
@@ -615,6 +623,12 @@ class hip2m4(Q1Level):
             | r.rocketlauncher
             | r.proximitygun
             | (r.difficulty("hard") & r.quad_dmg(1)),
+        )
+
+        # also requires access to upper part of the map
+        self.restrict(
+            "All Kills (68)",
+            r.difficult_combat & self.silver_key,
         )
 
         return ret

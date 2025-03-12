@@ -316,6 +316,13 @@ class E1M1(Q1Level):
             "uuid": 13722753575330671210,
             "mp": 0,
         },
+        {
+            "id": 45,
+            "name": "All Kills (45)",
+            "classname": "all_kills",
+            "uuid": 6624414443276030093,
+            "mp": 0,
+        },
     ]
 
     must_bio = True
@@ -381,9 +388,12 @@ class E1M1(Q1Level):
                 "Secret (40)",
                 "Supershotgun (31)",
                 "Exit",
+                # can get all kills with shotgun and backpack drops
+                "All Kills (45)",
             ],
         )
         self.connect(ret, past_door, r.can_button & r.can_door)
+        self.restrict("All Kills (45)", r.backpack(5))
 
         self.restrict("Small Medkit (41)", r.can_shootswitch | r.bigjump)
 

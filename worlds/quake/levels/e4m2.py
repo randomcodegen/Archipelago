@@ -498,6 +498,13 @@ class E4M2(Q1Level):
             "uuid": 1702593927320847381,
             "mp": 0,
         },
+        {
+            "id": 71,
+            "name": "All Kills (71)",
+            "classname": "all_kills",
+            "uuid": 16928076319977320160,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -608,12 +615,14 @@ class E4M2(Q1Level):
                 "Shells (11)",
                 "Supernailgun (44)",
                 "Exit",
+                "All Kills (71)",
             ],
         )
         self.connect(water_drop_upper_area, past_window_area, r.can_shootswitch)
         self.restrict(
             "Exit", self.silver_key | (r.can_door & r.difficulty("extreme") & r.jump)
         )
+        self.restrict("All Kills (71)", r.difficult_combat)
 
         past_button_area = self.region(
             "Past Button",

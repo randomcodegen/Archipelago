@@ -484,6 +484,13 @@ class E3M1(Q1Level):
             "uuid": 9100358417890498563,
             "mp": 0,
         },
+        {
+            "id": 69,
+            "name": "All Kills (69)",
+            "classname": "all_kills",
+            "uuid": 14207242401891380029,
+            "mp": 0,
+        },
     ]
 
     must_bio = True
@@ -619,10 +626,12 @@ class E3M1(Q1Level):
                 "Large Medkit (39)",
                 "Shells (56)",
                 "Exit",
+                "All Kills (69)",
             ],
         )
         self.connect(center_platform_area, past_gold_door_area, self.gold_key)
         self.restrict("Large Medkit (39)", r.jump)
         self.restrict("Large Medkit (40)", r.jump)
+        self.restrict("All Kills (69)", r.backpack(5))
 
         return ret

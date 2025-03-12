@@ -477,6 +477,13 @@ class hip3m2(Q1Level):
             "uuid": 828070396671096567,
             "mp": 1,
         },
+        {
+            "id": 68,
+            "name": "All Kills (68)",
+            "classname": "all_kills",
+            "uuid": 17503102345979133724,
+            "mp": 0,
+        },
     ]
 
     events = ["Button Pressed"]
@@ -628,10 +635,15 @@ class hip3m2(Q1Level):
             [
                 "Rocketlauncher (37)",
                 "Exit",
+                "All Kills (68)",
             ],
         )
         self.connect(
             ret, past_gold_door_area, self.gold_key | (r.bigjump & r.difficulty("hard"))
+        )
+
+        self.restrict(
+            "All Kills (68)", r.difficult_combat & self.event("Button Pressed")
         )
 
         self.restrict("Exit", r.can_door)

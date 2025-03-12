@@ -547,6 +547,13 @@ class E1M8(Q1Level):
             "uuid": 5023755755520268296,
             "mp": 0,
         },
+        {
+            "id": 78,
+            "name": "All Kills (78)",
+            "classname": "all_kills",
+            "uuid": 17836725082810317339,
+            "mp": 0,
+        },
     ]
     must_invuln = True
 
@@ -676,6 +683,7 @@ class E1M8(Q1Level):
                 "Spikes (70)",
                 "Invisibility (71)",
                 "Exit",
+                "All Kills (78)",
             ],
         )
         self.connect(second_room_upper_area, silver_key_area, self.silver_key)
@@ -683,5 +691,7 @@ class E1M8(Q1Level):
         self.restrict("Spikes (15)", r.can_shootswitch)
         self.restrict("Spikes (70)", r.can_shootswitch)
         self.restrict("Invisibility (71)", r.can_shootswitch)
+
+        self.restrict("All Kills (78)", r.backpack(5))
 
         return ret

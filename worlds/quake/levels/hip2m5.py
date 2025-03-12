@@ -512,6 +512,13 @@ class hip2m5(Q1Level):
             "uuid": 6202140030652208765,
             "mp": 0,
         },
+        {
+            "id": 73,
+            "name": "All Kills (73)",
+            "classname": "all_kills",
+            "uuid": 16438592234885930429,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -557,6 +564,7 @@ class hip2m5(Q1Level):
                 | r.can_gj_extr
                 | r.can_rj_hard
                 | (r.can_jump & r.difficulty("hard"))
+                | r.can_shootswitch & r.jump
             ),
         )
 
@@ -570,7 +578,10 @@ class hip2m5(Q1Level):
         self.connect(
             ret,
             past_bridge_area,
-            r.can_gj_extr | r.can_rj_hard | (r.can_jump & r.difficulty("medium")),
+            r.can_door
+            | r.can_gj_extr
+            | r.can_rj_hard
+            | (r.can_jump & r.difficulty("medium")),
         )
 
         past_door_area = self.region(
@@ -689,9 +700,11 @@ class hip2m5(Q1Level):
                 "Rockets (68)",
                 "Rockets (70)",
                 "Exit",
+                "All Kills (73)",
             ],
         )
         self.connect(past_gold_door_area, final_area, r.can_button & r.can_dive)
         self.restrict("Exit", r.can_button & r.can_door)
+        self.restrict("All Kills (73)", r.can_shootswitch & r.difficult_combat)
 
         return ret

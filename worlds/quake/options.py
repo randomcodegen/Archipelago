@@ -121,6 +121,13 @@ class IncludeSecrets(Toggle):
     default = False
 
 
+class IncludeAllKills(Toggle):
+    """Includes all kills per level in the location pool."""
+
+    display_name = "Include All-Kills as Locations"
+    default = False
+
+
 class IncludedLocations(Choice):
     """Presets for included locations.
     Iconic includes all keys, weapons, sigils, armor and powerups.
@@ -274,7 +281,7 @@ class LevelCount(NamedRange):
     """
 
     display_name = "Level Count"
-    range_start = 2
+    range_start = 3
     range_end = 32
     default = 9
 
@@ -371,6 +378,7 @@ class Q1Options(PerGameCommonOptions):
     include_mp_items: IncludeMPItems
     custom_included_locations: CustomIncludedLocations
     include_secrets: IncludeSecrets
+    include_allkills: IncludeAllKills
     episode1: Episode1
     episode2: Episode2
     episode3: Episode3

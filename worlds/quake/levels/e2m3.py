@@ -540,6 +540,13 @@ class E2M3(Q1Level):
             "uuid": 13932087608506579039,
             "mp": 0,
         },
+        {
+            "id": 77,
+            "name": "All Kills (77)",
+            "classname": "all_kills",
+            "uuid": 10608560903356240015,
+            "mp": 0,
+        },
     ]
 
     events = ["Open Big Door", "Lower Water Barrier"]
@@ -621,12 +628,14 @@ class E2M3(Q1Level):
                 "Rockets (12)",
                 "Large Medkit (39)",
                 "Exit",
+                "All Kills (77)",
             ],
         )
         self.connect(
             past_bridge_area, bridge_upper_area, (r.bigjump & r.difficulty("hard"))
         )
         self.restrict("Exit", r.can_door)
+        self.restrict("All Kills (77)", r.difficult_combat)
 
         shoot_secret_area = self.region(
             "Shoot Secret Area",

@@ -29,7 +29,11 @@ def update_ids():
     for level in all_levels_incl_special:
         for location in level.locations.values():
             loc_id = -1
-            if "item_" in location.classname or "weapon_" in location.classname:
+            if (
+                "item_" in location.classname
+                or "weapon_" in location.classname
+                or location.classname == "all_kills"
+            ):
                 loc_id = sprite_id_idx
                 sprite_id_idx += 1
             elif location.classname == "trigger_secret":
@@ -84,7 +88,11 @@ def generate_ap_config(all_ids: dict, all_uuids: dict):
             level_locations = {"items": {}, "secrets": {}, "exits": {}}
             for location in sorted(level.locations.values(), key=lambda x: x.game_id):
                 short_name = location.name[len(level.prefix) + 1 :]
-                if "item_" in location.classname or "weapon_" in location.classname:
+                if (
+                    "item_" in location.classname
+                    or "weapon_" in location.classname
+                    or location.classname == "all_kills"
+                ):
                     category = "items"
                 elif "trigger_secret" == location.classname:
                     category = "secrets"

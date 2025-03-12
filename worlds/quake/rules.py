@@ -110,6 +110,15 @@ class Rules(object):
 
         self.count_group = CountGroupRule
 
+        class CanBP(Rule):
+            def __init__(self, uses: int):
+                self.uses = uses
+
+            def __call__(self, state: CollectionState) -> bool:
+                return state.has_group("Backpack", player, self.uses)
+
+        self.backpack = CanBP
+
         class CanQuadDmg(Rule):
             def __init__(self, uses: int):
                 self.uses = uses
@@ -254,6 +263,51 @@ class Rules(object):
         self.thunderbolt = self.has_group("Thunderbolt")
         # hipnotic
         self.proximitygun = self.has_group("Proximity Gun")
+        self.lasercannon = self.has_group("Laser Cannon")
 
+        # logic for all kills
+        self.has_explosives = (
+            self.rocketlauncher | self.grenadelauncher | self.proximitygun
+        )
+        self.can_gib = self.has_explosives | (
+            self.difficulty("hard") & self.quad_dmg(1)
+        )
+
+        self.difficult_combat = (
+            # Make sure at least 2 explosive weapon upgrades were picked up
+            # (
+            #    self.count_group("Rocket Launcher", 2)
+            #    | self.count_group("Grenade Launcher", 2)
+            #    | self.count_group("Proximity Gun", 2)
+            # )
+            # &
+            ## also need at least 5 of any powerful weapon and a less powerful one
+            # (
+            #    self.count_group("Thunderbolt", 5)
+            #    | self.count_group("Super Nailgun", 5)
+            #    | self.count_group("Laser Cannon", 5)
+            # )
+            # & (
+            #    self.ssg
+            #    & (
+            #        self.count_group("Super Shotgun", 5)
+            #        | self.count_group("Shotgun", 5)
+            #    )
+            # )
+            # Require explosives
+            self.has_explosives
+            &
+            # some powerful weapon/s
+            (self.thunderbolt | self.supernailgun | self.lasercannon)
+            &
+            # and some less powerful ones
+            (self.nailgun | self.ssg)
+            &
+            # one quad
+            self.quad_dmg(1)
+            &
+            # and some backpacks
+            self.backpack(5)
+        )
         # General Stuff
         self.level = lambda level_cls: HasRule(level_cls.unlock)

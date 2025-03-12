@@ -143,6 +143,10 @@ class Q1Level(object):
             if classname == "trigger_secret" or classname == "trigger_changelevel":
                 pass
 
+            # include all_kills if the option is active
+            elif classname == "all_kills" and self.world.options.include_allkills:
+                pass
+
             # handle custom included locations preset
             elif self.world.options.included_locations_preset.value == 4:
                 if classname in self.world.options.custom_included_locations.value:
@@ -195,7 +199,7 @@ class Q1Level(object):
 
     @staticmethod
     def _resolve_rule_type(
-        rules: Optional[Union[RULETYPE, List[RULETYPE]]] = None
+        rules: Optional[Union[RULETYPE, List[RULETYPE]]] = None,
     ) -> Optional[Rule]:
         if rules is None:
             return RuleTrue()

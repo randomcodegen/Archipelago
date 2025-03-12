@@ -785,6 +785,13 @@ class E4M5(Q1Level):
             "uuid": 9863282034063722507,
             "mp": 0,
         },
+        {
+            "id": 112,
+            "name": "All Kills (112)",
+            "classname": "all_kills",
+            "uuid": 3601103039809412638,
+            "mp": 0,
+        },
     ]
 
     must_bio = True
@@ -938,9 +945,13 @@ class E4M5(Q1Level):
                 "Small Medkit (47)",
                 "Large Medkit (43)",
                 "Rockets (48)",
+                "All Kills (112)",
             ],
         )
         self.connect(past_gold_door_area, past_gold_button_area, r.can_button)
+
+        self.restrict("All Kills (112)", r.difficult_combat)
+
         self.restrict("Invulnerability (88)", r.can_dive)
         self.restrict("Quad Damage (76)", r.can_dive)
         self.restrict("Cells (77)", r.can_dive)

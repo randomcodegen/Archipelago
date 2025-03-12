@@ -484,6 +484,13 @@ class E1M4(Q1Level):
             "uuid": 15859813994129007404,
             "mp": 0,
         },
+        {
+            "id": 69,
+            "name": "All Kills (69)",
+            "classname": "all_kills",
+            "uuid": 8911686284948589309,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -603,9 +610,11 @@ class E1M4(Q1Level):
                 "Shells (64)",
                 "Shells (26)",
                 "Exit",
+                "All Kills (69)",
             ],
         )
         self.restrict("Exit", r.can_door)
+        self.restrict("All Kills (69)", r.can_door & r.backpack(5))
 
         castle_inside_area = self.region(
             "Castle Inside Area",

@@ -771,6 +771,13 @@ class E4M7(Q1Level):
             "uuid": 4460728570115704830,
             "mp": 0,
         },
+        {
+            "id": 110,
+            "name": "All Kills (110)",
+            "classname": "all_kills",
+            "uuid": 15588522298783522186,
+            "mp": 0,
+        },
     ]
     has_boss = True
 
@@ -1001,9 +1008,16 @@ class E4M7(Q1Level):
                 "Cells (81)",
                 "Quad Damage (83)",
                 "Sigil (89)",
+                "All Kills (110)",
                 "Exit",
             ],
         )
         self.connect(ret, past_silver_door_area, self.silver_key & r.jump)
+        self.restrict(
+            "All Kills (110)",
+            r.difficult_combat
+            & ((r.can_shootswitch & r.jump) | r.can_rj_hard | r.can_gj_extr)
+            & r.can_dive,
+        )
 
         return ret

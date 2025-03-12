@@ -310,6 +310,13 @@ class end(Q1Level):
             "uuid": 1726262295847131919,
             "mp": 0,
         },
+        {
+            "id": 44,
+            "name": "All Kills (44)",
+            "classname": "all_kills",
+            "uuid": 12472922403254119741,
+            "mp": 0,
+        },
     ]
 
     has_boss = True
@@ -381,6 +388,7 @@ class end(Q1Level):
                 "Secret (37)",
                 "Quad Damage (36)",
                 "Exit",
+                "All Kills (44)",
             ],
         )
         self.connect(past_door_area, ledge_area, r.jump)

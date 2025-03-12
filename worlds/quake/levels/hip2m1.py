@@ -232,13 +232,13 @@ class hip2m1(Q1Level):
             "uuid": 17242611718550895684,
             "mp": 0,
         },
-        {
-            "id": 33,
-            "name": "Rocketlauncher (33)",
-            "classname": "weapon_rocketlauncher",
-            "uuid": 6936146364797826066,
-            "mp": 1,
-        },
+        # {
+        #    "id": 33,
+        #    "name": "Rocketlauncher (33)",
+        #    "classname": "weapon_rocketlauncher",
+        #    "uuid": 6936146364797826066,
+        #    "mp": 1,
+        # },
         {
             "id": 34,
             "name": "Spikes (34)",
@@ -603,6 +603,13 @@ class hip2m1(Q1Level):
             "uuid": 3759000096735959999,
             "mp": 1,
         },
+        {
+            "id": 86,
+            "name": "All Kills (86)",
+            "classname": "all_kills",
+            "uuid": 13573223690220680667,
+            "mp": 0,
+        },
     ]
     events = ["Barrier Lowered"]
 
@@ -741,6 +748,7 @@ class hip2m1(Q1Level):
                 "Invulnerability (42)",
                 "Exit",
                 "Barrier Lowered",
+                "All Kills (86)",
             ],
         )
         self.connect(ret, past_silver_door_area, self.silver_key)
@@ -753,5 +761,8 @@ class hip2m1(Q1Level):
         self.restrict("Secret (30)", r.can_shootswitch)
         self.restrict("Invisibility (31)", r.can_shootswitch)
         self.restrict("Barrier Lowered", r.can_shootswitch)
+        self.restrict(
+            "All Kills (86)", r.can_shootswitch & r.can_button & r.difficult_combat
+        )
 
         return ret

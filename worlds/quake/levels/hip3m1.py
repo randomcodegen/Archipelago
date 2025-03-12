@@ -519,6 +519,13 @@ class hip3m1(Q1Level):
             "uuid": 10732253445919078950,
             "mp": 0,
         },
+        {
+            "id": 74,
+            "name": "All Kills (74)",
+            "classname": "all_kills",
+            "uuid": 18203952588679227396,
+            "mp": 0,
+        },
     ]
 
     must_bio = True
@@ -642,9 +649,12 @@ class hip3m1(Q1Level):
             [
                 "Invulnerability (26)",
                 "Exit",
+                "All Kills (74)",
             ],
         )
         self.connect(past_silver_door_area, past_gold_door_area, self.gold_key)
-        self.restrict("Invulnerability (26)", r.bigjump & r.difficulty("medium"))
+        self.restrict("Invulnerability (26)", r.bigjump)
+
+        self.restrict("All Kills (74)", r.can_button & r.difficult_combat)
 
         return ret

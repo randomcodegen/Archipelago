@@ -407,6 +407,13 @@ class E1M6(Q1Level):
             "uuid": 10488578583324183380,
             "mp": 1,
         },
+        {
+            "id": 58,
+            "name": "All Kills (58)",
+            "classname": "all_kills",
+            "uuid": 10126429885784782962,
+            "mp": 0,
+        },
     ]
 
     events = ["Gold Bridge Moved"]
@@ -445,9 +452,11 @@ class E1M6(Q1Level):
                 "Large Medkit (40)",
                 "Yellow Armor (43)",
                 "Exit",
+                "All Kills (58)",
             ],
         )
         self.connect(past_gold_key_door_area, gold_door_past_button_area, r.can_button)
+        self.restrict("All Kills (58)", r.backpack(5))
 
         past_button_upper_area = self.region(
             "Past Button Upper Area",

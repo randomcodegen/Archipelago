@@ -827,6 +827,13 @@ class E4M4(Q1Level):
             "uuid": 9375051552422501337,
             "mp": 0,
         },
+        {
+            "id": 118,
+            "name": "All Kills (118)",
+            "classname": "all_kills",
+            "uuid": 11842292122861975710,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -1017,9 +1024,16 @@ class E4M4(Q1Level):
                 "Spikes (65)",
                 "Supernailgun (102)",
                 "Green Armor (117)",
+                "All Kills (118)",
             ],
         )
         self.connect(ret, past_ending_door, r.can_door)
         self.connect(lake_side_secret, past_ending_door)
+
+        # dive for fish kills
+        # TODO: could also be done without swimming in extreme difficulty maybe
+        self.restrict(
+            "All Kills (118)", r.can_dive & r.can_shootswitch & r.difficult_combat
+        )
 
         return ret

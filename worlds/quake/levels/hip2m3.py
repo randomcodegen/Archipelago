@@ -736,6 +736,13 @@ class hip2m3(Q1Level):
             "uuid": 16684089479641499222,
             "mp": 0,
         },
+        {
+            "id": 105,
+            "name": "All Kills (105)",
+            "classname": "all_kills",
+            "uuid": 13210782701399484018,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -949,10 +956,12 @@ class hip2m3(Q1Level):
                 "Large Medkit (37)",
                 "Lightning (36)",
                 "Gold Key (35)",
+                "All Kills (105)",
             ],
         )
         self.connect(
             lava_area, lava_jump_area, r.can_jump | r.can_rj_hard | r.can_gj_extr
         )
+        self.restrict("All Kills (105)", r.difficult_combat & self.gold_key)
 
         return ret

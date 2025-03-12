@@ -659,6 +659,13 @@ class E4M3(Q1Level):
             "uuid": 17238516651199192632,
             "mp": 0,
         },
+        {
+            "id": 94,
+            "name": "All Kills (94)",
+            "classname": "all_kills",
+            "uuid": 8292261081458252020,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -854,8 +861,11 @@ class E4M3(Q1Level):
                 "Small Medkit (93)",
                 "Rocketlauncher (74)",
                 "Gold Key (32)",
+                "All Kills (94)",
             ],
         )
         self.connect(upper_past_door_area, past_silver_door_area, self.silver_key)
+
+        self.restrict("All Kills (94)", r.can_dive & r.jump & r.difficult_combat)
 
         return ret

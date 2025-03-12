@@ -428,6 +428,13 @@ class hipdm1(Q1Level):
             "uuid": 18180623744893511204,
             "mp": 0,
         },
+        {
+            "id": 61,
+            "name": "All Kills (61)",
+            "classname": "all_kills",
+            "uuid": 17435315347605246308,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -522,8 +529,10 @@ class hipdm1(Q1Level):
                 "Rockets (45)",
                 "Rockets (46)",
                 "Exit",
+                "All Kills (61)",
             ],
         )
         self.connect(ret, past_gold_door_area, self.gold_key)
+        self.restrict("All Kills (61)", r.jump & r.difficult_combat)
 
         return ret

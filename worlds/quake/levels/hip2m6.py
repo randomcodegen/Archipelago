@@ -603,6 +603,13 @@ class hip2m6(Q1Level):
             "uuid": 2374613763247474002,
             "mp": 1,
         },
+        {
+            "id": 86,
+            "name": "All Kills (86)",
+            "classname": "all_kills",
+            "uuid": 14288443555829193077,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -755,9 +762,14 @@ class hip2m6(Q1Level):
                 "Exit",
                 "Secret (30)",
                 "Invisibility (29)",
+                "All Kills (86)",
             ],
         )
         self.connect(past_button_area, past_gold_door_area, self.gold_key)
+
+        self.restrict(
+            "All Kills (86)", self.silver_key & r.can_dive & r.difficult_combat
+        )
 
         self.restrict("Secret (30)", r.can_shootswitch)
         self.restrict("Invisibility (29)", r.can_shootswitch)

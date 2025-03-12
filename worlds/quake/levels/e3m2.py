@@ -407,6 +407,13 @@ class E3M2(Q1Level):
             "uuid": 17296570047879412760,
             "mp": 0,
         },
+        {
+            "id": 58,
+            "name": "All Kills (58)",
+            "classname": "all_kills",
+            "uuid": 2935180640685079621,
+            "mp": 0,
+        },
     ]
 
     events = ["First Door Open"]
@@ -520,9 +527,11 @@ class E3M2(Q1Level):
                 "Large Medkit (33)",
                 "Rockets (56)",
                 "Supershotgun (15)",
+                "All Kills (58)",
             ],
         )
         self.connect(past_silver_door_area, silver_below_area, r.can_button)
+        self.restrict("All Kills (58)", r.difficult_combat)
 
         past_gold_door_area = self.region(
             "Past Gold Door",

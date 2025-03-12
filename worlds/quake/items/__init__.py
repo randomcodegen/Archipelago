@@ -353,6 +353,7 @@ ammo = {
     ),
 }
 
+item_groups["Shotgun"] = {"Progressive Shotgun"}
 item_groups["Super Shotgun"] = {"Super Shotgun", "Progressive Super Shotgun"}
 item_groups["Nailgun"] = {"Nailgun", "Progressive Nailgun"}
 item_groups["Super Nailgun"] = {"Super Nailgun", "Progressive Super Nailgun"}

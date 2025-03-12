@@ -449,6 +449,13 @@ class E1M2(Q1Level):
             "uuid": 697882699754131839,
             "mp": 1,
         },
+        {
+            "id": 64,
+            "name": "All Kills (64)",
+            "classname": "all_kills",
+            "uuid": 11923419945406477812,
+            "mp": 0,
+        },
     ]
 
     events = ["Bridge Moved", "Bridge Door Open"]
@@ -610,8 +617,10 @@ class E1M2(Q1Level):
                 "Supernailgun (38)",
                 "Spikes (40)",
                 "Exit",
+                "All Kills (64)",
             ],
         )
         self.connect(past_silver_door, final_area, r.can_button)
+        self.restrict("All Kills (64)", r.backpack(5))
 
         return ret

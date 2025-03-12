@@ -421,6 +421,13 @@ class E3M3(Q1Level):
             "uuid": 2614788019587439520,
             "mp": 0,
         },
+        {
+            "id": 60,
+            "name": "All Kills (60)",
+            "classname": "all_kills",
+            "uuid": 6193508429970337310,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -538,8 +545,10 @@ class E3M3(Q1Level):
                 "Large Medkit (48)",
                 "Green Armor (59)",
                 "Exit",
+                "All Kills (60)",
             ],
         )
         self.connect(past_silver_door_area, past_silver_button, r.can_button)
+        self.restrict("All Kills (60)", r.difficult_combat)
 
         return ret

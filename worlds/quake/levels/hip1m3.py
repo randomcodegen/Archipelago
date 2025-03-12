@@ -456,6 +456,13 @@ class hip1m3(Q1Level):
             "uuid": 18420437737775925897,
             "mp": 0,
         },
+        {
+            "id": 65,
+            "name": "All Kills (65)",
+            "classname": "all_kills",
+            "uuid": 14986715056355616413,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -552,9 +559,11 @@ class hip1m3(Q1Level):
             "Past Silver Door",
             [
                 "Exit",
+                "All Kills (65)",
             ],
         )
         self.connect(ret, past_silver_door_area, self.silver_key & r.can_button)
+        self.restrict("All Kills (65)", r.backpack(5))
 
         machine_secret_area = self.region(
             "Machine Secret",

@@ -631,6 +631,13 @@ class hip3m3(Q1Level):
             "uuid": 9002812272934220578,
             "mp": 0,
         },
+        {
+            "id": 90,
+            "name": "All Kills (90)",
+            "classname": "all_kills",
+            "uuid": 7707846608834451491,
+            "mp": 0,
+        },
     ]
 
     def main_region(self) -> Region:
@@ -761,8 +768,11 @@ class hip3m3(Q1Level):
                 "Shells (53)",
                 "Large Medkit (50)",
                 "Exit",
+                "All Kills (90)",
             ],
         )
         self.connect(ret, past_gold_door_area, self.gold_key)
+
+        self.restrict("All Kills (90)", r.difficult_combat & r.can_dive)
 
         return ret

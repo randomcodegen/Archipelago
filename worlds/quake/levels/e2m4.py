@@ -603,6 +603,13 @@ class E2M4(Q1Level):
             "uuid": 10609096349004999957,
             "mp": 0,
         },
+        {
+            "id": 86,
+            "name": "All Kills (86)",
+            "classname": "all_kills",
+            "uuid": 8586026283146888724,
+            "mp": 0,
+        },
     ]
 
     must_bio = True
@@ -804,9 +811,11 @@ class E2M4(Q1Level):
                 "Large Medkit (7)",
                 "Shells (8)",
                 "Exit",
+                "All Kills (86)",
             ],
         )
         self.connect(silver_upstairs_area, final_area, r.can_shootswitch & r.can_button)
         self.restrict("Exit", r.can_door)
+        self.restrict("All Kills (86)", r.difficult_combat)
 
         return ret

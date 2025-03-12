@@ -582,6 +582,13 @@ class E2M6(Q1Level):
             "uuid": 14788860394989737296,
             "mp": 0,
         },
+        {
+            "id": 83,
+            "name": "All Kills (83)",
+            "classname": "all_kills",
+            "uuid": 6173825696376142737,
+            "mp": 0,
+        },
     ]
     has_boss = True
 
@@ -789,8 +796,13 @@ class E2M6(Q1Level):
                 "Spikes (76)",
                 "Sigil (2)",
                 "Exit",
+                "All Kills (83)",
             ],
         )
         self.connect(third_bridge_area, past_big_elevator_area, r.can_door)
+        self.restrict(
+            "All Kills (83)",
+            r.can_dive & r.can_button & self.gold_key & r.difficult_combat,
+        )
 
         return ret

@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M2(Q1Level):
+class e4m2(Q1Level):
     name = "The Tower of Despair"
     mapfile = "e4m2"
     keys = ["Silver"]

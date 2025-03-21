@@ -53,6 +53,7 @@ class BaseGame(Choice):
     display_name = "Pick Q1/Expansion"
     option_quake = 0
     option_hipnotic = 1
+    option_rogue = 2
 
 
 class UnlockAbilities(Toggle):
@@ -160,10 +161,10 @@ class CustomIncludedLocations(OptionDict):
         "weapon_rocketlauncher", "item_health (Small Medkit)", "item_health (Large Medkit)", "item_health (Megahealth)", "item_cells", "item_rockets", "item_shells", "item_spikes",
         "item_artifact_envirosuit", "item_artifact_invisibility", "item_artifact_invulnerability", "item_artifact_super_damage", "item_key1", "item_key2", "item_sigil"]
     Hipnotic Items: ["item_artifact_empathy_shields", "item_hornofconjuring", "item_artifact_wetsuit", "weapon_laser_gun", "weapon_mjolnir", "weapon_proximity_gun"]
+    Rogue Items: ["item_sphere", "item_random_powerup", "item_powerup_belt", "item_powerup_shield", "item_flag", "item_flag_team1", "item_flag_team2", "item_lava_spikes", "item_multi_rockets", "item_plasma"]
     """
 
     default = {
-        # quake 1
         "item_armor1": 100,
         "item_armor2": 100,
         "item_armorInv": 100,
@@ -195,6 +196,17 @@ class CustomIncludedLocations(OptionDict):
         "weapon_laser_gun": 100,
         "weapon_mjolnir": 100,
         "weapon_proximity_gun": 100,
+        # rogue
+        "item_sphere": 100,
+        "item_random_powerup": 100,
+        "item_powerup_belt": 100,
+        "item_powerup_shield": 100,
+        "item_flag": 100,
+        "item_flag_team1": 100,
+        "item_flag_team2": 100,
+        "item_lava_spikes": 100,
+        "item_multi_rockets": 100,
+        "item_plasma": 100,
     }
     valid_keys = [
         # quake 1
@@ -229,6 +241,16 @@ class CustomIncludedLocations(OptionDict):
         "weapon_laser_gun",
         "weapon_mjolnir",
         "weapon_proximity_gun",
+        "item_sphere",
+        "item_random_powerup",
+        "item_powerup_belt",
+        "item_powerup_shield",
+        "item_flag",
+        "item_flag_team1",
+        "item_flag_team2",
+        "item_lava_spikes",
+        "item_multi_rockets",
+        "item_plasma",
     ]
 
 

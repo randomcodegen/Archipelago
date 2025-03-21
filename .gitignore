@@ -203,3 +203,5 @@ Thumbs.db
 worlds/quake/utils/logic.py
 worlds/quake/utils/logic_template.txt
 fuzz.py
+worlds/quake/utils/map_template.py
+worlds/quake.apworld

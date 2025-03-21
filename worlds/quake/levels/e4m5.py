@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M5(Q1Level):
+class e4m5(Q1Level):
     name = "Hell's Atrium"
     mapfile = "e4m5"
     keys = ["Silver", "Gold"]
@@ -890,7 +890,7 @@ class E4M5(Q1Level):
         self.connect(
             past_gold_door_area,
             gold_door_upper_area,
-            (r.jump & r.can_shootswitch) | (r.bigjump & r.difficulty("hard")),
+            (r.jump & r.can_shootswitch) | r.bigjump_hard,
         )
 
         past_gold_button_area = self.region(
@@ -980,7 +980,7 @@ class E4M5(Q1Level):
         self.connect(
             past_gold_button_area,
             past_gold_button_upper_area,
-            (r.jump & r.can_shootswitch) | (r.bigjump & r.difficulty("hard")),
+            (r.jump & r.can_shootswitch) | r.bigjump_hard,
         )
         self.restrict("Secret (54)", r.can_gj_extr | r.can_rj_hard | r.can_jump)
         self.restrict("Cells (71)", r.can_gj_extr | r.can_rj_hard | r.can_jump)

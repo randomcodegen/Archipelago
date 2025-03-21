@@ -684,13 +684,11 @@ class hip2m6(Q1Level):
 
         self.restrict(
             "Secret (39)",
-            (r.bigjump & r.difficulty("hard"))
-            | (r.can_shootswitch & (r.can_door | r.jump)),
+            r.bigjump_hard | (r.can_shootswitch & (r.can_door | r.jump)),
         )
         self.restrict(
             "Lightning (53)",
-            (r.bigjump & r.difficulty("hard"))
-            | (r.can_shootswitch & (r.can_door | r.jump)),
+            r.bigjump_hard | (r.can_shootswitch & (r.can_door | r.jump)),
         )
 
         self.restrict("Silver Key (2)", r.can_dive & r.can_door)
@@ -699,8 +697,7 @@ class hip2m6(Q1Level):
         self.restrict("Secret (32)", r.can_dive & r.can_door & r.can_shootswitch)
         self.restrict(
             "Mjolnir (34)",
-            (r.can_dive & r.can_door & r.can_shootswitch)
-            | (r.bigjump & r.difficulty("hard")),
+            (r.can_dive & r.can_door & r.can_shootswitch) | r.bigjump_hard,
         )
         self.restrict(
             "Invulnerability (63)", r.can_dive & r.can_door & r.can_shootswitch

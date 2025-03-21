@@ -1,7 +1,7 @@
 import json
 import math
 from random import Random
-from .levels import E1, E2, E3, SL, HIPE1, HIPE2, HIPE3, HIPSL
+from .levels import SL, HIPSL, ROGUESL
 from typing import Any, Dict, List, Optional, Set, Tuple
 from BaseClasses import CollectionState
 
@@ -18,7 +18,7 @@ from . import resources
 from .base_classes import Q1Item, Q1Level, LocationDef
 from .id import GAME_ID, local_id, net_id
 from .items import all_items, item_groups
-from .levels import all_episodes_q1, all_episodes_hip
+from .levels import all_episodes_q1, all_episodes_hip, all_episodes_rogue
 from .options import Difficulty, Q1Options
 from .rules import Rules
 
@@ -76,7 +76,13 @@ class Q1World(World):
                 "weapon_supershotgun": 100,
                 "weapon_grenadelauncher": 100,
                 "weapon_rocketlauncher": 100,
+                "item_health (Small Medkit)": 0,
+                "item_health (Large Medkit)": 0,
                 "item_health (Megahealth)": 100,
+                "item_cells": 0,
+                "item_rockets": 0,
+                "item_shells": 0,
+                "item_spikes": 0,
                 "item_artifact_envirosuit": 100,
                 "item_artifact_invisibility": 100,
                 "item_artifact_invulnerability": 100,
@@ -92,6 +98,17 @@ class Q1World(World):
                 "weapon_laser_gun": 100,
                 "weapon_mjolnir": 100,
                 "weapon_proximity_gun": 100,
+                # rogue
+                "item_sphere": 100,
+                "item_random_powerup": 100,
+                "item_powerup_belt": 100,
+                "item_powerup_shield": 100,
+                "item_flag": 100,
+                "item_flag_team1": 100,
+                "item_flag_team2": 100,
+                "item_lava_spikes": 0,
+                "item_multi_rockets": 0,
+                "item_plasma": 0,
             },
             # balanced
             {
@@ -126,6 +143,17 @@ class Q1World(World):
                 "weapon_laser_gun": 100,
                 "weapon_mjolnir": 100,
                 "weapon_proximity_gun": 100,
+                # rogue
+                "item_sphere": 100,
+                "item_random_powerup": 100,
+                "item_powerup_belt": 100,
+                "item_powerup_shield": 100,
+                "item_flag": 100,
+                "item_flag_team1": 100,
+                "item_flag_team2": 100,
+                "item_lava_spikes": 25,
+                "item_multi_rockets": 25,
+                "item_plasma": 25,
             },
             # dense
             {
@@ -160,6 +188,17 @@ class Q1World(World):
                 "weapon_laser_gun": 100,
                 "weapon_mjolnir": 100,
                 "weapon_proximity_gun": 100,
+                # rogue
+                "item_sphere": 100,
+                "item_random_powerup": 100,
+                "item_powerup_belt": 100,
+                "item_powerup_shield": 100,
+                "item_flag": 100,
+                "item_flag_team1": 100,
+                "item_flag_team2": 100,
+                "item_lava_spikes": 50,
+                "item_multi_rockets": 50,
+                "item_plasma": 50,
             },
             # all
             {
@@ -194,6 +233,17 @@ class Q1World(World):
                 "weapon_laser_gun": 100,
                 "weapon_mjolnir": 100,
                 "weapon_proximity_gun": 100,
+                # rogue
+                "item_sphere": 100,
+                "item_random_powerup": 100,
+                "item_powerup_belt": 100,
+                "item_powerup_shield": 100,
+                "item_flag": 100,
+                "item_flag_team1": 100,
+                "item_flag_team2": 100,
+                "item_lava_spikes": 100,
+                "item_multi_rockets": 100,
+                "item_plasma": 100,
             },
         ]
 
@@ -272,6 +322,12 @@ class Q1World(World):
             episode_options = [1, 2, 3]
             all_episodes = all_episodes_hip
             special_levels = HIPSL()
+        elif self.options.basegame == self.options.basegame.option_rogue:
+            episode_options = [1, 2]
+            all_episodes = all_episodes_rogue
+            special_levels = ROGUESL()
+        else:
+            episode_options = [1, 2, 3, 4]
 
         ep_option_reference = [
             self.options.episode1,
@@ -735,31 +791,31 @@ class Q1World(World):
 
     INV_DIFF_TO_REQ_MAPPING = {
         Difficulty.option_easy: {
-            "Quad Damage": (0, 5),
-            "Invulnerability": (0, 5),
-            "Biosuit": (0, 5),
-            "Invisibility": (0, 5),
+            "Quad Damage": (1, 5),
+            "Invulnerability": (1, 5),
+            "Biosuit": (1, 5),
+            "Invisibility": (1, 5),
             "Backpack": (5, 10),
         },
         Difficulty.option_medium: {
-            "Quad Damage": (0, 3),
-            "Invulnerability": (0, 3),
-            "Biosuit": (0, 3),
-            "Invisibility": (0, 3),
+            "Quad Damage": (1, 3),
+            "Invulnerability": (1, 3),
+            "Biosuit": (1, 3),
+            "Invisibility": (1, 3),
             "Backpack": (5, 8),
         },
         Difficulty.option_hard: {
-            "Quad Damage": (0, 2),
-            "Invulnerability": (0, 2),
-            "Biosuit": (0, 2),
-            "Invisibility": (0, 2),
+            "Quad Damage": (1, 2),
+            "Invulnerability": (1, 2),
+            "Biosuit": (1, 2),
+            "Invisibility": (1, 2),
             "Backpack": (5, 6),
         },
         Difficulty.option_extreme: {
-            "Quad Damage": (0, 1),
-            "Invulnerability": (0, 1),
-            "Biosuit": (0, 1),
-            "Invisibility": (0, 1),
+            "Quad Damage": (1, 1),
+            "Invulnerability": (1, 1),
+            "Biosuit": (1, 1),
+            "Invisibility": (1, 1),
             "Backpack": (5, 5),
         },
     }
@@ -802,6 +858,11 @@ class Q1World(World):
             "Thunderbolt": (15, 200),
             "Mjolnir": (15, 200),
             "Laser Cannon": (15, 200),
+            "Lava Nailgun Upgrade": (30, 100),
+            "Lava Super Nailgun Upgrade": (30, 100),
+            "Multi-Grenade Upgrade": (5, 50),
+            "Multi-Rocket Upgrade": (5, 50),
+            "Plasma Gun Upgrade": (15, 100),
         },
         Difficulty.option_medium: {
             "Shotgun": (25, 50),
@@ -814,6 +875,11 @@ class Q1World(World):
             "Thunderbolt": (15, 200),
             "Mjolnir": (15, 200),
             "Laser Cannon": (15, 200),
+            "Lava Nailgun Upgrade": (30, 100),
+            "Lava Super Nailgun Upgrade": (30, 100),
+            "Multi-Grenade Upgrade": (5, 50),
+            "Multi-Rocket Upgrade": (5, 50),
+            "Plasma Gun Upgrade": (15, 100),
         },
         Difficulty.option_hard: {
             "Shotgun": (25, 50),
@@ -826,6 +892,11 @@ class Q1World(World):
             "Thunderbolt": (15, 200),
             "Mjolnir": (15, 200),
             "Laser Cannon": (15, 200),
+            "Lava Nailgun Upgrade": (30, 100),
+            "Lava Super Nailgun Upgrade": (30, 100),
+            "Multi-Grenade Upgrade": (5, 50),
+            "Multi-Rocket Upgrade": (5, 50),
+            "Plasma Gun Upgrade": (15, 100),
         },
         Difficulty.option_extreme: {
             "Shotgun": (25, 50),
@@ -838,6 +909,11 @@ class Q1World(World):
             "Thunderbolt": (15, 200),
             "Mjolnir": (15, 200),
             "Laser Cannon": (15, 200),
+            "Lava Nailgun Upgrade": (30, 100),
+            "Lava Super Nailgun Upgrade": (30, 100),
+            "Multi-Grenade Upgrade": (5, 50),
+            "Multi-Rocket Upgrade": (5, 50),
+            "Plasma Gun Upgrade": (15, 100),
         },
     }
 
@@ -853,9 +929,21 @@ class Q1World(World):
         "Thunderbolt": "Cells",
         "Mjolnir": "Cells",
         "Laser Cannon": "Cells",
+        "Lava Nailgun Upgrade": "Lava Nails",
+        "Lava Super Nailgun Upgrade": "Lava Nails",
+        "Multi-Grenade Upgrade": "Multi Rockets",
+        "Multi-Rocket Upgrade": "Multi Rockets",
+        "Plasma Gun Upgrade": "Plasma",
     }
 
     hip_weapons = ["Proximity Gun", "Mjolnir", "Laser Cannon"]
+    rogue_weapons = [
+        "Lava Nailgun Upgrade",
+        "Lava Super Nailgun Upgrade",
+        "Multi-Grenade Upgrade",
+        "Multi-Rocket Upgrade",
+        "Plasma Gun Upgrade",
+    ]
     WEAPON_NAMES = [
         "Shotgun",
         "Super Shotgun",
@@ -864,6 +952,14 @@ class Q1World(World):
         "Grenade Launcher",
         "Rocket Launcher",
         "Thunderbolt",
+    ]
+
+    ALL_KILLS_WEAPONS = [
+        "Super Shotgun",
+        "Nailgun",
+        "Super Nailgun",
+        "Thunderbolt",
+        "Laser Cannon",
     ]
 
     def useful_items_per_difficulty(self, available_slots: int) -> List[Q1Item]:
@@ -878,6 +974,8 @@ class Q1World(World):
 
         if self.options.basegame == self.options.basegame.option_hipnotic:
             self.WEAPON_NAMES.extend(self.hip_weapons)
+        if self.options.basegame == self.options.basegame.option_rogue:
+            self.WEAPON_NAMES.extend(self.rogue_weapons)
 
         for weapon in self.WEAPON_NAMES:
             start, target = self.DIFF_TO_MAX_MAPPING.get(
@@ -1004,10 +1102,24 @@ class Q1World(World):
             )
             if self.options.basegame == self.options.basegame.option_hipnotic:
                 itempool.append(self.create_item("Progressive Proximity Gun"))
+            if self.options.include_allkills:
+                itempool.append(self.create_item("Progressive Thunderbolt", 1))
+                itempool.append(self.create_item("Progressive Super Shotgun", 1))
+                itempool.append(self.create_item("Progressive Super Nailgun", 1))
+                itempool.append(self.create_item("Progressive Nailgun", 1))
+                if self.options.basegame == self.options.basegame.option_hipnotic:
+                    itempool.append(self.create_item("Progressive Laser Cannon", 1))
         else:
             itempool += self.create_item_list(["Grenade Launcher", "Rocket Launcher"])
             if self.options.basegame == self.options.basegame.option_hipnotic:
                 itempool.append(self.create_item("Proximity Gun"))
+            if self.options.include_allkills:
+                itempool.append(self.create_item("Thunderbolt", 1))
+                itempool.append(self.create_item("Super Shotgun", 1))
+                itempool.append(self.create_item("Super Nailgun", 1))
+                itempool.append(self.create_item("Nailgun", 1))
+                if self.options.basegame == self.options.basegame.option_hipnotic:
+                    itempool.append(self.create_item("Laser Cannon", 1))
 
         # Get progression inventory based on difficulty settings
         required, useful = self.generate_health("Small Medkit")

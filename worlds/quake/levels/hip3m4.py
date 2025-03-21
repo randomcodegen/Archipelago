@@ -820,8 +820,7 @@ class hip3m4(Q1Level):
         self.connect(
             shootswitch_area,
             past_elevator_area,
-            r.can_button
-            | (r.bigjump & r.difficulty("hard") & r.quad_dmg(1) & r.invuln(1)),
+            r.can_button | (r.bigjump_hard & r.quad_dmg(1) & r.invuln(1)),
         )
 
         self.restrict("Secret (26)", r.can_shootswitch)
@@ -870,9 +869,7 @@ class hip3m4(Q1Level):
         self.connect(past_button_area, past_silver_door_area, self.silver_key)
 
         self.restrict("Secret (3)", r.can_shootswitch)
-        self.restrict(
-            "Quad Damage (54)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Quad Damage (54)", r.can_shootswitch | r.bigjump_hard)
 
         dive_area = self.region(
             "Dive Area",

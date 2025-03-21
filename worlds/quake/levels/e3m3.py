@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E3M3(Q1Level):
+class e3m3(Q1Level):
     name = "The Tomb of Terror"
     mapfile = "e3m3"
     keys = ["Silver"]
@@ -491,7 +491,7 @@ class E3M3(Q1Level):
         self.connect(
             past_button_area,
             lava_secret_area,
-            r.can_shootswitch | (r.bigjump & r.difficulty("hard")),
+            r.can_shootswitch | r.bigjump_hard,
         )
         self.restrict("Secret (17)", r.can_shootswitch)
 
@@ -502,7 +502,7 @@ class E3M3(Q1Level):
                 "Nailgun (27)",
             ],
         )
-        self.connect(ret, start_upper_area, r.bigjump & r.difficulty("hard"))
+        self.connect(ret, start_upper_area, r.bigjump_hard)
         self.connect(past_button_area, start_upper_area, r.can_door)
 
         past_lava_area = self.region(

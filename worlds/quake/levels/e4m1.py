@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M1(Q1Level):
+class e4m1(Q1Level):
     name = "The Sewage System"
     mapfile = "e4m1"
     keys = ["Gold"]
@@ -690,7 +690,7 @@ class E4M1(Q1Level):
         self.connect(
             dive_area, past_gate_area, r.can_door | (r.jump & r.difficulty("hard"))
         )
-        self.connect(ret, past_gate_area, r.bigjump & r.difficulty("hard"))
+        self.connect(ret, past_gate_area, r.bigjump_hard)
         self.restrict("Large Medkit (36)", r.can_door)
         self.restrict("Quad Damage (50)", r.can_shootswitch)
         self.restrict("Secret (25)", r.can_shootswitch)

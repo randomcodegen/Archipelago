@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M4(Q1Level):
+class e1m4(Q1Level):
     name = "The Grisly Grotto"
     mapfile = "e1m4"
     keys = ["Silver"]

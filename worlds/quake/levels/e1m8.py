@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M8(Q1Level):
+class e1m8(Q1Level):
     name = "Ziggurat Vertigo"
     mapfile = "e1m8"
     keys = ["Silver"]

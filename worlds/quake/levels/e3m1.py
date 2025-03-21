@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E3M1(Q1Level):
+class e3m1(Q1Level):
     name = "Termination Central"
     mapfile = "e3m1"
     keys = ["Gold"]
@@ -548,7 +548,7 @@ class E3M1(Q1Level):
         self.connect(
             past_button_area,
             past_button_upper_area,
-            r.can_door | (r.bigjump & r.difficulty("hard")),
+            r.can_door | r.bigjump_hard,
         )
 
         center_platform_area = self.region(

@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M8(Q1Level):
+class e4m8(Q1Level):
     name = "The Nameless City"
     mapfile = "e4m8"
     keys = ["Silver", "Gold"]
@@ -787,10 +787,8 @@ class E4M8(Q1Level):
         )
         self.restrict("Cells (82)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
         self.restrict("Cells (83)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
-        self.restrict("Shells (42)", r.can_button | (r.bigjump & r.difficulty("hard")))
-        self.restrict(
-            "Green Armor (28)", r.can_button | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Shells (42)", r.can_button | r.bigjump_hard)
+        self.restrict("Green Armor (28)", r.can_button | r.bigjump_hard)
         self.restrict("Shells (43)", r.can_door)
         self.restrict("Rockets (30)", r.can_door)
         self.restrict("Small Medkit (44)", r.can_door)

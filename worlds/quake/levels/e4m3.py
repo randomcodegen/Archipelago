@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M3(Q1Level):
+class e4m3(Q1Level):
     name = "The Elder God Shrine"
     mapfile = "e4m3"
     keys = ["Silver", "Gold"]
@@ -695,7 +695,7 @@ class E4M3(Q1Level):
             (r.can_jump & r.difficulty("hard"))
             | r.can_gj_extr
             | r.can_rj_hard
-            | (r.bigjump & r.difficulty("hard")),
+            | r.bigjump_hard,
         )
 
         upper_past_door_area = self.region(
@@ -840,7 +840,7 @@ class E4M3(Q1Level):
         self.connect(
             upper_past_door_area,
             button_secret_upper_area,
-            r.bigjump & r.difficulty("hard"),
+            r.bigjump_hard,
         )
         self.connect(button_secret_area, button_secret_upper_area)
 

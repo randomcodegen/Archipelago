@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E3M6(Q1Level):
+class e3m6(Q1Level):
     name = "Chambers of Torment"
     mapfile = "e3m6"
     keys = ["Silver", "Gold"]
@@ -823,7 +823,7 @@ class E3M6(Q1Level):
         self.connect(
             past_silver_door_area,
             silver_shootswitch_area,
-            r.can_shootswitch | (r.bigjump & r.difficulty("hard")),
+            r.can_shootswitch | r.bigjump_hard,
         )
         self.restrict("Secret (6)", r.can_shootswitch)
 
@@ -876,9 +876,7 @@ class E3M6(Q1Level):
             ],
         )
         self.connect(past_silver_door_area, past_gold_door_area, self.gold_key)
-        self.connect(
-            past_button_area, past_gold_door_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(past_button_area, past_gold_door_area, r.bigjump_hard)
         self.restrict("Exit", r.can_door)
         self.restrict("All Kills (101)", r.difficult_combat)
 

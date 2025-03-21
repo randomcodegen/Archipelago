@@ -768,12 +768,12 @@ class hip1m2(Q1Level):
         self.connect(
             ret,
             silver_key_top_area,
-            (r.bigjump & r.difficulty("hard")) | r.can_gj_extr | r.can_rj_extr,
+            r.bigjump_hard | r.can_gj_extr | r.can_rj_extr,
         )
         self.connect(
             past_silver_door_area,
             silver_key_top_area,
-            r.can_button & (r.can_door | (r.bigjump & r.difficulty("hard"))),
+            r.can_button & (r.can_door | r.bigjump_hard),
         )
 
         silver_area_ceiling = self.region(
@@ -825,7 +825,7 @@ class hip1m2(Q1Level):
         self.connect(
             ret,
             past_rotating_bridge,
-            (r.bigjump & r.difficulty("hard")) | r.can_gj_extr | r.can_rj_extr,
+            r.bigjump_hard | r.can_gj_extr | r.can_rj_extr,
         )
         self.connect(silver_key_top_area, past_rotating_bridge, r.can_button)
 

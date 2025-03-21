@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M3(Q1Level):
+class e2m3(Q1Level):
     name = "The Crypt Of Decay"
     mapfile = "e2m3"
     keys = ["Gold"]
@@ -631,9 +631,7 @@ class E2M3(Q1Level):
                 "All Kills (77)",
             ],
         )
-        self.connect(
-            past_bridge_area, bridge_upper_area, (r.bigjump & r.difficulty("hard"))
-        )
+        self.connect(past_bridge_area, bridge_upper_area, r.bigjump_hard)
         self.restrict("Exit", r.can_door)
         self.restrict("All Kills (77)", r.difficult_combat)
 
@@ -716,7 +714,7 @@ class E2M3(Q1Level):
         self.connect(
             past_bridge_area,
             past_button_door_area,
-            self.event("Open Big Door") | (r.bigjump & r.difficulty("hard")),
+            self.event("Open Big Door") | r.bigjump_hard,
         )
         self.connect(
             past_button_door_area, dive_area, r.can_dive | r.difficulty("hard")

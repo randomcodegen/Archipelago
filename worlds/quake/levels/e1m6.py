@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M6(Q1Level):
+class e1m6(Q1Level):
     name = "The Door To Chthon"
     mapfile = "e1m6"
     keys = ["Silver", "Gold"]
@@ -490,10 +490,8 @@ class E1M6(Q1Level):
         )
         self.connect(ret, past_button_area, r.can_button)
 
-        self.restrict(
-            "Megahealth (35)", (r.bigjump & r.difficulty("hard")) | r.can_door
-        )
-        self.restrict("Spikes (53)", (r.bigjump & r.difficulty("hard")) | r.can_door)
+        self.restrict("Megahealth (35)", r.bigjump_hard | r.can_door)
+        self.restrict("Spikes (53)", r.bigjump_hard | r.can_door)
 
         self.restrict("Secret (23)", r.can_shootswitch | r.bigjump)
         self.restrict("Quad Damage (34)", r.can_shootswitch | r.bigjump)

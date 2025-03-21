@@ -862,9 +862,7 @@ class hip2m3(Q1Level):
             ],
         )
         self.connect(castle_inside_area, castle_upper_area, r.can_door)
-        self.connect(
-            castle_inside_area, castle_upper_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(castle_inside_area, castle_upper_area, r.bigjump_hard)
 
         sewer_area = self.region(
             "Sewer Area",
@@ -891,9 +889,7 @@ class hip2m3(Q1Level):
             ],
         )
         self.connect(sewer_area, sewer_past_door_area, r.can_door)
-        self.connect(
-            castle_upper_area, sewer_past_door_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(castle_upper_area, sewer_past_door_area, r.bigjump_hard)
 
         past_silver_door_area = self.region(
             "Past Silver Door",
@@ -915,9 +911,7 @@ class hip2m3(Q1Level):
             ],
         )
         self.connect(sewer_area, past_silver_door_area, self.silver_key)
-        self.connect(
-            sewer_area, past_silver_door_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(sewer_area, past_silver_door_area, r.bigjump_hard)
         self.restrict("Secret (24)", r.jump)
         self.restrict("Rockets (34)", r.jump)
         self.restrict("Large Medkit (31)", r.jump)

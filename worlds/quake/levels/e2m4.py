@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M4(Q1Level):
+class e2m4(Q1Level):
     name = "The Ebon Fortress"
     mapfile = "e2m4"
     keys = ["Silver", "Gold"]
@@ -673,7 +673,7 @@ class E2M4(Q1Level):
                 "Quad Damage (36)",
             ],
         )
-        self.connect(dive_area, past_acid_lake_area, (r.bigjump & r.difficulty("hard")))
+        self.connect(dive_area, past_acid_lake_area, r.bigjump_hard)
         self.restrict(
             "Quad Damage (36)", r.can_dive & (r.biosuit(1) | r.difficulty("hard"))
         )
@@ -714,11 +714,9 @@ class E2M4(Q1Level):
         self.connect(
             acid_lake_middle,
             silver_key_platform,
-            (r.bigjump & r.difficulty("hard")) | (r.can_button & r.jump),
+            r.bigjump_hard | (r.can_button & r.jump),
         )
-        self.connect(
-            past_acid_lake_area, acid_lake_middle, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(past_acid_lake_area, acid_lake_middle, r.bigjump_hard)
         self.restrict(
             "Secret (25)", (r.can_dive & r.biosuit(1)) | r.difficulty("extreme")
         )
@@ -747,9 +745,7 @@ class E2M4(Q1Level):
                 "Biosuit (66)",
             ],
         )
-        self.connect(
-            dive_area, past_barrier, (r.bigjump & r.difficulty("hard")) | r.can_button
-        )
+        self.connect(dive_area, past_barrier, r.bigjump_hard | r.can_button)
 
         past_gold_door_area = self.region(
             "Past Gold Door",
@@ -801,7 +797,7 @@ class E2M4(Q1Level):
         self.connect(
             past_silver_door_area,
             silver_upstairs_area,
-            r.can_button | (r.bigjump & r.difficulty("hard")),
+            r.can_button | r.bigjump_hard,
         )
         final_area = self.region(
             "Final Area",

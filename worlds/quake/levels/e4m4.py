@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M4(Q1Level):
+class e4m4(Q1Level):
     name = "The Palace of Hate"
     mapfile = "e4m4"
     keys = ["Silver"]

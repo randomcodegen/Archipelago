@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M7(Q1Level):
+class e4m7(Q1Level):
     name = "Azure Agony"
     mapfile = "e4m7"
     keys = ["Silver"]
@@ -930,9 +930,7 @@ class E4M7(Q1Level):
                 "Megahealth (77)",
             ],
         )
-        self.connect(
-            jump_secret_area, bigjump_secret_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(jump_secret_area, bigjump_secret_area, r.bigjump_hard)
 
         water_gap_area = self.region(
             "Water Gap",

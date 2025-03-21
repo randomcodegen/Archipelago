@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M6(Q1Level):
+class e2m6(Q1Level):
     name = "The Dismal Oubliette"
     mapfile = "e2m6"
     keys = ["Gold"]
@@ -629,9 +629,7 @@ class E2M6(Q1Level):
         self.connect(
             ret,
             first_bridge_area,
-            r.can_door
-            | (r.can_gj_extr | r.can_rj_hard)
-            | (r.bigjump & r.difficulty("hard")),
+            r.can_door | (r.can_gj_extr | r.can_rj_hard) | r.bigjump_hard,
         )
 
         castle_area = self.region(
@@ -652,7 +650,7 @@ class E2M6(Q1Level):
                 "Large Medkit (43)",
             ],
         )
-        self.connect(castle_area, castle_exit_area, (r.bigjump & r.difficulty("hard")))
+        self.connect(castle_area, castle_exit_area, r.bigjump_hard)
 
         castle_entrance_area = self.region(
             "Castle Entrance",
@@ -714,7 +712,7 @@ class E2M6(Q1Level):
         self.connect(
             first_bridge_area,
             second_bridge_area,
-            (r.can_gj_extr | r.can_rj_hard) | (r.bigjump & r.difficulty("hard")),
+            (r.can_gj_extr | r.can_rj_hard) | r.bigjump_hard,
         )
         self.connect(castle_bar_area, second_bridge_area, r.can_door)
 
@@ -785,7 +783,7 @@ class E2M6(Q1Level):
         self.connect(
             first_bridge_area,
             third_bridge_area,
-            (r.can_gj_extr | r.can_rj_hard) | (r.bigjump & r.difficulty("hard")),
+            (r.can_gj_extr | r.can_rj_hard) | r.bigjump_hard,
         )
         self.connect(past_gold_door_area, third_bridge_area)
 

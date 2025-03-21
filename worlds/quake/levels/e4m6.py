@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E4M6(Q1Level):
+class e4m6(Q1Level):
     name = "The Pain Maze"
     mapfile = "e4m6"
     keys = ["Silver", "Gold"]
@@ -741,10 +741,7 @@ class E4M6(Q1Level):
         self.connect(
             ret,
             past_bars_area,
-            (r.bigjump & r.difficulty("hard"))
-            | r.can_rj_hard
-            | r.can_gj_extr
-            | r.can_door,
+            r.bigjump_hard | r.can_rj_hard | r.can_gj_extr | r.can_door,
         )
         self.restrict("Gold Key (24)", r.can_button)
 
@@ -849,17 +846,11 @@ class E4M6(Q1Level):
         self.connect(
             past_silver_door_area,
             past_gold_door_area,
-            self.gold_key | (r.bigjump & r.difficulty("hard")),
+            self.gold_key | r.bigjump_hard,
         )
-        self.restrict(
-            "Cells (53)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Secret (37)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Red Armor (17)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Cells (53)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Secret (37)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Red Armor (17)", r.can_shootswitch | r.bigjump_hard)
 
         past_second_silver_door_area = self.region(
             "Second Silver Door",
@@ -907,9 +898,7 @@ class E4M6(Q1Level):
         self.connect(
             past_second_silver_door_area, top_teleporter_area, r.can_button & r.jump
         )
-        self.connect(
-            past_gold_door_area, top_teleporter_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(past_gold_door_area, top_teleporter_area, r.bigjump_hard)
         self.restrict("All Kills (99)", r.difficult_combat)
 
         past_altar_area = self.region(

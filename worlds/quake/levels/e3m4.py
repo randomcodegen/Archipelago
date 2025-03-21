@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E3M4(Q1Level):
+class e3m4(Q1Level):
     name = "Satan's Dark Delight"
     mapfile = "e3m4"
     keys = []
@@ -565,7 +565,7 @@ class E3M4(Q1Level):
         self.connect(
             past_door_area,
             bridge_two_area,
-            r.can_gj_extr | (r.bigjump & r.difficulty("hard")),
+            r.can_gj_extr | r.bigjump_hard,
         )
 
         bridge_three_side_area = self.region(
@@ -610,7 +610,7 @@ class E3M4(Q1Level):
         self.connect(
             past_door_area,
             bridge_three_area,
-            r.can_gj_extr | (r.bigjump & r.difficulty("hard")),
+            r.can_gj_extr | r.bigjump_hard,
         )
         self.connect(bridge_one_area, bridge_three_area)
 
@@ -621,7 +621,7 @@ class E3M4(Q1Level):
         self.connect(
             past_door_area,
             bridge_four_area,
-            r.can_gj_extr | (r.bigjump & r.difficulty("hard")),
+            r.can_gj_extr | r.bigjump_hard,
         )
 
         bridge_four_upper_area = self.region(

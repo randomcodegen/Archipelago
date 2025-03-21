@@ -822,7 +822,7 @@ class hip1m5(Q1Level):
             ],
         )
         self.connect(past_door_area, past_silver_door_area, self.silver_key)
-        self.connect(ret, past_silver_door_area, r.bigjump & r.difficulty("hard"))
+        self.connect(ret, past_silver_door_area, r.bigjump_hard)
         self.restrict("Secret (88)", r.can_shootswitch)
         self.restrict("Yellow Armor (82)", r.can_shootswitch)
         self.restrict("Red Armor (87)", r.can_shootswitch)
@@ -904,9 +904,7 @@ class hip1m5(Q1Level):
         self.connect(past_threebutton_door_area, past_button_area, r.can_button)
         self.restrict(
             "All Kills (96)",
-            r.backpack(5)
-            & self.gold_key
-            & (self.silver_key | (r.bigjump & r.difficulty("hard"))),
+            r.backpack(5) & self.gold_key & (self.silver_key | r.bigjump_hard),
         )
 
         box_jump_area = self.region(

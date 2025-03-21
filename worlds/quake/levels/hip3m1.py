@@ -609,19 +609,15 @@ class hip3m1(Q1Level):
         self.connect(
             ret,
             start_top_area,
-            self.silver_key
-            | (r.can_button & r.jump)
-            | (r.bigjump & r.difficulty("hard")),
+            self.silver_key | (r.can_button & r.jump) | r.bigjump_hard,
         )
         self.restrict("Empathy (58)", r.jump)
         self.restrict("Invisibility (48)", r.can_shootswitch)
         self.restrict("Large Medkit (49)", r.can_shootswitch)
         self.restrict("Large Medkit (50)", r.can_shootswitch)
         self.restrict("Secret (41)", r.can_shootswitch)
-        self.restrict("Secret (60)", r.can_door | (r.bigjump & r.difficulty("hard")))
-        self.restrict(
-            "Quad Damage (72)", r.can_door | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Secret (60)", r.can_door | r.bigjump_hard)
+        self.restrict("Quad Damage (72)", r.can_door | r.bigjump_hard)
 
         self.restrict("Red Armor (30)", r.can_dive & (r.biosuit(1) | r.invuln(1)))
 

@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M1(Q1Level):
+class e1m1(Q1Level):
     name = "The Slipgate Complex"
     mapfile = "e1m1"
     keys = []

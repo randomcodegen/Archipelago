@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E3M5(Q1Level):
+class e3m5(Q1Level):
     name = "The Wind Tunnels"
     mapfile = "e3m5"
     keys = []

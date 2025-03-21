@@ -353,11 +353,9 @@ class hipend(Q1Level):
             ],
         )
 
-        self.restrict("Rockets (18)", r.can_door | (r.bigjump & r.difficulty("hard")))
-        self.restrict(
-            "Rocketlauncher (17)", r.can_door | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict("Exit", r.can_door | (r.bigjump & r.difficulty("hard")))
+        self.restrict("Rockets (18)", r.can_door | r.bigjump_hard)
+        self.restrict("Rocketlauncher (17)", r.can_door | r.bigjump_hard)
+        self.restrict("Exit", r.can_door | r.bigjump_hard)
 
         self.restrict("All Kills (41)", r.difficult_combat)
 

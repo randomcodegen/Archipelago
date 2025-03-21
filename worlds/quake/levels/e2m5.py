@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M5(Q1Level):
+class e2m5(Q1Level):
     name = "The Wizard's Manse"
     mapfile = "e2m5"
     keys = ["Gold"]
@@ -682,7 +682,7 @@ class E2M5(Q1Level):
         self.connect(
             past_button_area,
             first_floor_area,
-            (r.bigjump & r.difficulty("hard")) | r.can_button,
+            r.bigjump_hard | r.can_button,
         )
         self.restrict("Red Armor (32)", r.can_button)
         self.restrict("Large Medkit (37)", r.can_button)
@@ -703,7 +703,7 @@ class E2M5(Q1Level):
         self.connect(
             first_floor_area,
             wall_secret_area,
-            r.can_shootswitch | (r.bigjump & r.difficulty("hard")),
+            r.can_shootswitch | r.bigjump_hard,
         )
 
         dive_hallway = self.region(
@@ -717,7 +717,7 @@ class E2M5(Q1Level):
         self.connect(
             first_floor_area,
             dive_hallway,
-            (r.biosuit(1) & r.can_dive) | (r.bigjump & r.difficulty("hard")),
+            (r.biosuit(1) & r.can_dive) | r.bigjump_hard,
         )
         past_acid_lake = self.region(
             "Past Acid Lake",
@@ -744,7 +744,7 @@ class E2M5(Q1Level):
         self.connect(
             first_floor_area,
             past_acid_lake,
-            r.can_shootswitch & r.jump | (r.bigjump & r.difficulty("hard")),
+            r.can_shootswitch & r.jump | r.bigjump_hard,
         )
 
         past_elevator_area = self.region(

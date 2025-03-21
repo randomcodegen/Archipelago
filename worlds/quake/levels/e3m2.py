@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E3M2(Q1Level):
+class e3m2(Q1Level):
     name = "The Vaults of Zin"
     mapfile = "e3m2"
     keys = ["Silver", "Gold"]
@@ -499,7 +499,7 @@ class E3M2(Q1Level):
         self.connect(
             past_first_door_area,
             secret_roof_area,
-            r.can_shootswitch | (r.bigjump & r.difficulty("hard")),
+            r.can_shootswitch | r.bigjump_hard,
         )
 
         past_silver_door_area = self.region(

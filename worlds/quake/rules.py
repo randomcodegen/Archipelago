@@ -172,13 +172,28 @@ class Rules(object):
         if world.options.unlock_abilities:
             self.can_jump = HasRule("Jump")
             self.can_dive = HasRule("Dive")
-            self.can_rj = HasRule("Rocket Jump") & HasGroupRule("Rocket Launcher")
-            if world.options.basegame == world.options.basegame.option_hipnotic:
-                self.can_gj = HasRule("Grenade Jump") & (
-                    HasGroupRule("Grenade Launcher") | HasGroupRule("Proximity Gun")
+            if world.options.basegame == world.options.basegame.option_rogue:
+                self.can_rj = HasRule("Rocket Jump") & (
+                    HasGroupRule("Rocket Launcher") & self.heal(100)
                 )
             else:
-                self.can_gj = HasRule("Grenade Jump") & HasGroupRule("Grenade Launcher")
+                self.can_rj = (
+                    HasRule("Rocket Jump")
+                    & self.heal(100)
+                    & HasGroupRule("Rocket Launcher")
+                )
+            if world.options.basegame == world.options.basegame.option_hipnotic:
+                self.can_gj = (
+                    HasRule("Grenade Jump")
+                    & self.heal(100)
+                    & (HasGroupRule("Grenade Launcher") | HasGroupRule("Proximity Gun"))
+                )
+            else:
+                self.can_gj = (
+                    HasRule("Grenade Jump")
+                    & self.heal(100)
+                    & HasGroupRule("Grenade Launcher")
+                )
             self.can_run = HasRule("Run")
         else:
             self.can_jump = self.true
@@ -223,6 +238,8 @@ class Rules(object):
         )
         """ RJ/GJ boosted with a regular jump or powerups"""
 
+        self.bigjump_hard = self.bigjump & self.difficulty("hard")
+
         skill_map = {"easy": 0, "medium": 1, "hard": 2, "nightmare": 3}
         self.skill_lt = lambda skill: (
             self.true
@@ -244,15 +261,15 @@ class Rules(object):
         # self.heal() does not work in UT
 
         # helper for difficult grenade jumps (it's almost all of them)
-        self.can_gj_ez = self.can_gj & self.difficulty("easy") & self.heal(100)
-        self.can_gj_med = self.can_gj & self.difficulty("medium") & self.heal(100)
-        self.can_gj_hard = self.can_gj & self.difficulty("hard") & self.heal(100)
-        self.can_gj_extr = self.can_gj & self.difficulty("extreme") & self.heal(100)
+        self.can_gj_ez = self.can_gj & self.difficulty("easy")
+        self.can_gj_med = self.can_gj & self.difficulty("medium")
+        self.can_gj_hard = self.can_gj & self.difficulty("hard")
+        self.can_gj_extr = self.can_gj & self.difficulty("extreme")
         # helper for difficult rocket jumps (most of them are hard difficulty)
-        self.can_rj_ez = self.can_rj & self.difficulty("easy") & self.heal(100)
-        self.can_rj_med = self.can_rj & self.difficulty("medium") & self.heal(100)
-        self.can_rj_hard = self.can_rj & self.difficulty("hard") & self.heal(100)
-        self.can_rj_extr = self.can_rj & self.difficulty("extreme") & self.heal(100)
+        self.can_rj_ez = self.can_rj & self.difficulty("easy")
+        self.can_rj_med = self.can_rj & self.difficulty("medium")
+        self.can_rj_hard = self.can_rj & self.difficulty("hard")
+        self.can_rj_extr = self.can_rj & self.difficulty("extreme")
 
         # Some simplifications for progressive items
         self.ssg = self.has_group("Super Shotgun")
@@ -264,6 +281,12 @@ class Rules(object):
         # hipnotic
         self.proximitygun = self.has_group("Proximity Gun")
         self.lasercannon = self.has_group("Laser Cannon")
+        # rogue
+        # self.multigrenadelauncher = self.has_group("Multi-Grenade Upgrade")
+        # self.multirocketlauncher = self.has_group("Multi-Rocket Upgrade")
+        # self.lavanailgun = self.has_group("Lava Nailgun Upgrade")
+        # self.lavasupernailgun = self.has_group("Lava Super Nailgun Upgrade")
+        # self.plasmagun = self.has_group("Plasma Gun Upgrade")
 
         # logic for all kills
         self.has_explosives = (
@@ -274,33 +297,13 @@ class Rules(object):
         )
 
         self.difficult_combat = (
-            # Make sure at least 2 explosive weapon upgrades were picked up
-            # (
-            #    self.count_group("Rocket Launcher", 2)
-            #    | self.count_group("Grenade Launcher", 2)
-            #    | self.count_group("Proximity Gun", 2)
-            # )
-            # &
-            ## also need at least 5 of any powerful weapon and a less powerful one
-            # (
-            #    self.count_group("Thunderbolt", 5)
-            #    | self.count_group("Super Nailgun", 5)
-            #    | self.count_group("Laser Cannon", 5)
-            # )
-            # & (
-            #    self.ssg
-            #    & (
-            #        self.count_group("Super Shotgun", 5)
-            #        | self.count_group("Shotgun", 5)
-            #    )
-            # )
             # Require explosives
             self.has_explosives
             &
-            # some powerful weapon/s
+            # a powerful weapon
             (self.thunderbolt | self.supernailgun | self.lasercannon)
             &
-            # and some less powerful ones
+            # and a less powerful one
             (self.nailgun | self.ssg)
             &
             # one quad

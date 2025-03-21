@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M7(Q1Level):
+class e1m7(Q1Level):
     name = "The House of Chthon"
     mapfile = "e1m7"
     keys = []

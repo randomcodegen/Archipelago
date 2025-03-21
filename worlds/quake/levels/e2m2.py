@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M2(Q1Level):
+class e2m2(Q1Level):
     name = "The Ogre Citadel"
     mapfile = "e2m2"
     keys = ["Gold"]

@@ -695,9 +695,7 @@ class hip2m1(Q1Level):
         self.restrict("Megahealth (77)", r.can_shootswitch)
         self.restrict("Secret (58)", r.can_shootswitch)
         self.restrict("Red Armor (59)", r.can_shootswitch)
-        self.restrict(
-            "Silver Key (6)", r.can_button | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Silver Key (6)", r.can_button | r.bigjump_hard)
 
         wall_secret_area = self.region(
             "Wall Secret",

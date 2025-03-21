@@ -877,9 +877,7 @@ class hip2m2(Q1Level):
 
         self.connect(past_silver_door_area, past_button_area, r.jump)
 
-        self.connect(
-            past_button_area, past_silver_door_area, r.bigjump & r.difficulty("hard")
-        )
+        self.connect(past_button_area, past_silver_door_area, r.bigjump_hard)
 
         cathedral_secret_area = self.region(
             "Cathedral Secret",
@@ -889,7 +887,7 @@ class hip2m2(Q1Level):
             ],
         )
         self.connect(past_door_area, cathedral_secret_area, r.can_shootswitch)
-        self.connect(ret, cathedral_secret_area, r.bigjump & r.difficulty("hard"))
+        self.connect(ret, cathedral_secret_area, r.bigjump_hard)
 
         past_gold_door_area = self.region(
             "Past Gold Door",
@@ -915,8 +913,7 @@ class hip2m2(Q1Level):
         self.restrict("Exit", r.can_button)
         self.restrict(
             "All Kills (107)",
-            r.difficult_combat
-            & (r.can_button & (self.silver_key | (r.bigjump & r.difficulty("hard")))),
+            r.difficult_combat & (r.can_button & (self.silver_key | r.bigjump_hard)),
         )
 
         tower_area = self.region(

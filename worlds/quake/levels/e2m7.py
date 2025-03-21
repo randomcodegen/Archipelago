@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M7(Q1Level):
+class e2m7(Q1Level):
     name = "The Underearth"
     mapfile = "e2m7"
     keys = ["Gold"]

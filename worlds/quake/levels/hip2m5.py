@@ -605,12 +605,8 @@ class hip2m5(Q1Level):
         )
         self.connect(ret, past_door_area, r.can_door)
 
-        self.restrict(
-            "Secret (1)", r.can_door & r.jump | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Quad Damage (6)", r.can_door & r.jump | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Secret (1)", r.can_door & r.jump | r.bigjump_hard)
+        self.restrict("Quad Damage (6)", r.can_door & r.jump | r.bigjump_hard)
 
         past_silver_door_area = self.region(
             "Past Silver Door",
@@ -635,7 +631,7 @@ class hip2m5(Q1Level):
             ],
         )
         self.connect(past_door_area, past_silver_door_area, self.silver_key)
-        self.connect(ret, past_silver_door_area, r.bigjump & r.difficulty("hard"))
+        self.connect(ret, past_silver_door_area, r.bigjump_hard)
 
         self.restrict("Secret (24)", r.can_button)
         self.restrict("Megahealth (66)", r.can_door & (r.can_button | r.bigjump))
@@ -668,7 +664,7 @@ class hip2m5(Q1Level):
                 "Proximity (4)",
             ],
         )
-        self.connect(ret, dive_area, r.can_dive & r.jump)
+        self.connect(past_door_area, dive_area, r.can_dive & r.jump)
 
         past_gold_door_area = self.region(
             "Past Gold Door",

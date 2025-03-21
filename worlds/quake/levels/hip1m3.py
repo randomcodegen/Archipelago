@@ -575,8 +575,7 @@ class hip1m3(Q1Level):
         self.connect(
             past_silver_door_area,
             machine_secret_area,
-            self.silver_key
-            & ((r.can_button & r.can_jump) | (r.bigjump & r.difficulty("hard"))),
+            self.silver_key & ((r.can_button & r.can_jump) | r.bigjump_hard),
         )
 
         return ret

@@ -580,30 +580,14 @@ class hip3m2(Q1Level):
         self.restrict("Secret (46)", r.can_shootswitch)
         self.restrict("Lightning (27)", r.can_shootswitch)
         self.restrict("Red Armor (47)", r.can_shootswitch)
-        self.restrict(
-            "Secret (5)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Large Medkit (19)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Large Medkit (20)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Large Medkit (21)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Rockets (23)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Rockets (22)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Cells (25)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
-        self.restrict(
-            "Cells (24)", r.can_shootswitch | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Secret (5)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Large Medkit (19)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Large Medkit (20)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Large Medkit (21)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Rockets (23)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Rockets (22)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Cells (25)", r.can_shootswitch | r.bigjump_hard)
+        self.restrict("Cells (24)", r.can_shootswitch | r.bigjump_hard)
 
         past_silver_door_area = self.region(
             "Past Silver Door",
@@ -623,7 +607,7 @@ class hip3m2(Q1Level):
         self.connect(
             ret,
             past_silver_door_area,
-            self.silver_key | (r.bigjump & r.difficulty("hard")),
+            self.silver_key | r.bigjump_hard,
         )
 
         self.restrict("Secret (3)", r.can_shootswitch)
@@ -638,9 +622,7 @@ class hip3m2(Q1Level):
                 "All Kills (68)",
             ],
         )
-        self.connect(
-            ret, past_gold_door_area, self.gold_key | (r.bigjump & r.difficulty("hard"))
-        )
+        self.connect(ret, past_gold_door_area, self.gold_key | r.bigjump_hard)
 
         self.restrict(
             "All Kills (68)", r.difficult_combat & self.event("Button Pressed")

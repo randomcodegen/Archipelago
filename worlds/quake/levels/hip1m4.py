@@ -626,7 +626,7 @@ class hip1m4(Q1Level):
                 "Yellow Armor (77)",
             ],
         )
-        self.connect(ret, start_top_area, r.bigjump & r.difficulty("hard"))
+        self.connect(ret, start_top_area, r.bigjump_hard)
         self.connect(start_top_area, past_first_door_area)
 
         self.restrict("Yellow Armor (77)", r.bigjump)

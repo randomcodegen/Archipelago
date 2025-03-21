@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M5(Q1Level):
+class e1m5(Q1Level):
     name = "Gloom Keep"
     mapfile = "e1m5"
     keys = ["Silver", "Gold"]
@@ -705,9 +705,7 @@ class E1M5(Q1Level):
             "Secret (51)",
             r.jump & r.can_button,
         )
-        self.restrict(
-            "Silver Key (41)", (r.bigjump & r.difficulty("hard")) | r.can_button
-        )
+        self.restrict("Silver Key (41)", r.bigjump_hard | r.can_button)
 
         inside_jump_secret_area = self.region(
             "Inside Jump Secret Area",
@@ -735,9 +733,7 @@ class E1M5(Q1Level):
             ],
         )
         self.connect(ret, inside_portal_area)
-        self.restrict(
-            "Supernailgun (40)", r.can_button | (r.bigjump & r.difficulty("hard"))
-        )
+        self.restrict("Supernailgun (40)", r.can_button | r.bigjump_hard)
 
         past_button_area = self.region(
             "Past Button Area",
@@ -776,7 +772,7 @@ class E1M5(Q1Level):
             ret,
             past_elevator_area,
             # maybe medium difficulty jump?
-            self.silver_key | (r.bigjump & r.difficulty("hard")),
+            self.silver_key | r.bigjump_hard,
         )
 
         past_gold_key_door_area = self.region(

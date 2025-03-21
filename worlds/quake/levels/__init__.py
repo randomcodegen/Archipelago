@@ -1,34 +1,37 @@
+import importlib
+import os
+
 from ..base_classes import Q1Episode
-from .e1m1 import E1M1
-from .e1m2 import E1M2
-from .e1m3 import E1M3
-from .e1m4 import E1M4
-from .e1m5 import E1M5
-from .e1m6 import E1M6
-from .e1m7 import E1M7
-from .e1m8 import E1M8
-from .e2m1 import E2M1
-from .e2m2 import E2M2
-from .e2m3 import E2M3
-from .e2m4 import E2M4
-from .e2m5 import E2M5
-from .e2m6 import E2M6
-from .e2m7 import E2M7
-from .e3m1 import E3M1
-from .e3m2 import E3M2
-from .e3m3 import E3M3
-from .e3m4 import E3M4
-from .e3m5 import E3M5
-from .e3m6 import E3M6
-from .e3m7 import E3M7
-from .e4m1 import E4M1
-from .e4m2 import E4M2
-from .e4m3 import E4M3
-from .e4m4 import E4M4
-from .e4m5 import E4M5
-from .e4m6 import E4M6
-from .e4m7 import E4M7
-from .e4m8 import E4M8
+from .e1m1 import e1m1
+from .e1m2 import e1m2
+from .e1m3 import e1m3
+from .e1m4 import e1m4
+from .e1m5 import e1m5
+from .e1m6 import e1m6
+from .e1m7 import e1m7
+from .e1m8 import e1m8
+from .e2m1 import e2m1
+from .e2m2 import e2m2
+from .e2m3 import e2m3
+from .e2m4 import e2m4
+from .e2m5 import e2m5
+from .e2m6 import e2m6
+from .e2m7 import e2m7
+from .e3m1 import e3m1
+from .e3m2 import e3m2
+from .e3m3 import e3m3
+from .e3m4 import e3m4
+from .e3m5 import e3m5
+from .e3m6 import e3m6
+from .e3m7 import e3m7
+from .e4m1 import e4m1
+from .e4m2 import e4m2
+from .e4m3 import e4m3
+from .e4m4 import e4m4
+from .e4m5 import e4m5
+from .e4m6 import e4m6
+from .e4m7 import e4m7
+from .e4m8 import e4m8
 from .start import start
 from .end import end
 
@@ -52,28 +55,45 @@ from .hipdm1 import hipdm1
 from .hipstart import hipstart
 from .hipend import hipend
 
+# rogue
+from .r1m1 import r1m1
+from .r1m2 import r1m2
+from .r1m3 import r1m3
+from .r1m4 import r1m4
+from .r1m5 import r1m5
+from .r1m6 import r1m6
+from .r2m1 import r2m1
+from .r2m2 import r2m2
+from .r2m3 import r2m3
+from .r2m4 import r2m4
+from .r2m5 import r2m5
+from .r2m6 import r2m6
+from .r2m7 import r2m7
+from .r2m8 import r2m8
+from .roguestart import roguestart
+
 
 class E1(Q1Episode):
     name = "Doomed Dimension"
-    levels = [E1M1(), E1M2(), E1M3(), E1M4(), E1M5(), E1M6(), E1M7(), E1M8()]
+    levels = [e1m1(), e1m2(), e1m3(), e1m4(), e1m5(), e1m6(), e1m7(), e1m8()]
     maxlevel = len(levels)
 
 
 class E2(Q1Episode):
     name = "Realm of Black Magic"
-    levels = [E2M1(), E2M2(), E2M3(), E2M4(), E2M5(), E2M6(), E2M7()]
+    levels = [e2m1(), e2m2(), e2m3(), e2m4(), e2m5(), e2m6(), e2m7()]
     maxlevel = len(levels)
 
 
 class E3(Q1Episode):
     name = "Netherworld"
-    levels = [E3M1(), E3M2(), E3M3(), E3M4(), E3M5(), E3M6(), E3M7()]
+    levels = [e3m1(), e3m2(), e3m3(), e3m4(), e3m5(), e3m6(), e3m7()]
     maxlevel = len(levels)
 
 
 class E4(Q1Episode):
     name = "The Elder World"
-    levels = [E4M1(), E4M2(), E4M3(), E4M4(), E4M5(), E4M6(), E4M7(), E4M8()]
+    levels = [e4m1(), e4m2(), e4m3(), e4m4(), e4m5(), e4m6(), e4m7(), e4m8()]
     maxlevel = len(levels)
 
 
@@ -108,8 +128,27 @@ class HIPSL(Q1Episode):
     maxlevel = len(levels)
 
 
+# Rogue
+class ROGUEE1(Q1Episode):
+    name = "Hell's Fortress"
+    levels = [r1m1(), r1m2(), r1m3(), r1m4(), r1m5(), r1m6()]
+    maxlevel = len(levels)
+
+
+class ROGUEE2(Q1Episode):
+    name = "The Corridors of Time"
+    levels = [r2m1(), r2m2(), r2m3(), r2m4(), r2m5(), r2m6(), r2m7()]
+    maxlevel = len(levels)
+
+
+class ROGUESL(Q1Episode):
+    name = "Special Levels Rogue"
+    levels = [roguestart(), r2m8()]
+
+
 all_episodes_q1 = [E1(), E2(), E3(), E4()]
 all_episodes_hip = [HIPE1(), HIPE2(), HIPE3()]
+all_episodes_rogue = [ROGUEE1(), ROGUEE2()]
 
 all_eps_incl_special = [
     E1(),
@@ -121,6 +160,9 @@ all_eps_incl_special = [
     HIPE2(),
     HIPE3(),
     HIPSL(),
+    ROGUEE1(),
+    ROGUEE2(),
+    ROGUESL(),
 ]
 
 all_levels_incl_special = [level for ep in all_eps_incl_special for level in ep.levels]

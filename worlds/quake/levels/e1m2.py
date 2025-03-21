@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E1M2(Q1Level):
+class e1m2(Q1Level):
     name = "Castle Of The Damned"
     mapfile = "e1m2"
     keys = ["Silver"]

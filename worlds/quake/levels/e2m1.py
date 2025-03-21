@@ -3,7 +3,7 @@ from BaseClasses import Region
 from ..base_classes import Q1Level
 
 
-class E2M1(Q1Level):
+class e2m1(Q1Level):
     name = "The Installation"
     mapfile = "e2m1"
     keys = ["Silver", "Gold"]
@@ -663,9 +663,7 @@ class E2M1(Q1Level):
             ],
         )
         # TODO: Other Path to this
-        self.connect(
-            ret, upper_floor_area, (r.bigjump & r.difficulty("hard")) | self.gold_key
-        )
+        self.connect(ret, upper_floor_area, r.bigjump_hard | self.gold_key)
 
         first_dive_area = self.region(
             "First Dive Area",

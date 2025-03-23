@@ -408,7 +408,7 @@ weapon_capacity = {
         persistent=True,
     ),
     "Lava Nails Capacity": ItemDef(
-        "Nails Capacity",
+        "Lava Nails Capacity",
         net_id(225),
         "ammo",
         {"ammonum": 4, "capacity": 20, "ammo": 20},

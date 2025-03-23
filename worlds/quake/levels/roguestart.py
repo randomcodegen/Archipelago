@@ -5,7 +5,7 @@ from ..base_classes import Q1Level
 
 class roguestart(Q1Level):
     name = "Introduction"
-    mapfile = "start"
+    mapfile = "start_rogue"
     keys = []
     location_defs = [
         {
@@ -288,13 +288,13 @@ class roguestart(Q1Level):
             "uuid": 6424492973035767000,
             "mp": 0,
         },
-        {
-            "id": 41,
-            "name": "Exit",
-            "classname": "trigger_changelevel",
-            "uuid": 6627228980930986941,
-            "mp": 0,
-        },
+        # {
+        #     "id": 41,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 6627228980930986941,
+        #     "mp": 0,
+        # },
         {
             "id": 42,
             "name": "Lightning (42)",
@@ -404,6 +404,7 @@ class roguestart(Q1Level):
                 "Large Medkit (27)",
                 "Large Medkit (23)",
                 "Megahealth (1)",
+                "Exit",
                 "All Kills (52)",
             ],
         )

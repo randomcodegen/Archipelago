@@ -5,7 +5,7 @@ from ..base_classes import Q1Level
 
 class hipstart(Q1Level):
     name = "Command HQ"
-    mapfile = "start"
+    mapfile = "start_hipnotic"
     keys = []
     location_defs = [
         {

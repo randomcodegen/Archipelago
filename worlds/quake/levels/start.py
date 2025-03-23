@@ -5,30 +5,30 @@ from ..base_classes import Q1Level
 
 class start(Q1Level):
     name = "Introduction"
-    mapfile = "start"
+    mapfile = "start_id1"
     keys = []
     location_defs = [
-        {
-            "id": 1,
-            "name": "Exit",
-            "classname": "trigger_changelevel",
-            "uuid": 8554482791614197809,
-            "mp": 0,
-        },
-        {
-            "id": 2,
-            "name": "Exit",
-            "classname": "trigger_changelevel",
-            "uuid": 4408941846051231574,
-            "mp": 0,
-        },
-        {
-            "id": 3,
-            "name": "Exit",
-            "classname": "trigger_changelevel",
-            "uuid": 2133634421480314523,
-            "mp": 0,
-        },
+        # {
+        #     "id": 1,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 8554482791614197809,
+        #     "mp": 0,
+        # },
+        # {
+        #     "id": 2,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 4408941846051231574,
+        #     "mp": 0,
+        # },
+        # {
+        #     "id": 3,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 2133634421480314523,
+        #     "mp": 0,
+        # },
         {
             "id": 4,
             "name": "Exit",
@@ -36,13 +36,13 @@ class start(Q1Level):
             "uuid": 7702252194662057792,
             "mp": 0,
         },
-        {
-            "id": 5,
-            "name": "Red Armor (5)",
-            "classname": "item_armorInv",
-            "uuid": 11567654261167815312,
-            "mp": 1,
-        },
+        # {
+        #    "id": 5,
+        #    "name": "Red Armor (5)",
+        #    "classname": "item_armorInv",
+        #    "uuid": 11567654261167815312,
+        #    "mp": 1,
+        # },
         {
             "id": 6,
             "name": "Supernailgun (6)",
@@ -148,13 +148,13 @@ class start(Q1Level):
             "uuid": 8655772202010422082,
             "mp": 1,
         },
-        {
-            "id": 21,
-            "name": "Exit",
-            "classname": "trigger_changelevel",
-            "uuid": 12091055948511171065,
-            "mp": 0,
-        },
+        # {
+        #    "id": 21,
+        #    "name": "Exit",
+        #    "classname": "trigger_changelevel",
+        #    "uuid": 12091055948511171065,
+        #    "mp": 0,
+        # },
         {
             "id": 22,
             "name": "Lightning (22)",
@@ -176,48 +176,48 @@ class start(Q1Level):
             "uuid": 12055309585962255546,
             "mp": 1,
         },
-        {
-            "id": 25,
-            "name": "Quad Damage (25)",
-            "classname": "item_artifact_super_damage",
-            "uuid": 8300546414222186416,
-            "mp": 1,
-        },
-        {
-            "id": 26,
-            "name": "Rockets (26)",
-            "classname": "item_rockets",
-            "uuid": 16791421654163229405,
-            "mp": 1,
-        },
-        {
-            "id": 27,
-            "name": "Cells (27)",
-            "classname": "item_cells",
-            "uuid": 3605277900404970710,
-            "mp": 1,
-        },
-        {
-            "id": 28,
-            "name": "Shells (28)",
-            "classname": "item_shells",
-            "uuid": 11452283698894795066,
-            "mp": 1,
-        },
-        {
-            "id": 29,
-            "name": "Spikes (29)",
-            "classname": "item_spikes",
-            "uuid": 10803487414465753661,
-            "mp": 1,
-        },
-        {
-            "id": 30,
-            "name": "Megahealth (30)",
-            "classname": "item_health",
-            "uuid": 3893124854393944523,
-            "mp": 1,
-        },
+        # {
+        #    "id": 25,
+        #    "name": "Quad Damage (25)",
+        #    "classname": "item_artifact_super_damage",
+        #    "uuid": 8300546414222186416,
+        #    "mp": 1,
+        # },
+        # {
+        #    "id": 26,
+        #    "name": "Rockets (26)",
+        #    "classname": "item_rockets",
+        #    "uuid": 16791421654163229405,
+        #    "mp": 1,
+        # },
+        # {
+        #    "id": 27,
+        #    "name": "Cells (27)",
+        #    "classname": "item_cells",
+        #    "uuid": 3605277900404970710,
+        #    "mp": 1,
+        # },
+        # {
+        #    "id": 28,
+        #    "name": "Shells (28)",
+        #    "classname": "item_shells",
+        #    "uuid": 11452283698894795066,
+        #    "mp": 1,
+        # },
+        # {
+        #     "id": 29,
+        #     "name": "Spikes (29)",
+        #     "classname": "item_spikes",
+        #     "uuid": 10803487414465753661,
+        #     "mp": 1,
+        # },
+        # {
+        #    "id": 30,
+        #    "name": "Megahealth (30)",
+        #    "classname": "item_health",
+        #    "uuid": 3893124854393944523,
+        #    "mp": 1,
+        # },
         {
             "id": 31,
             "name": "All Kills (31)",
@@ -239,16 +239,9 @@ class start(Q1Level):
                 "Supershotgun (14)",
                 "Rocketlauncher (8)",
                 "Grenadelauncher (11)",
-                "Spikes (29)",
-                "Shells (28)",
-                "Megahealth (30)",
-                "Cells (27)",
-                "Rockets (26)",
-                "Quad Damage (25)",
                 "Nailgun (16)",
                 "Spikes (17)",
                 "Small Medkit (20)",
-                "Exit",
                 "All Kills (31)",
             ],
         )
@@ -261,10 +254,12 @@ class start(Q1Level):
             [
                 "Spikes (7)",
                 "Supernailgun (6)",
+                "Exit",
             ],
         )
         self.connect(ret, dive_area, r.can_dive)
         self.restrict("Supernailgun (6)", r.can_door)
+        self.restrict("Exit", r.can_door)
 
         past_door_area = self.region(
             "Past Door",

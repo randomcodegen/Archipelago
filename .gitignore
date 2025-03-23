@@ -205,3 +205,4 @@ worlds/quake/utils/logic_template.txt
 fuzz.py
 worlds/quake/utils/map_template.py
 worlds/quake.apworld
+fuzz_output/

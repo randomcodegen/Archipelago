@@ -1102,24 +1102,24 @@ class Q1World(World):
             )
             if self.options.basegame == self.options.basegame.option_hipnotic:
                 itempool.append(self.create_item("Progressive Proximity Gun"))
-            if self.options.include_allkills:
-                itempool.append(self.create_item("Progressive Thunderbolt", 1))
-                itempool.append(self.create_item("Progressive Super Shotgun", 1))
-                itempool.append(self.create_item("Progressive Super Nailgun", 1))
-                itempool.append(self.create_item("Progressive Nailgun", 1))
-                if self.options.basegame == self.options.basegame.option_hipnotic:
-                    itempool.append(self.create_item("Progressive Laser Cannon", 1))
+            # difficult combat
+            itempool.append(self.create_item("Progressive Thunderbolt", 1))
+            itempool.append(self.create_item("Progressive Super Shotgun", 1))
+            itempool.append(self.create_item("Progressive Super Nailgun", 1))
+            itempool.append(self.create_item("Progressive Nailgun", 1))
+            if self.options.basegame == self.options.basegame.option_hipnotic:
+                itempool.append(self.create_item("Progressive Laser Cannon", 1))
         else:
             itempool += self.create_item_list(["Grenade Launcher", "Rocket Launcher"])
             if self.options.basegame == self.options.basegame.option_hipnotic:
                 itempool.append(self.create_item("Proximity Gun"))
-            if self.options.include_allkills:
-                itempool.append(self.create_item("Thunderbolt", 1))
-                itempool.append(self.create_item("Super Shotgun", 1))
-                itempool.append(self.create_item("Super Nailgun", 1))
-                itempool.append(self.create_item("Nailgun", 1))
-                if self.options.basegame == self.options.basegame.option_hipnotic:
-                    itempool.append(self.create_item("Laser Cannon", 1))
+            # difficult combat
+            itempool.append(self.create_item("Thunderbolt", 1))
+            itempool.append(self.create_item("Super Shotgun", 1))
+            itempool.append(self.create_item("Super Nailgun", 1))
+            itempool.append(self.create_item("Nailgun", 1))
+            if self.options.basegame == self.options.basegame.option_hipnotic:
+                itempool.append(self.create_item("Laser Cannon", 1))
 
         # Get progression inventory based on difficulty settings
         required, useful = self.generate_health("Small Medkit")

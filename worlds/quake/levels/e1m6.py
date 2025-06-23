@@ -452,6 +452,7 @@ class e1m6(Q1Level):
                 "Large Medkit (40)",
                 "Yellow Armor (43)",
                 "Exit",
+                "Supernailgun (57)",
                 "All Kills (58)",
             ],
         )
@@ -477,6 +478,7 @@ class e1m6(Q1Level):
             [
                 "Megahealth (35)",
                 "Spikes (53)",
+                "Spikes (17)",
                 "Secret (23)",
                 "Quad Damage (34)",
                 "Rockets (48)",
@@ -492,6 +494,7 @@ class e1m6(Q1Level):
 
         self.restrict("Megahealth (35)", r.bigjump_hard | r.can_door)
         self.restrict("Spikes (53)", r.bigjump_hard | r.can_door)
+        self.restrict("Spikes (17)", r.bigjump_hard | r.can_door)
 
         self.restrict("Secret (23)", r.can_shootswitch | r.bigjump)
         self.restrict("Quad Damage (34)", r.can_shootswitch | r.bigjump)
@@ -503,6 +506,7 @@ class e1m6(Q1Level):
                 "Small Medkit (51)",
                 "Small Medkit (52)",
                 "Silver Key (2)",
+                "Yellow Armor (19)",
                 "Rocketlauncher (12)",
                 "Shells (10)",
                 # requires door for lower path

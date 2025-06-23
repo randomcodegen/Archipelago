@@ -613,6 +613,15 @@ class e4m1(Q1Level):
                 "Supernailgun (46)",
                 "Large Medkit (52)",
                 "Large Medkit (51)",
+                "Small Medkit (14)",
+                "Small Medkit (15)",
+                "Large Medkit (38)",
+                "Large Medkit (53)",
+                "Large Medkit (54)",
+                "Lightning (45)",
+                "Spikes (28)",
+                "Spikes (78)",
+                "Rockets (47)",
             ],
         )
         # drop from above to top floor with airstrafes

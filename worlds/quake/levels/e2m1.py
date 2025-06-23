@@ -626,6 +626,7 @@ class e2m1(Q1Level):
                 "Lightning (78)",
                 "Large Medkit (77)",
                 "Spikes (76)",
+                "Rockets (33)",
                 "Exit",
                 "All Kills (81)",
             ],

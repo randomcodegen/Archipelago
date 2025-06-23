@@ -470,6 +470,7 @@ class e2m2(Q1Level):
                 "Quad Damage (50)",
                 "Shells (37)",
                 "Shells (48)",
+                "Rockets (23)",
                 "Large Medkit (34)",
                 "Cells (53)",
                 "Red Armor (16)",

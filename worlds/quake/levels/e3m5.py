@@ -900,6 +900,7 @@ class e3m5(Q1Level):
                 "Shells (65)",
                 "Shells (64)",
                 "Large Medkit (63)",
+                "Grenadelauncher (95)",
                 "Large Medkit (62)",
                 "Secret (15)",
                 "Biosuit (72)",

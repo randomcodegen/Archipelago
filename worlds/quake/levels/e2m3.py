@@ -581,6 +581,7 @@ class e2m3(Q1Level):
                 "Grenadelauncher (10)",
                 "Red Armor (50)",
                 "Large Medkit (48)",
+                "Supernailgun (42)",
             ],
         )
         self.connect(ret, dive_area, r.can_dive)

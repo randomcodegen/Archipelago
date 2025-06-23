@@ -632,6 +632,7 @@ class e1m5(Q1Level):
                 "Shells (17)",
                 "Large Medkit (30)",
                 "Large Medkit (29)",
+                "Nailgun (11)",
                 "Large Medkit (13)",
                 "Large Medkit (12)",
                 "Yellow Armor (62)",

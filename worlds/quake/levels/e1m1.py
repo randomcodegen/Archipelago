@@ -381,6 +381,7 @@ class e1m1(Q1Level):
                 "Spikes (15)",
                 "Large Medkit (16)",
                 "Small Medkit (17)",
+                "Supernailgun (9)",
                 # shootswitch things
                 "Small Medkit (41)",
                 "Secret (39)",

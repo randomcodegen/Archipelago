@@ -645,6 +645,8 @@ class e1m3(Q1Level):
                 "Yellow Armor (51)",
                 "Secret (49)",
                 "Rockets (50)",
+                "Supernailgun (62)",
+                "Spikes (63)",
             ],
         )
         self.connect(dd_area, past_gold_door_area, self.gold_key)

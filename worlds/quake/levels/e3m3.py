@@ -540,6 +540,7 @@ class e3m3(Q1Level):
                 "Large Medkit (15)",
                 "Large Medkit (19)",
                 "Spikes (58)",
+                "Rocketlauncher (28)",
                 "Shells (47)",
                 "Yellow Armor (29)",
                 "Large Medkit (48)",

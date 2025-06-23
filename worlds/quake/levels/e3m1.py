@@ -517,6 +517,7 @@ class e3m1(Q1Level):
                 "Nailgun (43)",
                 "Large Medkit (58)",
                 "Large Medkit (59)",
+                "Nailgun (20)",
                 "Large Medkit (25)",
                 "Large Medkit (26)",
                 "Rockets (6)",

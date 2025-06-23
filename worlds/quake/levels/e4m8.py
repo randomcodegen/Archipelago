@@ -737,6 +737,7 @@ class e4m8(Q1Level):
             "mp": 0,
         },
     ]
+    events = ["Activate Platform"]
 
     def main_region(self) -> Region:
         r = self.rules
@@ -753,17 +754,19 @@ class e4m8(Q1Level):
                 "Large Medkit (18)",
                 "Spikes (46)",
                 "Lightning (66)",
+                "Small Medkit (32)",
+                "Small Medkit (33)",
                 "Supershotgun (74)",
                 "Green Armor (34)",
                 "Shells (17)",
                 "Supershotgun (76)",
                 "Shells (35)",
-                "Small Medkit (6)",
                 "Large Medkit (40)",
+                "Small Medkit (6)",
                 "Large Medkit (2)",
                 "Secret (64)",
-                "Rocketlauncher (25)",
                 "Quad Damage (59)",
+                "Rocketlauncher (25)",
                 "Cells (80)",
                 "Large Medkit (26)",
                 "Shells (39)",
@@ -771,18 +774,18 @@ class e4m8(Q1Level):
                 "Rockets (37)",
                 "Rocketlauncher (67)",
                 "Large Medkit (36)",
-                "Cells (82)",
                 "Cells (83)",
+                "Cells (82)",
                 "Shells (42)",
                 "Green Armor (28)",
                 "Shells (43)",
                 "Rockets (30)",
                 "Small Medkit (44)",
                 "Spikes (31)",
+                "Spikes (13)",
                 "Large Medkit (14)",
                 "Shells (15)",
                 "Cells (81)",
-                "Spikes (13)",
             ],
         )
         self.restrict("Cells (82)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
@@ -799,41 +802,110 @@ class e4m8(Q1Level):
         self.restrict("Cells (81)", r.can_shootswitch)
         self.restrict("Spikes (13)", r.can_shootswitch)
 
-        button_elevator_area = self.region(
-            "Button Elevator",
+        button_secret_area = self.region(
+            "Button Secret Area",
+            [
+                "Rockets (27)",
+                "Large Medkit (21)",
+                "Large Medkit (22)",
+                "Large Medkit (41)",
+                "Quad Damage (58)",
+                "Secret (79)",
+                "Red Armor (48)",
+            ],
+        )
+        self.connect(ret, button_secret_area, r.can_button | r.bigjump_hard)
+
+        self.restrict(
+            "Small Medkit (32)",
+            r.difficulty("hard") | r.jump | r.invuln(1) | r.biosuit(1),
+        )
+        self.restrict(
+            "Small Medkit (33)",
+            r.difficulty("hard") | r.jump | r.invuln(1) | r.biosuit(1),
+        )
+
+        past_gold_door_area = self.region(
+            "Past Gold Door",
+            [
+                "Secret (65)",
+                "Nailgun (24)",
+                "Cells (91)",
+                "Large Medkit (1)",
+                "Activate Platform",
+            ],
+        )
+        self.connect(ret, past_gold_door_area, self.gold_key)
+        self.restrict("Activate Platform", r.can_button)
+
+        lowest_elevator_area = self.region(
+            "Lowest Elevator Area",
             [
                 "Large Medkit (49)",
                 "Small Medkit (47)",
                 "Rockets (50)",
             ],
         )
-        self.connect(ret, button_elevator_area, r.can_button & r.can_shootswitch)
+        self.connect(ret, lowest_elevator_area, r.can_button & r.can_shootswitch)
 
         elevator_jump_area = self.region(
-            "Elevator Jump",
+            "Elevator Jump Area",
             [
+                "Grenadelauncher (78)",
+                "Rockets (96)",
+            ],
+        )
+
+        gold_platform_area = self.region(
+            "Gold Key Platform",
+            [
+                "Rocketlauncher (57)",
+                "Quad Damage (60)",
+                "Gold Key (29)",
+                "Shells (12)",
+                "Small Medkit (4)",
+                "Supernailgun (77)",
+            ],
+        )
+        self.connect(
+            ret, gold_platform_area, self.event("Activate Platform") | r.bigjump_hard
+        )
+        self.connect(lowest_elevator_area, elevator_jump_area, r.jump)
+        self.connect(elevator_jump_area, gold_platform_area, r.jump)
+        self.connect(ret, elevator_jump_area, r.bigjump_hard)
+
+        past_lava_elevator = self.region(
+            "Past Lava Elevator",
+            [
+                "Cells (72)",
+                "Cells (88)",
+                "Supernailgun (75)",
+                "Cells (89)",
+                "Invisibility (73)",
+                "Cells (97)",
+                "Nailgun (71)",
                 "Large Medkit (102)",
+                "Spikes (11)",
                 "Cells (86)",
                 "Large Medkit (103)",
-                "Cells (72)",
-                "Invisibility (73)",
-                "Cells (89)",
-                "Supernailgun (75)",
-                "Cells (88)",
+                "Small Medkit (7)",
+                "Invisibility (101)",
+                "Small Medkit (8)",
+                "Spikes (9)",
+                "Small Medkit (5)",
                 "Rockets (94)",
                 "Invulnerability (61)",
                 "Cells (87)",
             ],
         )
-        self.connect(button_elevator_area, elevator_jump_area, r.jump)
-        self.connect(ret, elevator_jump_area, r.can_button)
-
+        self.connect(ret, past_lava_elevator, r.can_button | r.bigjump_hard)
+        self.connect(gold_platform_area, past_lava_elevator)
         self.restrict("Rockets (94)", r.can_door)
         self.restrict("Invulnerability (61)", r.can_door)
         self.restrict("Cells (87)", r.can_door)
 
-        past_button_area = self.region(
-            "Past Button",
+        upper_plaza_area = self.region(
+            "Upper Plaza",
             [
                 "Large Medkit (10)",
                 "Cells (84)",
@@ -841,70 +913,36 @@ class e4m8(Q1Level):
                 "Cells (85)",
                 "Quad Damage (100)",
                 "Cells (99)",
-                "Large Medkit (52)",
-                "Cells (93)",
-                "Spikes (53)",
-                "Large Medkit (54)",
-                "Lightning (95)",
-                "Rockets (51)",
                 "Cells (98)",
-                "Invisibility (101)",
-                # TODO: Silver Key might need some ammo requirements
+                "Spikes (53)",
+                "Cells (93)",
+                "Large Medkit (52)",
+                "Rockets (51)",
+                "Lightning (95)",
+                "Large Medkit (54)",
                 "Silver Key (55)",
-                "All Kills (104)",
             ],
         )
         self.connect(
-            ret,
-            past_button_area,
-            (r.can_button & r.can_jump)
-            | r.can_rj_hard
-            | r.can_gj_extr
-            | (r.bigjump & r.difficulty("medium")),
+            past_lava_elevator,
+            upper_plaza_area,
+            (r.can_button & r.jump & r.can_shootswitch) | r.bigjump_hard,
         )
-        self.restrict("All Kills (104)", r.difficult_combat & r.can_button & r.can_door)
-
-        jump_button_secret = self.region(
-            "Jump Button",
-            [
-                "Large Medkit (21)",
-                "Large Medkit (22)",
-                "Rockets (27)",
-                "Large Medkit (41)",
-                "Quad Damage (58)",
-                "Secret (79)",
-                "Red Armor (48)",
-            ],
-        )
-        self.connect(
-            ret,
-            jump_button_secret,
-            (r.jump & r.can_button) | (r.bigjump & r.difficulty("extreme")),
-        )
+        # TODO: Is this an overkill requirement?
+        self.restrict("Silver Key (55)", r.difficult_combat)
 
         past_silver_door_area = self.region(
             "Past Silver Door",
             [
                 "Supershotgun (70)",
+                "Cells (90)",
                 "Secret (63)",
                 "Grenadelauncher (69)",
                 "Megahealth (3)",
-                "Cells (90)",
                 "Rockets (16)",
                 "Exit",
             ],
         )
-        self.connect(elevator_jump_area, past_silver_door_area, self.silver_key)
-
-        past_gold_door_area = self.region(
-            "Past Gold Door",
-            [
-                "Secret (65)",
-                "Cells (91)",
-                "Nailgun (24)",
-                "Large Medkit (1)",
-            ],
-        )
-        self.connect(ret, past_gold_door_area, self.gold_key)
+        self.connect(past_lava_elevator, past_silver_door_area, self.silver_key)
 
         return ret

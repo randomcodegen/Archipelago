@@ -694,21 +694,21 @@ class e2m4(Q1Level):
             [
                 "Shells (67)",
                 "Small Medkit (37)",
-                "Green Armor (2)",
-                "Large Medkit (83)",
-                "Large Medkit (84)",
                 "Secret (25)",
                 "Red Armor (4)",
                 "Biosuit (3)",
+                "Spikes (56)",
+                "Shells (57)",
             ],
         )
-        # TODO Check if this amount is correct
+
         silver_key_platform = self.region(
             "Silver Key Platform",
             [
                 "Silver Key (1)",
-                "Spikes (56)",
-                "Shells (57)",
+                "Green Armor (2)",
+                "Large Medkit (83)",
+                "Large Medkit (84)",
             ],
         )
         self.connect(

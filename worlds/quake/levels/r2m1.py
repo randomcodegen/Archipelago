@@ -1030,13 +1030,13 @@ class r2m1(Q1Level):
             "uuid": 5922016808093920546,
             "mp": 0,
         },
-        {
-            "id": 147,
-            "name": "Lava (147)",
-            "classname": "item_lava_spikes",
-            "uuid": 2569532793036697858,
-            "mp": 0,
-        },
+        # {
+        #    "id": 147,
+        #    "name": "Lava (147)",
+        #    "classname": "item_lava_spikes",
+        #    "uuid": 2569532793036697858,
+        #    "mp": 0,
+        # },
         {
             "id": 148,
             "name": "Lava (148)",
@@ -1072,13 +1072,13 @@ class r2m1(Q1Level):
             "uuid": 14581842832890422840,
             "mp": 0,
         },
-        {
-            "id": 153,
-            "name": "Spikes (153)",
-            "classname": "item_spikes",
-            "uuid": 11848955876634023871,
-            "mp": 0,
-        },
+        # {
+        #    "id": 153,
+        #    "name": "Spikes (153)",
+        #    "classname": "item_spikes",
+        #    "uuid": 11848955876634023871,
+        #    "mp": 0,
+        # },
         {
             "id": 154,
             "name": "Shells (154)",
@@ -1389,9 +1389,15 @@ class r2m1(Q1Level):
                 "Silver Key (61)",
                 "Rockets (146)",
                 "Powerup (144)",
+                "Grenadelauncher (66)",
+                "Rockets (102)",
+                "Large Medkit (103)",
             ],
         )
         self.connect(ret, dive_area, r.can_dive & r.can_button)
+        self.restrict("Grenadelauncher (66)", r.can_door)
+        self.restrict("Rockets (102)", r.can_door)
+        self.restrict("Large Medkit (103)", r.can_door)
 
         past_silver_door_area = self.region(
             "Past Silver Door",
@@ -1447,6 +1453,7 @@ class r2m1(Q1Level):
                 "Random (178)",
                 "Small Medkit (179)",
                 "Cells (180)",
+                "Gold Key (60)",
                 "Shells (28)",
                 "Spikes (150)",
                 "Large Medkit (29)",

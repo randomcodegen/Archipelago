@@ -358,6 +358,14 @@ class r2m8(Q1Level):
             "uuid": 16260633654361482853,
             "mp": 0,
         },
+        # manually added for the exit to exist
+        {
+            "id": 42,
+            "name": "Exit",
+            "classname": "trigger_changelevel",
+            "uuid": 13397806965560897406,
+            "mp": 0,
+        },
     ]
     has_boss = True
 

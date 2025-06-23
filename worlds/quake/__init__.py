@@ -61,6 +61,8 @@ class Q1World(World):
             "Quake 1", world.random.getrandbits(64)
         )
 
+        print("__init__ world.random seed: ", self.seed)
+
         world.random = Random(self.seed)
 
         # store location spawn preset data as a list of dicts
@@ -436,6 +438,10 @@ class Q1World(World):
         for level in self.included_levels:
             if self.options.area_maps == self.options.area_maps.option_start_with:
                 self.options.start_inventory.value[level.map] = 1
+        basegame_lut = ["id1", "hipnotic", "rogue", "mg1"]
+        self.slot_data["settings"]["basegame"] = basegame_lut[
+            self.options.basegame.value
+        ]
         self.slot_data["settings"]["difficulty"] = self.options.skill_level.value
         self.slot_data["settings"]["lock"] = {}
         self.slot_data["settings"]["shell_recharge"] = self.options.shell_recharge.value
@@ -635,7 +641,7 @@ class Q1World(World):
                 "Nail Ammo (+1)": 40,
                 "Rocket Ammo (+1)": 40,
                 "Cell Ammo (+1)": 40,
-                "Green Armor": 2,
+                # "Green Armor": 2,
                 # "Small Medkit": 30,
                 # "Large Medkit": 10,
                 # "Megahealth": 1,
@@ -661,8 +667,8 @@ class Q1World(World):
                 "Nail Ammo (+1)": 30,
                 "Rocket Ammo (+1)": 30,
                 "Cell Ammo (+1)": 30,
-                "Green Armor": 3,
-                "Yellow Armor": 2,
+                # "Green Armor": 3,
+                # "Yellow Armor": 2,
                 # "Small Medkit": 3,
                 # "Large Medkit": 2,
                 # "Megahealth": 1,
@@ -688,9 +694,9 @@ class Q1World(World):
                 "Nail Ammo (+1)": 20,
                 "Rocket Ammo (+1)": 20,
                 "Cell Ammo (+1)": 20,
-                "Green Armor": 4,
-                "Yellow Armor": 3,
-                "Red Armor": 1,
+                # "Green Armor": 4,
+                # "Yellow Armor": 3,
+                # "Red Armor": 1,
                 # "Small Medkit": 3,
                 # "Large Medkit": 2,
                 # "Megahealth": 3,
@@ -716,9 +722,9 @@ class Q1World(World):
                 "Nail Ammo (+1)": 10,
                 "Rocket Ammo (+1)": 10,
                 "Cell Ammo (+1)": 10,
-                "Green Armor": 5,
-                "Yellow Armor": 4,
-                "Red Armor": 2,
+                # "Green Armor": 5,
+                # "Yellow Armor": 4,
+                # "Red Armor": 2,
                 # "Small Medkit": 3,
                 # "Large Medkit": 2,
                 # "Megahealth": 10,
@@ -783,6 +789,41 @@ class Q1World(World):
             self.options.difficulty, self.options.difficulty.option_medium
         )[inv_type]
         required_list = [self.create_item(inv_type, True) for _ in range(required)]
+        # Fill pool with capacity up to total amount
+        useful_list = [
+            self.create_item(inv_type) for _ in range(total - len(required_list))
+        ]
+        return required_list, useful_list
+
+    ARMOR_DIFF_TO_REQ_MAPPING = {
+        Difficulty.option_easy: {
+            "Green Armor": (10, 10),
+            "Yellow Armor": (10, 10),
+            "Red Armor": (4, 4),
+        },
+        Difficulty.option_medium: {
+            "Green Armor": (20, 20),
+            "Yellow Armor": (20, 20),
+            "Red Armor": (4, 4),
+        },
+        Difficulty.option_hard: {
+            "Green Armor": (20, 20),
+            "Yellow Armor": (20, 20),
+            "Red Armor": (8, 8),
+        },
+        Difficulty.option_extreme: {
+            "Green Armor": (40, 40),
+            "Yellow Armor": (20, 20),
+            "Red Armor": (5, 5),
+        },
+    }
+
+    def generate_armor(self, inv_type: str) -> Tuple[List[Q1Item], List[Q1Item]]:
+        required, total = self.ARMOR_DIFF_TO_REQ_MAPPING.get(
+            self.options.difficulty, self.options.difficulty.option_medium
+        )[inv_type]
+        # armor is never progressive but also not optional
+        required_list = [self.create_item(inv_type, False) for _ in range(required)]
         # Fill pool with capacity up to total amount
         useful_list = [
             self.create_item(inv_type) for _ in range(total - len(required_list))
@@ -1129,6 +1170,16 @@ class Q1World(World):
         itempool += required
         useful_items += useful
         required, useful = self.generate_health("Megahealth")
+        itempool += required
+        useful_items += useful
+
+        required, useful = self.generate_armor("Green Armor")
+        itempool += required
+        useful_items += useful
+        required, useful = self.generate_armor("Yellow Armor")
+        itempool += required
+        useful_items += useful
+        required, useful = self.generate_armor("Red Armor")
         itempool += required
         useful_items += useful
 

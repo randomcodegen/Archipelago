@@ -591,7 +591,7 @@ class e2m3(Q1Level):
                 "Yellow Armor (43)",
             ],
         )
-        self.connect(ret, past_button_area, r.can_button)
+        self.connect(ret, past_button_area, r.can_button & r.can_door)
 
         past_bridge_area = self.region(
             "Past Bridge",
@@ -725,15 +725,21 @@ class e2m3(Q1Level):
         # obscure knowledge for gibbing with quad dmg
         self.restrict(
             "Rockets (49)",
-            r.rocketlauncher
-            | r.grenadelauncher
-            | (r.quad_dmg(1) & r.difficulty("hard")),
+            r.can_door
+            & (
+                r.rocketlauncher
+                | r.grenadelauncher
+                | (r.quad_dmg(1) & r.difficulty("hard"))
+            ),
         )
         self.restrict(
             "Secret (69)",
-            r.rocketlauncher
-            | r.grenadelauncher
-            | (r.quad_dmg(1) & r.difficulty("hard")),
+            r.can_door
+            & (
+                r.rocketlauncher
+                | r.grenadelauncher
+                | (r.quad_dmg(1) & r.difficulty("hard"))
+            ),
         )
 
         self.connect(past_button_door_area, third_bridge_area, r.can_button)

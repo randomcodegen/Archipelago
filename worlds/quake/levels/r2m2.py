@@ -536,9 +536,13 @@ class r2m2(Q1Level):
                 "Flag (62)",
                 "Spikes (53)",
                 "Lightning (57)",
+                "Sphere (66)",
+                "Multi (67)",
             ],
         )
         self.restrict("Lightning (57)", r.jump)
+        self.restrict("Sphere (66)", r.can_door)
+        self.restrict("Multi (67)", r.can_door)
 
         past_button_area = self.region(
             "Past Button Area",

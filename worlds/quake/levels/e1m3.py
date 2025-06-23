@@ -651,6 +651,7 @@ class e1m3(Q1Level):
         # very difficult in-place grenade jumps to get on top
         self.restrict("Rockets (20)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
 
+        # TODO: Maybe can jump out of water with just dive?
         self.restrict("Supershotgun (60)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
 
         self.restrict(

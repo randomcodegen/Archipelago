@@ -62,6 +62,7 @@ from .r1m3 import r1m3
 from .r1m4 import r1m4
 from .r1m5 import r1m5
 from .r1m6 import r1m6
+from .r1m7 import r1m7
 from .r2m1 import r2m1
 from .r2m2 import r2m2
 from .r2m3 import r2m3
@@ -131,7 +132,7 @@ class HIPSL(Q1Episode):
 # Rogue
 class ROGUEE1(Q1Episode):
     name = "Hell's Fortress"
-    levels = [r1m1(), r1m2(), r1m3(), r1m4(), r1m5(), r1m6()]
+    levels = [r1m1(), r1m2(), r1m3(), r1m4(), r1m5(), r1m6(), r1m7()]
     maxlevel = len(levels)
 
 

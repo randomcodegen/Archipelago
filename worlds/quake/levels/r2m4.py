@@ -1240,6 +1240,7 @@ class r2m4(Q1Level):
                 "Secret (157)",
                 "Plasma (66)",
                 "Large Medkit (67)",
+                "Invisibility (68)",
             ],
         )
         self.connect(ret, pyramid_area, r.can_button & r.can_door)
@@ -1250,6 +1251,7 @@ class r2m4(Q1Level):
         self.restrict("Secret (157)", r.can_shootswitch)
         self.restrict("Plasma (66)", r.can_shootswitch)
         self.restrict("Large Medkit (67)", r.can_shootswitch)
+        self.restrict("Invisibility (68)", r.can_shootswitch)
 
         past_queen_area = self.region(
             "Past Queen",
@@ -1306,6 +1308,9 @@ class r2m4(Q1Level):
                 "Rockets (10)",
                 "Large Medkit (8)",
                 "Large Medkit (7)",
+                "Large Medkit (160)",
+                "Large Medkit (20)",
+                "Shells (21)",
             ],
         )
         self.connect(pyramid_area, past_queen_area, r.difficult_combat)

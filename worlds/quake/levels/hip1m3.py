@@ -471,6 +471,8 @@ class hip1m3(Q1Level):
         ret = self.region(
             self.name,
             [
+                "Large Medkit (60)",
+                "Large Medkit (61)",
                 "Spikes (17)",
                 "Supershotgun (15)",
                 "Rockets (53)",

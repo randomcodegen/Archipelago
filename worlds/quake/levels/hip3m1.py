@@ -644,6 +644,7 @@ class hip3m1(Q1Level):
             "Past Gold Door",
             [
                 "Invulnerability (26)",
+                "Proximity (54)",
                 "Exit",
                 "All Kills (74)",
             ],

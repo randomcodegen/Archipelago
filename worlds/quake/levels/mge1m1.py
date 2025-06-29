@@ -642,8 +642,6 @@ class mge1m1(Q1Level):
         )
         self.connect(past_door_area, past_button_area, r.can_button)
         self.restrict("Biosuit (24)", r.jump)
-        self.restrict(r.jump & (r.biosuit(1) | r.invuln(1)))
-        self.restrict(r.jump & (r.biosuit(1) | r.invuln(1)))
 
         swim_area = self.region(
             "Swim Area",
@@ -706,6 +704,7 @@ class mge1m1(Q1Level):
                 "Shells (45)",
                 "Biosuit (70)",
                 "Secret Exit",
+                "Secret (73)",
                 "Rockets (69)",
             ],
         )

@@ -160,42 +160,49 @@ class ROGUEE2(Q1Episode):
 class ROGUESL(Q1Episode):
     name = "Special Levels Rogue"
     levels = [roguestart(), r2m8()]
+    maxlevel = len(levels)
 
 
 class MG1E1(Q1Episode):
     name = "Realm of the Machinists"
     levels = [mge1m1(), mge1m2(), mge1m3()]
+    maxlevel = len(levels)
 
 
 class MG1E2(Q1Episode):
     name = "Realm of the Blacksmiths"
     levels = [mge2m1(), mge2m2()]
+    maxlevel = len(levels)
 
 
 class MG1E3(Q1Episode):
     name = "Realm of the Stonemasons"
     levels = [mge3m1(), mge3m2()]
+    maxlevel = len(levels)
 
 
 class MG1E4(Q1Episode):
     name = "Realm of the Cultists"
     levels = [mge4m1(), mge4m2()]
+    maxlevel = len(levels)
 
 
 class MG1E5(Q1Episode):
     name = "Realm of the Astrologers"
     levels = [mge5m1(), mge5m2()]
+    maxlevel = len(levels)
 
 
 class MG1SL(Q1Episode):
     name = "Special Levels MG1"
     levels = [mg1start(), mgend()]
+    maxlevel = len(levels)
 
 
 all_episodes_q1 = [E1(), E2(), E3(), E4()]
 all_episodes_hip = [HIPE1(), HIPE2(), HIPE3()]
 all_episodes_rogue = [ROGUEE1(), ROGUEE2()]
-all_episodes_mg1 = [MG1E1(), MG1E2(), MG1E2(), MG1E3(), MG1E4(), MG1E5(), MG1SL()]
+all_episodes_mg1 = [MG1E1(), MG1E2(), MG1E3(), MG1E4(), MG1E5(), MG1SL()]
 
 all_eps_incl_special = [
     E1(),
@@ -211,7 +218,6 @@ all_eps_incl_special = [
     ROGUEE2(),
     ROGUESL(),
     MG1E1(),
-    MG1E2(),
     MG1E2(),
     MG1E3(),
     MG1E4(),

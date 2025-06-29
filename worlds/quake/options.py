@@ -283,6 +283,13 @@ class Episode4(Toggle):
     default = True
 
 
+class Episode5(Toggle):
+    """Include Episode 5 in the randomizer"""
+
+    display_name = "Use Episode 5"
+    default = True
+
+
 class IncludeHub(Toggle):
     """Include the Hub Level in the randomizer"""
 
@@ -406,6 +413,7 @@ class Q1Options(PerGameCommonOptions):
     episode2: Episode2
     episode3: Episode3
     episode4: Episode4
+    episode5: Episode5
     include_hub: IncludeHub
     include_end: IncludeEnd
     level_count: LevelCount

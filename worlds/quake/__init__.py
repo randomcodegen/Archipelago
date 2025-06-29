@@ -1,7 +1,7 @@
 import json
 import math
 from random import Random
-from .levels import SL, HIPSL, ROGUESL
+from .levels import SL, HIPSL, ROGUESL, MG1SL
 from typing import Any, Dict, List, Optional, Set, Tuple
 from BaseClasses import CollectionState
 
@@ -18,7 +18,12 @@ from . import resources
 from .base_classes import Q1Item, Q1Level, LocationDef
 from .id import GAME_ID, local_id, net_id
 from .items import all_items, item_groups
-from .levels import all_episodes_q1, all_episodes_hip, all_episodes_rogue
+from .levels import (
+    all_episodes_q1,
+    all_episodes_hip,
+    all_episodes_rogue,
+    all_episodes_mg1,
+)
 from .options import Difficulty, Q1Options
 from .rules import Rules
 
@@ -328,6 +333,10 @@ class Q1World(World):
             episode_options = [1, 2]
             all_episodes = all_episodes_rogue
             special_levels = ROGUESL()
+        elif self.options.basegame == self.options.basegame.option_mg1:
+            episode_options = [1, 2, 3, 4, 5]
+            all_episodes = all_episodes_mg1
+            special_levels = MG1SL()
         else:
             episode_options = [1, 2, 3, 4]
 
@@ -336,6 +345,7 @@ class Q1World(World):
             self.options.episode2,
             self.options.episode3,
             self.options.episode4,
+            self.options.episode5,
         ]
 
         # check for user error in episode selection (yaml)

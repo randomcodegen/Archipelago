@@ -1101,13 +1101,13 @@ class mge3m1(Q1Level):
         self.restrict("Exit", r.can_button)
         self.restrict(
             "Large Medkit (97)",
-            "Secret (11)",
-            "Lightning (62)",
             r.can_jump | r.can_gj_extr | r.can_rj_hard | r.bigjump_hard,
         )
         self.restrict(
-            "Large Medkit (97)",
             "Secret (11)",
+            r.can_jump | r.can_gj_extr | r.can_rj_hard | r.bigjump_hard,
+        )
+        self.restrict(
             "Lightning (62)",
             r.can_jump | r.can_gj_extr | r.can_rj_hard | r.bigjump_hard,
         )

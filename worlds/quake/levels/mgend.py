@@ -6,7 +6,7 @@ from ..base_classes import Q1Level
 class mgend(Q1Level):
     name = "Chthon's Vengeance"
     mapfile = "mgend"
-    keys = []
+    keys = ["Silver", "Gold"]
     location_defs = [
         {
             "id": 1,
@@ -325,6 +325,7 @@ class mgend(Q1Level):
             "mp": 0,
         },
     ]
+    has_boss = True
 
     def main_region(self) -> Region:
         r = self.rules

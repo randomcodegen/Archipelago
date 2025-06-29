@@ -54,7 +54,7 @@ class BaseGame(Choice):
     option_quake = 0
     option_hipnotic = 1
     option_rogue = 2
-    # option_mg1 = 3
+    option_mg1 = 3
 
 
 class UnlockAbilities(Toggle):

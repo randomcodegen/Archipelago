@@ -73,6 +73,21 @@ from .r2m7 import r2m7
 from .r2m8 import r2m8
 from .roguestart import roguestart
 
+# mg1
+from .mge1m1 import mge1m1
+from .mge1m2 import mge1m2
+from .mge1m3 import mge1m3
+from .mge2m1 import mge2m1
+from .mge2m2 import mge2m2
+from .mge3m1 import mge3m1
+from .mge3m2 import mge3m2
+from .mge4m1 import mge4m1
+from .mge4m2 import mge4m2
+from .mge5m1 import mge5m1
+from .mge5m2 import mge5m2
+from .mg1start import mg1start
+from .mgend import mgend
+
 
 class E1(Q1Episode):
     name = "Doomed Dimension"
@@ -147,9 +162,40 @@ class ROGUESL(Q1Episode):
     levels = [roguestart(), r2m8()]
 
 
+class MG1E1(Q1Episode):
+    name = "Realm of the Machinists"
+    levels = [mge1m1(), mge1m2(), mge1m3()]
+
+
+class MG1E2(Q1Episode):
+    name = "Realm of the Blacksmiths"
+    levels = [mge2m1(), mge2m2()]
+
+
+class MG1E3(Q1Episode):
+    name = "Realm of the Stonemasons"
+    levels = [mge3m1(), mge3m2()]
+
+
+class MG1E4(Q1Episode):
+    name = "Realm of the Cultists"
+    levels = [mge4m1(), mge4m2()]
+
+
+class MG1E5(Q1Episode):
+    name = "Realm of the Astrologers"
+    levels = [mge5m1(), mge5m2()]
+
+
+class MG1SL(Q1Episode):
+    name = "Special Levels MG1"
+    levels = [mg1start(), mgend()]
+
+
 all_episodes_q1 = [E1(), E2(), E3(), E4()]
 all_episodes_hip = [HIPE1(), HIPE2(), HIPE3()]
 all_episodes_rogue = [ROGUEE1(), ROGUEE2()]
+all_episodes_mg1 = [MG1E1(), MG1E2(), MG1E2(), MG1E3(), MG1E4(), MG1E5(), MG1SL()]
 
 all_eps_incl_special = [
     E1(),
@@ -164,6 +210,13 @@ all_eps_incl_special = [
     ROGUEE1(),
     ROGUEE2(),
     ROGUESL(),
+    MG1E1(),
+    MG1E2(),
+    MG1E2(),
+    MG1E3(),
+    MG1E4(),
+    MG1E5(),
+    MG1SL(),
 ]
 
 all_levels_incl_special = [level for ep in all_eps_incl_special for level in ep.levels]

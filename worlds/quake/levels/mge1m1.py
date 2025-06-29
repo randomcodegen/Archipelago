@@ -732,10 +732,12 @@ class mge1m1(Q1Level):
                 "Spikes (64)",
                 "Shells (65)",
                 "Exit",
+                "All Kills (83)",
             ],
         )
         self.connect(past_silver_door_area, past_gold_door_area, self.gold_key)
         self.restrict("Green Armor (77)", r.jump)
         self.restrict("Secret (79)", r.jump)
+        self.restrict("All Kills (83)", r.difficult_combat)
 
         return ret

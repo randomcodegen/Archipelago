@@ -9,33 +9,33 @@ class mg1start(Q1Level):
     keys = []
     location_defs = [
         # {
-        #    "id": 1,
-        #    "name": "Exit",
-        #    "classname": "trigger_changelevel",
-        #    "uuid": 2115333524060900312,
-        #    "mp": 0,
+        #     "id": 1,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 2115333524060900312,
+        #     "mp": 0,
+        # },
+        # {
+        #     "id": 2,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 8651750158097738161,
+        #     "mp": 0,
+        # },
+        # {
+        #     "id": 3,
+        #     "name": "Exit",
+        #     "classname": "trigger_changelevel",
+        #     "uuid": 16595569416151077344,
+        #     "mp": 0,
         # },
         {
-            "id": 2,
+            "id": 4,
             "name": "Exit",
             "classname": "trigger_changelevel",
-            "uuid": 8651750158097738161,
+            "uuid": 5928200913872680509,
             "mp": 0,
         },
-        # {
-        #    "id": 3,
-        #    "name": "Exit",
-        #    "classname": "trigger_changelevel",
-        #    "uuid": 16595569416151077344,
-        #    "mp": 0,
-        # },
-        # {
-        #    "id": 4,
-        #    "name": "Exit",
-        #    "classname": "trigger_changelevel",
-        #    "uuid": 5928200913872680509,
-        #    "mp": 0,
-        # },
         {
             "id": 5,
             "name": "All Kills (5)",
@@ -55,5 +55,6 @@ class mg1start(Q1Level):
                 "All Kills (5)",
             ],
         )
+        self.restrict("Exit", r.jump)
 
         return ret

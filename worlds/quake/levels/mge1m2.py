@@ -643,7 +643,7 @@ class mge1m2(Q1Level):
         )
         self.connect(past_door_area, past_button_area, r.can_button)
 
-        self.restrict("Silver Key (4)", r.jump)
+        self.restrict("Silver Key (4)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
 
         past_gold_door_area = self.region(
             "Past Gold Door",

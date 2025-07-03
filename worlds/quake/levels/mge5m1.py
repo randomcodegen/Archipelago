@@ -717,7 +717,7 @@ class mge5m1(Q1Level):
                 "Large Medkit (22)",
             ],
         )
-        self.connect(ret, jump_area, r.jump)
+        self.connect(ret, jump_area, r.can_jump | r.can_gj_extr | r.can_rj_hard)
 
         past_button_area = self.region(
             "Past Button Area",

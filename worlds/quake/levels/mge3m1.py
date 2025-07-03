@@ -1065,7 +1065,8 @@ class mge3m1(Q1Level):
         self.restrict("Shells (35)", r.jump)
         self.restrict("Large Medkit (63)", r.jump)
         self.restrict("Spikes (118)", r.jump)
-        self.restrict("Quad Damage (25)", r.jump)
+        self.restrict("Quad Damage (25)", r.can_jump | r.can_rj_hard | r.can_gj_extr)
+
         self.restrict("Secret (2)", r.jump)
         self.restrict(
             "Secret (1)", r.can_shootswitch & (r.difficulty("medium") | r.jump)
@@ -1138,7 +1139,10 @@ class mge3m1(Q1Level):
         self.connect(
             ret,
             past_water_gap_area,
-            r.can_gj_extr | r.can_rj_hard | r.can_jump | r.bigjump_hard,
+            (r.can_gj_extr & r.invuln(1) & r.quad_dmg(1))
+            | (r.can_rj_hard & r.heal(200) | r.invuln(1))
+            | r.can_jump
+            | r.bigjump_hard,
         )
         self.restrict("Spikes (44)", r.jump)
         self.restrict("Megahealth (137)", r.jump)
@@ -1251,7 +1255,7 @@ class mge3m1(Q1Level):
                 "Rockets (46)",
             ],
         )
-        self.connect(ret, past_button_door_area, r.can_button & r.can_door)
+        self.connect(sewage_area, past_button_door_area, r.can_button & r.can_door)
         self.restrict("Secret (7)", r.can_shootswitch)
         self.restrict("Shells (94)", r.can_shootswitch)
         self.restrict("Megahealth (102)", r.can_shootswitch)

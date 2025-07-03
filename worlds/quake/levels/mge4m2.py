@@ -776,6 +776,19 @@ class mge4m2(Q1Level):
         self.restrict("Red Armor (87)", r.can_shootswitch)
         self.restrict("Secret (88)", r.can_shootswitch)
 
+        self.restrict(
+            "Secret (7)", r.can_shootswitch | (r.can_jump & r.can_rj & r.invuln(1))
+        )
+        self.restrict(
+            "Spikes (10)", r.can_shootswitch | (r.can_jump & r.can_rj & r.invuln(1))
+        )
+        self.restrict(
+            "Spikes (11)", r.can_shootswitch | (r.can_jump & r.can_rj & r.invuln(1))
+        )
+        self.restrict(
+            "Quad Damage (6)", r.can_shootswitch | (r.can_jump & r.can_rj & r.invuln(1))
+        )
+
         self.restrict("Sigil (33)", r.difficult_combat)
         self.restrict("Exit", r.difficult_combat)
         self.restrict("All Kills (92)", r.difficult_combat)

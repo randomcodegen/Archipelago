@@ -7,6 +7,7 @@ from Options import (
     Toggle,
     OptionDict,
     StartInventoryPool,
+    DeathLink,
 )
 
 
@@ -55,6 +56,7 @@ class BaseGame(Choice):
     option_hipnotic = 1
     option_rogue = 2
     option_mg1 = 3
+    option_dopa = 4
 
 
 class UnlockAbilities(Toggle):
@@ -425,3 +427,5 @@ class Q1Options(PerGameCommonOptions):
     traps_as_progressive: ShowTrapsAsProgressive
     shell_recharge: ShellRecharge
     powerup_recharge: PowerupRecharge
+    death_link: DeathLink
+    start_inventory_from_pool: StartInventoryPool

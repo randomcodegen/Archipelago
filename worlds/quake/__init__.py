@@ -572,7 +572,7 @@ class Q1World(World):
         levels_tried = []
 
         while depth < len(self.included_levels):
-            state = CollectionState(self.multiworld)
+            state = CollectionState(self.multiworld, True)
             # print("Attempt ", depth + 1)
             for level in self.starting_levels:
                 # print("Starting Level: ", level.prefix, level.name)

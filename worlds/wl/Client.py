@@ -78,17 +78,8 @@ class WarioLandClient(BizHawkClient):
                 "ascii"
             )
             if rom_name.startswith("SUPERMARIO"):
-                logger.info(
-                    "ERROR: You appear to be running an unpatched version of Wario Land. "
-                    "You need to generate a patch file and use it to create a patched ROM."
-                )
                 return False
             if not rom_name.startswith(EXPECTED_ROM_NAME):
-                logger.info(
-                    "ERROR: The patch file used to create this ROM is not compatible with "
-                    "this client. Double check your client version against the version being "
-                    "used by the generator."
-                )
                 return False
         except UnicodeDecodeError:
             return False
@@ -201,7 +192,7 @@ class WarioLandClient(BizHawkClient):
                     )
                     ctx.last_block_read = 0xA430
                     # Activate full overworld+subworld movement
-                    new_value = b"\xFF"
+                    new_value = b"\xff"
                     for addr in range(0xA413, 0xA421):
                         await bizhawk.write(
                             ctx.bizhawk_ctx, [(addr, new_value, "System Bus")]
@@ -477,7 +468,7 @@ class WarioLandClient(BizHawkClient):
                         if trap_pick.item == 0xA38400:
                             # Stun trap, 0xA384 = 0xFF
                             await bizhawk.write(
-                                ctx.bizhawk_ctx, [(0xA384, b"\xFF", "System Bus")]
+                                ctx.bizhawk_ctx, [(0xA384, b"\xff", "System Bus")]
                             )
                         elif trap_pick.item == 0xA96400:
                             # Timer trap

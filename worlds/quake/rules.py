@@ -115,7 +115,7 @@ class Rules(object):
                 self.uses = uses
 
             def __call__(self, state: CollectionState) -> bool:
-                return state.has_group("Backpack", player, self.uses)
+                return state.has_group("Backpack Capacity", player, self.uses)
 
         self.backpack = CanBP
 

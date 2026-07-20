@@ -199,3 +199,8 @@ _speedups.html
 .LSOverride
 Thumbs.db
 [Dd]esktop.ini
+
+# ZALiA
+__pycache_check_backup/
+/worlds/zalia/test/
+debug_zalia*

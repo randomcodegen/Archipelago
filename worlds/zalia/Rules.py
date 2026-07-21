@@ -20,6 +20,10 @@ def set_rules(world: "ZALiAWorld"):
     def _any(state: CollectionState, *items: str) -> bool:
         return any(state.has(item, player) for item in items)
 
+    def _has_key_count(state: CollectionState, key_name: str, count: int) -> bool:
+        """AllKey opens every lock; otherwise require the palace's small-key count."""
+        return _has(state, ITEM_KEY) or state.count(key_name, player) >= count
+
     def _dark_room_ok(state: CollectionState, threshold: int = 1) -> bool:
         """Dark room is passable if the difficulty option >= threshold or player has a light source.
         0: always need CANDLE/FIRE. 1: threshold-1 rooms free. 2: all rooms free."""
@@ -265,7 +269,7 @@ def set_rules(world: "ZALiAWorld"):
                 if req:
                     key_name, threshold = req
                     loc.access_rule = lambda state, kn=key_name, th=threshold: (
-                        _has(state, ITEM_KEY) or state.count(kn, player) >= th
+                        _has_key_count(state, kn, th)
                     )
 
     # Dragmire Tower (Palc_H) — the Quest-2 Ganon fight
@@ -488,23 +492,36 @@ def set_rules(world: "ZALiAWorld"):
             _has(state, ITEM_BOOK) and all(state.has(sp, player) for sp in _s)
         )
 
-    # --- Boulder Circle Reward (RING) -- HAMMER + reach >= 7 wise men
+    # --- Boulder Circle Reward (RING)
+    # The puzzle needs dialogue from seven of the eight Quest-1 wise men.
     loc = _gloc("Boulder Circle Reward location (RING)")
     if loc:
-        _WISE_REGIONS = [
-            REGION_RAURU,
-            REGION_RUTO,
-            REGION_SARIA,
-            REGION_MIDO,
-            REGION_NABOORU,
-            REGION_DARUNIA,
-            REGION_NEW_KASUTO,
-            REGION_OLD_KASUTO,
-        ]
-        loc.access_rule = lambda state: (
-            _has(state, ITEM_HAMMER)
-            and sum(1 for r in _WISE_REGIONS if state.can_reach_region(r, player)) >= 7
+        _BOULDER_WISEMAN_LOCS = tuple(
+            f"_Spell_Location_{town.replace(' ', '_')}"
+            for town in (
+                "Rauru",
+                "Ruto",
+                "Saria",
+                "Mido",
+                "Nabooru",
+                "Darunia",
+                "New Kasuto",
+                "Old Kasuto",
+            )
         )
+
+        def _boulder_circle_rule(state: CollectionState) -> bool:
+            if not _has(state, ITEM_HAMMER):
+                return False
+            return (
+                sum(
+                    multiworld.get_location(name, player).can_reach(state)
+                    for name in _BOULDER_WISEMAN_LOCS
+                )
+                >= 7
+            )
+
+        loc.access_rule = _boulder_circle_rule
 
     # Whale Isl (BOOK) -- complex quest
     loc = _gloc("Whale Isl Item location (BOOK)")
@@ -745,9 +762,7 @@ def set_rules(world: "ZALiAWorld"):
 
     def _kakusu_06(state: CollectionState) -> bool:
         # KAKUSU06: P3 (Island Palace). GLOVE + STABDOWN to kill
-        four_island = (
-            state.has(ITEM_KEY, player) or state.count(KEY_ISLAND, player) >= 4
-        )
+        four_island = _has_key_count(state, KEY_ISLAND, 4)
         return (
             _reach(state, REGION_ISLAND_PALACE)
             and four_island
@@ -775,7 +790,7 @@ def set_rules(world: "ZALiAWorld"):
 
     def _kakusu_10(state: CollectionState) -> bool:
         # KAKUSU10: P6 (Three Eye Rock Palace, already needs FLUTE)
-        six_eye = state.has(ITEM_KEY, player) or state.count(KEY_THREE_EYE, player) >= 6
+        six_eye = _has_key_count(state, KEY_THREE_EYE, 6)
         return (
             _reach(state, REGION_THREE_EYE_PALACE)
             and six_eye
@@ -884,7 +899,7 @@ def set_rules(world: "ZALiAWorld"):
     def _crystal_keys(state: CollectionState, key_name: str, n: int) -> bool:
         if not _keys:
             return True
-        return _has(state, ITEM_KEY) or state.count(key_name, player) >= n
+        return _has_key_count(state, key_name, n)
 
     # Per-palace "cleared the palace" rule (reach the crystal)
     _palace_clear_rules = {
@@ -972,18 +987,18 @@ def set_rules(world: "ZALiAWorld"):
         _add_loc_rule(
             _gloc("PBag: Mau Spawner room"),
             lambda state: _has(state, ITEM_GLOVE)
-            and state.count(KEY_ISLAND, player) >= 3,
+            and _has_key_count(state, KEY_ISLAND, 3),
         )
         _add_loc_rule(
             _gloc("PBag: On blocks on top of pillar"),
             lambda state: _has(state, ITEM_GLOVE)
-            and state.count(KEY_ISLAND, player) >= 4
+            and _has_key_count(state, KEY_ISLAND, 4)
             and _has(state, SPELL_JUMP),
         )
         _add_loc_rule(
             _gloc("PBag: Room left of Rebonack"),
             lambda state: _has(state, ITEM_GLOVE)
-            and state.count(KEY_ISLAND, player) >= 4,
+            and _has_key_count(state, KEY_ISLAND, 4),
         )
     # P3 "PBag: Locked by upthrust" (GML Area_PalcC+'08')
 
@@ -1027,11 +1042,11 @@ def set_rules(world: "ZALiAWorld"):
 
     _add_loc_rule(
         _gloc("PBag: 2 Doomknockers and a key"),
-        lambda state: _has(state, ITEM_GLOVE) and state.count(KEY_MAZE, player) >= 4,
+        lambda state: _has(state, ITEM_GLOVE) and _has_key_count(state, KEY_MAZE, 4),
     )
     _add_loc_rule(
         _gloc("PBag: Room with blocks on top of pillars"),
-        lambda state: _has(state, SPELL_JUMP) and state.count(KEY_MAZE, player) >= 6,
+        lambda state: _has(state, SPELL_JUMP) and _has_key_count(state, KEY_MAZE, 6),
     )
 
     # --- Palace 5 (Palace on the Sea) ---
@@ -1045,7 +1060,7 @@ def set_rules(world: "ZALiAWorld"):
     if _keys:
         _add_loc_rule(
             _gloc("PBag: JUMP locked above elevator"),
-            lambda state: _has(state, SPELL_JUMP) and state.count(KEY_SEA, player) >= 1,
+            lambda state: _has(state, SPELL_JUMP) and _has_key_count(state, KEY_SEA, 1),
         )
         # GML Area_PalcE+'0B' (GLOVE 1): 4 keys
 
@@ -1053,17 +1068,17 @@ def set_rules(world: "ZALiAWorld"):
             _gloc("PBag: Locked by upthrust and GLOVE 1"),
             lambda state: _all(state, ITEM_GLOVE, SKILL_STAB_DOWN, SPELL_JUMP)
             and (_hard_logic or state.has(SKILL_STAB_UP, player))
-            and state.count(KEY_SEA, player) >= 4,
+            and _has_key_count(state, KEY_SEA, 4),
         )
         _add_loc_rule(
             _gloc("PBag: Locked by upthrust and GLOVE 2"),
             lambda state: _all(state, ITEM_GLOVE, SKILL_STAB_DOWN, SPELL_JUMP)
             and (_hard_logic or state.has(SKILL_STAB_UP, player))
-            and state.count(KEY_SEA, player) >= 1,
+            and _has_key_count(state, KEY_SEA, 1),
         )
         _add_loc_rule(
             _gloc("PBag: JUMP or STABUP locked on top of blocks"),
-            lambda state: _has(state, SPELL_JUMP) and state.count(KEY_SEA, player) >= 4,
+            lambda state: _has(state, SPELL_JUMP) and _has_key_count(state, KEY_SEA, 4),
         )
 
     # P5 Container Piece needs FAIRY
@@ -1096,30 +1111,27 @@ def set_rules(world: "ZALiAWorld"):
     _add_loc_rule(
         _gloc("PBag: P6 Bottom room of pit to boss"),
         lambda state: _all(state, SPELL_FAIRY, SPELL_JUMP, ITEM_GLOVE, SKILL_STAB_DOWN)
-        and (state.has(ITEM_KEY, player) or state.count(KEY_THREE_EYE, player) >= 6),
+        and _has_key_count(state, KEY_THREE_EYE, 6),
     )
     _add_loc_rule(
         _gloc("PBag: Room below Kakusu room"),
         lambda state: _all(state, SPELL_FAIRY, SPELL_JUMP, ITEM_GLOVE, SKILL_STAB_DOWN)
-        and (state.has(ITEM_KEY, player) or state.count(KEY_THREE_EYE, player) >= 6),
+        and _has_key_count(state, KEY_THREE_EYE, 6),
     )
     _add_loc_rule(
         _gloc("PBag: Under blocks with Mau Spawner"),
         lambda state: _all(state, SPELL_FAIRY, SPELL_JUMP, ITEM_GLOVE)
-        and (state.has(ITEM_KEY, player) or state.count(KEY_THREE_EYE, player) >= 4),
+        and _has_key_count(state, KEY_THREE_EYE, 4),
     )
     _add_loc_rule(
         _gloc("PBag: GLOVE locked 2"),
         lambda state: _has(state, ITEM_GLOVE)
-        and (state.has(ITEM_KEY, player) or state.count(KEY_THREE_EYE, player) >= 5),
+        and _has_key_count(state, KEY_THREE_EYE, 5),
     )
     _add_loc_rule(
         _gloc("PBag: Room with Atta"),
         (
-            (
-                lambda state: state.has(ITEM_KEY, player)
-                or state.count(KEY_THREE_EYE, player) >= 5
-            )
+            (lambda state: _has_key_count(state, KEY_THREE_EYE, 5))
             if _keys
             else (lambda state: _has(state, ITEM_GLOVE))
         ),
@@ -1127,10 +1139,7 @@ def set_rules(world: "ZALiAWorld"):
     _add_loc_rule(
         _gloc("PBag: Endless pit 3"),
         (
-            (
-                lambda state: state.has(ITEM_KEY, player)
-                or state.count(KEY_THREE_EYE, player) >= 1
-            )
+            (lambda state: _has_key_count(state, KEY_THREE_EYE, 1))
             if _keys
             else (lambda state: True)
         ),
@@ -1151,10 +1160,7 @@ def set_rules(world: "ZALiAWorld"):
         (
             (lambda state: _all(state, ITEM_BRACELET, SKILL_STAB_UP, ITEM_GLOVE))
             if not _keys
-            else (
-                lambda state: state.has(ITEM_KEY, player)
-                or state.count(KEY_THREE_EYE, player) >= 5
-            )
+            else (lambda state: _has_key_count(state, KEY_THREE_EYE, 5))
         ),
     )
     # Key 5 (room $17): FAIRY + JUMP (cross lava) + GLOVE

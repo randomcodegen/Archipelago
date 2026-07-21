@@ -432,6 +432,46 @@ class ZALiAWorld(World):
         # Lets the client verify its live loc table
         slot_data["location_data_checksum"] = Locations.LOCATION_DATA_CHECKSUM
 
+        # Per-seed set of created ZALiA locations.
+        # Each hex character stores four consecutive
+        # catalog locations, least-significant bit first.
+        _created_offsets = {
+            loc.address - BASE_ID
+            for loc in self.multiworld.get_locations(self.player)
+            if loc.address is not None and loc.address >= BASE_ID
+        }
+        _catalog_size = max(
+            (
+                location_id - BASE_ID + 1
+                for location_id in self.location_name_to_id.values()
+            ),
+            default=0,
+        )
+        _hex_digits = "0123456789abcdef"
+        _created_nibbles = []
+        for _nibble_start in range(0, _catalog_size, 4):
+            _nibble = 0
+            for _bit in range(4):
+                if _nibble_start + _bit in _created_offsets:
+                    _nibble |= 1 << _bit
+            _created_nibbles.append(_hex_digits[_nibble])
+        slot_data["location_manifest_version"] = 1
+        slot_data["location_catalog_size"] = _catalog_size
+        slot_data["created_location_bits"] = "".join(_created_nibbles)
+
+        # The GML client must be able to submit the six virtual boss checks even
+        # when generation and gameplay happen on different machines.  The old
+        # zalia_loc_id_map.json hand-off is local to the generator and can be
+        # missing or stale on the machine running the game.
+        slot_data["boss_item_location_ids"] = json.dumps(
+            {
+                str(dungeon_num): self.location_name_to_id[location_name]
+                for dungeon_num, location_name in enumerate(
+                    PALACE_BOSS_ITEM.values(), start=1
+                )
+            }
+        )
+
         # Expose dynamically-generated mappings for tracker logic
         slot_data["town_position"] = json.dumps(self.town_position)
         slot_data["town_to_parent"] = json.dumps(self.town_to_parent)

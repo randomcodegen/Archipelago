@@ -1,5 +1,4 @@
 import json
-import os
 from typing import ClassVar, Dict, Any, Type, List
 from BaseClasses import ItemClassification as ItemClass, Tutorial
 from Options import PerGameCommonOptions
@@ -459,10 +458,8 @@ class ZALiAWorld(World):
         slot_data["location_catalog_size"] = _catalog_size
         slot_data["created_location_bits"] = "".join(_created_nibbles)
 
-        # The GML client must be able to submit the six virtual boss checks even
-        # when generation and gameplay happen on different machines.  The old
-        # zalia_loc_id_map.json hand-off is local to the generator and can be
-        # missing or stale on the machine running the game.
+        # The GML client needs authoritative ids for the six virtual boss checks,
+        # which are not represented by native GML location records.
         slot_data["boss_item_location_ids"] = json.dumps(
             {
                 str(dungeon_num): self.location_name_to_id[location_name]
@@ -509,33 +506,5 @@ class ZALiAWorld(World):
                     # When the target sits in other worlds, hint system is used.
                     slot_data["zelda_hint_location_id"] = loc.address
                     break
-
-        # Expose loc name to ID mapping for GML client to match
-        try:
-            _local_app = (
-                os.environ.get("LOCALAPPDATA") or os.environ.get("APPDATA") or ""
-            )
-            _out_dir = os.path.join(_local_app, "ZALiA") if _local_app else ""
-            if _out_dir:
-                os.makedirs(_out_dir, exist_ok=True)
-                _out_path = os.path.join(_out_dir, "zalia_loc_id_map.json")
-                _created_loc_map = {
-                    loc.name: loc.address
-                    for loc in self.multiworld.get_locations(self.player)
-                    if loc.address is not None
-                }
-                with open(_out_path, "w", encoding="utf-8") as _f:
-                    _f.write(json.dumps(_created_loc_map))
-                # Individual Kakusu checks are matched by the client
-                _kakusu_ids = {
-                    str(i + 1): self.location_name_to_id[name]
-                    for i, name in enumerate(KAKUSU_LOCATION_NAMES)
-                    if name in self.location_name_to_id
-                }
-                _kakusu_path = os.path.join(_out_dir, "zalia_kakusu_id_by_index.json")
-                with open(_kakusu_path, "w", encoding="utf-8") as _f:
-                    _f.write(json.dumps(_kakusu_ids))
-        except Exception:
-            pass
 
         return slot_data

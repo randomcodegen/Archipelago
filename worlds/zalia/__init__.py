@@ -454,7 +454,7 @@ class ZALiAWorld(World):
                 if _nibble_start + _bit in _created_offsets:
                     _nibble |= 1 << _bit
             _created_nibbles.append(_hex_digits[_nibble])
-        slot_data["location_manifest_version"] = 1
+        slot_data["location_manifest_version"] = 2
         slot_data["location_catalog_size"] = _catalog_size
         slot_data["created_location_bits"] = "".join(_created_nibbles)
 
@@ -486,6 +486,12 @@ class ZALiAWorld(World):
         # Which of the 12 Gold Slimes (by fixed 1..12 index) were randomly picked
         slot_data["kakusu_selected_indices"] = json.dumps(
             {str(i): 1 for i in self.kakusu_selected_indices}
+        )
+        slot_data["kakusu_location_ids"] = json.dumps(
+            {
+                str(i + 1): self.location_name_to_id[name]
+                for i, name in enumerate(KAKUSU_LOCATION_NAMES)
+            }
         )
 
         # Zelda's hint (zelda_hint option) reveals one target

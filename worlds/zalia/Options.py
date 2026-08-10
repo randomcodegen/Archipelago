@@ -311,7 +311,7 @@ class CrystalsRequiredCount(Range):
 
     display_name = "Required Crystal Count"
     range_start = 0
-    range_end = 7
+    range_end = 6
     default = 6
 
 

@@ -204,3 +204,4 @@ Thumbs.db
 __pycache_check_backup/
 /worlds/zalia/test/
 debug_zalia*
+worlds/zalia/.apignore

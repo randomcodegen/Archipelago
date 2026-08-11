@@ -373,15 +373,21 @@ def set_rules(world: "ZALiAWorld"):
         if loc:
             loc.access_rule = lambda state, _flower=ITEM_FLOWER: _has(state, _flower)
 
-    # Nabooru: well quest needs GLOVE + STABDOWN + JUMP
-    for loc_name in ("_Spell_Location_Nabooru", "PBag: FIRE spell room"):
-        loc = multiworld.get_location(loc_name, player)
-        if loc:
-            loc.access_rule = (
-                lambda state, _g=ITEM_GLOVE, _sd=SKILL_STAB_DOWN, _j=SPELL_JUMP: (
-                    _has(state, _g) and _has(state, _sd) and _has(state, _j)
-                )
-            )
+    # Nabooru's well stays on the vanilla Nabooru tile when the town moves.
+    def _can_finish_nabooru_well(state):
+        return state.can_reach_region(REGION_NABOORU, player) and _all(
+            state, ITEM_GLOVE, SKILL_STAB_DOWN, SPELL_JUMP
+        )
+
+    loc = multiworld.get_location("_Spell_Location_Nabooru", player)
+    if loc:
+        loc.access_rule = _can_finish_nabooru_well
+
+    loc = multiworld.get_location("PBag: FIRE spell room", player)
+    if loc:
+        loc.access_rule = lambda state: _can_finish_nabooru_well(state) and _has(
+            state, SPELL_FIRE
+        )
 
     # Darunia: rescue the CHILD → wise man teaches Reflect
     loc = multiworld.get_location("_Spell_Location_Darunia", player)
@@ -647,9 +653,7 @@ def set_rules(world: "ZALiAWorld"):
     # PBag: Nabooru quest cave system -- well access
     loc = _gloc("PBag: Nabooru quest cave system 1 (right of well bottom)")
     if loc:
-        loc.access_rule = lambda state: _all(
-            state, ITEM_GLOVE, SKILL_STAB_DOWN, SPELL_JUMP
-        )
+        loc.access_rule = lambda state: _all(state, ITEM_GLOVE, SKILL_STAB_DOWN)
 
     loc = _gloc("PBag: Nabooru quest cave system 2 (above last big vertical drop)")
     if loc:

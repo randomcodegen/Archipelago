@@ -1,13 +1,10 @@
 import json
-import os
+import pkgutil
 from typing import Optional, Dict, Tuple
 
 from BaseClasses import Item, ItemClassification as ItemClass
 
 from .Constants import *
-
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
-
 
 class ZALiAItem(Item):
     game: str = GAME_NAME
@@ -130,12 +127,10 @@ def _load_data() -> Tuple[
     Dict[str, ItemData],
     Dict[str, ItemData],
 ]:
-    json_path = os.path.join(DATA_DIR, "zalia_data.json")
-    if not os.path.exists(json_path):
-        raise FileNotFoundError(f"Data file not found: {json_path}")
-
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    raw = pkgutil.get_data(__name__, "data/zalia_data.json")
+    if raw is None:
+        raise FileNotFoundError("Data file not found: data/zalia_data.json")
+    data = json.loads(raw)
 
     # Count instances from the data file for variable-count
     heart_count = sum(

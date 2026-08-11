@@ -1,6 +1,6 @@
 import hashlib
 import json
-import os
+import pkgutil
 import re
 from typing import Optional, Dict
 
@@ -14,8 +14,6 @@ from .Items import (
     FILLER_ITEM_PBAG,
     ITEM_TYPE_TO_NAME,
 )
-
-DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 
 # Set by _load_data()
 LOCATION_DATA_CHECKSUM: Optional[str] = None
@@ -105,12 +103,10 @@ class LocData:
 
 def _load_data() -> Dict[str, LocData]:
     global LOCATION_DATA_CHECKSUM
-    json_path = os.path.join(DATA_DIR, "zalia_data.json")
-    if not os.path.exists(json_path):
-        raise FileNotFoundError(f"Data file not found: {json_path}")
-
-    with open(json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    raw = pkgutil.get_data(__name__, "data/zalia_data.json")
+    if raw is None:
+        raise FileNotFoundError("Data file not found: data/zalia_data.json")
+    data = json.loads(raw)
 
     LOCATION_DATA_CHECKSUM = _compute_location_checksum(data.get("locations", []))
 

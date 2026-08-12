@@ -27,6 +27,7 @@ class ZALiAWorld(World):
     game = GAME_NAME
     web = ZALiAWeb()
     required_client_version = (0, 6, 8)
+    explicit_indirect_conditions = False
 
     topology_present = False
 
@@ -187,8 +188,8 @@ class ZALiAWorld(World):
         for item_name, item_data in Items.item_dict.items():
             if item_data.code is None:
                 continue
-            if item_name == SPELL_SUMMON and not is_quest2:
-                # Summon is quest-2 content: it is learned at Bulblin town
+            if item_name in (ITEM_MASK, ITEM_BOTTLE, SPELL_SUMMON) and not is_quest2:
+                # These are only used by the quest-2 route and ending.
                 continue
             if item_name in Items.item_dict_crystals:
                 # Crystals are force-locked to their palace boss locs

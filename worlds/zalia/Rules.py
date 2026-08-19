@@ -838,21 +838,10 @@ def set_rules(world: "ZALiAWorld"):
         return sum(1 for check in _KAKUSU_CHECKS if check(state))
 
     def _kakusu_ok(state: CollectionState) -> bool:
-        # Base gate: (STABDOWN || GLOVE) && JUMP
-
-        base_ok = _any(state, SKILL_STAB_DOWN, ITEM_GLOVE) and state.has(
-            SPELL_JUMP, player
-        )
         required = min(world.options.kakusu_required_count.value, 12)
-        return base_ok and _kakusu_count(state) >= required
+        return _all(state, ITEM_GLOVE, SKILL_STAB_DOWN) and _kakusu_count(state) >= required
 
-    for name in (
-        "Kakusu Reward Area; SWORD Location",
-        "PBag: Kakusu Reward Area; Cave",
-    ):
-        loc = _gloc(name)
-        if loc:
-            loc.access_rule = _kakusu_ok
+    set_rule(world.get_entrance("East → South Continent"), _kakusu_ok)
 
     # Individually-exposed Kakusu locs
     for i in world.kakusu_selected_indices:

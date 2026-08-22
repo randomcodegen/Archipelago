@@ -426,7 +426,7 @@ class Q1World(World):
         self.slot_data["settings"]["dynamic"][str(item.ap_id)] = item_data
 
     DIFF_TO_FACTOR_MAPPING = {
-        Difficulty.option_easy: 1,
+        Difficulty.option_easy: 1.0,
         Difficulty.option_medium: 0.5,
         Difficulty.option_hard: 0.25,
         Difficulty.option_extreme: 0.125,
@@ -603,6 +603,11 @@ class Q1World(World):
                 level_candidate = self.multiworld.random.choice(self.included_levels)
             self.starting_levels.pop()
             self.starting_levels.append(level_candidate)
+
+        for level, entrance in zip(self.included_levels, menu_region.exits):
+            entrance.access_rule = (
+                self.rules.true if level in self.starting_levels else self.rules.level(level)
+            )
 
         for level in self.starting_levels:
             # print("Final Starting Level: ", level.prefix, level.name)

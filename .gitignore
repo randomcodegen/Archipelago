@@ -201,3 +201,4 @@ fuzz.py
 worlds/quake/utils/map_template.py
 worlds/quake.apworld
 fuzz_output/
+test/*

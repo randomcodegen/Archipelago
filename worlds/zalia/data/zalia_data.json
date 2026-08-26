@@ -2295,6 +2295,18 @@
       "item_num": 1,
       "quest": "12",
       "rating": 0
+    },
+    {
+      "location_num": 188,
+      "room_name": "_PalcA_09",
+      "room_loc_num": 1,
+      "category": "_Dngn01",
+      "obscurity": 1,
+      "description": "PBag: P1 crumbling bridge",
+      "item_type": "_PBAG",
+      "item_num": 1,
+      "quest": "12",
+      "rating": 1
     }
   ]
 }

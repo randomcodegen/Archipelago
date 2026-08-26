@@ -123,6 +123,24 @@ class ZALiAWorld(World):
         }
         # content→position palace layout
         self.dungeon_position = dict(zip(positions, shuffled_dungeons))
+        if isinstance(passthrough, dict):
+            recorded = passthrough.get("dungeon_position")
+            if isinstance(recorded, str):
+                try:
+                    recorded = json.loads(recorded)
+                except (TypeError, ValueError):
+                    recorded = None
+            if (
+                isinstance(recorded, dict)
+                and set(recorded) == set(positions)
+                and all(isinstance(position, str) for position in recorded.values())
+                and set(recorded.values()) == set(positions)
+            ):
+                self.dungeon_position = dict(recorded)
+                self.dungeon_to_parent = {
+                    dungeon: DUNGEON_POSITION_PARENT[position]
+                    for dungeon, position in recorded.items()
+                }
 
         # Rauru Pass version currently fixed to 3
         self.ruaru_pass_version: int = 3

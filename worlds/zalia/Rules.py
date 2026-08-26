@@ -183,12 +183,12 @@ def set_rules(world: "ZALiAWorld"):
         and _has(state, ITEM_RAFT),
     )
 
-    # Dungeon entrances — overworld access only
+    # Requirements shared by every check in a palace's content.
     DUNGEON_BASE_RULES = {
         # Parapa's "dark room" is the Parapa Shore CAVE you cross
         REGION_PARAPA_PALACE: None,
         REGION_MIDORO_PALACE: None,  # GML: just Rando_can_reach_MidoroField()
-        # Island's GLOVE+STABDOWN are content-internal
+        # Every Island Palace check passes the fast-falling block room.
         REGION_ISLAND_PALACE: lambda state: _has(state, ITEM_GLOVE),
         REGION_MAZE_PALACE: None,  # REFLECT only needed for the boss/item, not
         # Palace on the Sea: BOOTS (ocean walk to the tile) is a
@@ -839,7 +839,10 @@ def set_rules(world: "ZALiAWorld"):
 
     def _kakusu_ok(state: CollectionState) -> bool:
         required = min(world.options.kakusu_required_count.value, 12)
-        return _all(state, ITEM_GLOVE, SKILL_STAB_DOWN) and _kakusu_count(state) >= required
+        return (
+            _all(state, ITEM_GLOVE, SKILL_STAB_DOWN)
+            and _kakusu_count(state) >= required
+        )
 
     set_rule(world.get_entrance("East → South Continent"), _kakusu_ok)
 
@@ -1165,23 +1168,23 @@ def set_rules(world: "ZALiAWorld"):
         _gloc("P6 Key 6"),
         lambda state: _all(state, SPELL_FAIRY, SPELL_JUMP, ITEM_GLOVE, SKILL_STAB_DOWN),
     )
-    # P6 Key 4 (falling key, room $13): collected by stabbing
-
-    _p6_falling_key = _gloc("P6 Key 4 (falling key)")
-    if _p6_falling_key:
-        _stabbable = {
-            KEY_PARAPA,
-            KEY_MIDORO,
-            KEY_ISLAND,
-            KEY_MAZE,
-            KEY_SEA,
-            KEY_THREE_EYE,
-            ITEM_KEY,
-            FILLER_ITEM_PBAG,
-        }
-        _p6_falling_key.item_rule = (
-            lambda item: item.player != player or item.name in _stabbable
-        )
+    # These checks can only contain items that are stabbable.
+    _stabbable = {
+        KEY_PARAPA,
+        KEY_MIDORO,
+        KEY_ISLAND,
+        KEY_MAZE,
+        KEY_SEA,
+        KEY_THREE_EYE,
+        ITEM_KEY,
+        FILLER_ITEM_PBAG,
+    }
+    for name in ("P6 Key 4 (falling key)", "PBag: P1 crumbling bridge"):
+        loc = _gloc(name)
+        if loc:
+            loc.item_rule = (
+                lambda item: item.player != player or item.name in _stabbable
+            )
 
     # "Item must have gravity" placement guards.
     def _needs_gravity(item):

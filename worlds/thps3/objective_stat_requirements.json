@@ -1,0 +1,449 @@
+﻿{
+  "skater_layouts": {
+    "custom_skater": {"style": "street", "skate": 3, "stats": 4, "deck": 1},
+    "tony_hawk": {"style": "vert", "skate": 1, "stats": 1, "deck": 3},
+    "steve_caballero": {"style": "street", "skate": 2, "stats": 2, "deck": 2},
+    "kareem_campbell": {"style": "street", "skate": 3, "stats": 3, "deck": 1},
+    "rune_glifberg": {"style": "vert", "skate": 1, "stats": 4, "deck": 3},
+    "eric_koston": {"style": "street", "skate": 2, "stats": 1, "deck": 2},
+    "bucky_lasek": {"style": "vert", "skate": 3, "stats": 2, "deck": 1},
+    "bam_margera": {"style": "street", "skate": 1, "stats": 3, "deck": 3},
+    "rodney_mullen": {"style": "street", "skate": 2, "stats": 4, "deck": 2},
+    "chad_muska": {"style": "street", "skate": 3, "stats": 1, "deck": 1},
+    "andrew_reynolds": {"style": "street", "skate": 1, "stats": 2, "deck": 3},
+    "geoff_rowley": {"style": "street", "skate": 2, "stats": 3, "deck": 2},
+    "elissa_steamer": {"style": "street", "skate": 3, "stats": 4, "deck": 3},
+    "jamie_thomas": {"style": "street", "skate": 1, "stats": 1, "deck": 1},
+    "darth_maul": {"style": "vert", "skate": 1, "stats": 2, "deck": 1},
+    "wolverine": {"style": "street", "skate": 3, "stats": 1, "deck": 2},
+    "officer_dick": {"style": "street", "skate": 1, "stats": 3, "deck": 1},
+    "private_carrera": {"style": "street", "skate": 2, "stats": 2, "deck": 3},
+    "ollie_the_magic_bum": {"style": "street", "skate": 3, "stats": 4, "deck": 2},
+    "kelly_slater": {"style": "street", "skate": 2, "stats": 3, "deck": 3},
+    "demoness": {"style": "street", "skate": 2, "stats": 4, "deck": 3},
+    "neversoft_eyeball": {"style": "street", "skate": 3, "stats": 1, "deck": 3},
+    "doom_guy": {"style": "street", "skate": 3, "stats": 1, "deck": 3}
+  },
+  "objectives": {
+    "foundry": {
+      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Trick Spot": {
+        "street": ["Grind Tricks"],
+        "vert": ["Grab Tricks"]
+      },
+      "Secret Tape": [],
+      "Grind the Molten Bucket": ["Grind Tricks"],
+      "Un-Jam 5 Valves": ["Grind Tricks"],
+      "Soak the Foreman": ["Grind Tricks"]
+    },
+    "canada": {
+      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Trick Spot": {
+        "street": ["Grind Tricks"],
+        "vert": ["Grab Tricks"]
+      },
+      "Secret Tape": ["Grind Tricks"],
+      "Bury that Bully!": [],
+      "Impress the Skaters": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Get Chuck Unstuck": []
+    },
+    "rio": {
+      "Bronze Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Silver Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Gold Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+    },
+    "suburbia": {
+      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Trick Spot": {
+        "street": ["Flip Tricks"],
+        "vert": ["Grab Tricks"]
+      },
+      "Secret Tape": {"goal_id": 6},
+      "Help The Thin Man": [],
+      "Restore Power To The Dish": ["Grind Tricks"],
+      "Squash 5 Pumpkins": []
+    },
+    "airport": {
+      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Trick Spot": {
+        "street": ["Grind Tricks" ],
+        "vert": ["Grab Tricks"]
+      },
+      "Secret Tape": ["Grind Tricks"],
+      "Get the tickets to your Skate Buddy": ["Grind Tricks"],
+      "Stop the pickpockets": [],
+      "Visit 10 countries": ["Grind Tricks"]
+    },
+    "skater_island": {
+      "Bronze Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Silver Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Gold Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+    },
+    "los_angeles": {
+      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Trick Spot": {
+        "street": ["Flip Tricks"],
+        "vert": ["Grab Tricks"]
+      },
+      "Secret Tape": {"all": ["Grind Tricks", {"goal_id": 6}]},
+      "Start the Earthquake": ["Grind Tricks"],
+      "Block the Car Chase": ["Grind Tricks"],
+      "Free Ballin'": []
+    },
+    "tokyo": {
+      "Bronze Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Silver Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Gold Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+    },
+    "cruise_ship": {
+      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Trick Spot": {
+        "street": [
+          "Grind Tricks"
+        ],
+        "vert": [
+          "Lip Tricks"
+        ]
+      },
+      "Secret Tape": ["Grind Tricks"],
+      "Raise the Ferry": [],
+      "Trash the Museum": [],
+      "Impress the Neversoft Girls": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+    }
+  },
+  "skate_letters": {
+    "1": {
+      "foundry": [],
+      "canada": ["Grind Tricks"],
+      "suburbia": [],
+      "airport": [],
+      "los_angeles": [],
+      "cruise_ship": ["Grind Tricks"]
+    },
+    "2": {
+      "foundry": [],
+      "canada": [],
+      "suburbia": [],
+      "airport": ["Grind Tricks"],
+      "los_angeles": [],
+      "cruise_ship": ["Grind Tricks"]
+    },
+    "3": {
+      "foundry": [],
+      "canada": [],
+      "suburbia": [],
+      "airport": ["Grind Tricks"],
+      "los_angeles": [],
+      "cruise_ship": ["Grind Tricks"]
+    }
+  },
+  "hidden_decks": {
+    "1": {
+      "foundry": [],
+      "canada": [],
+      "rio": [],
+      "suburbia": [],
+      "airport": ["Grind Tricks"],
+      "skater_island": [],
+      "los_angeles": ["Grind Tricks"],
+      "tokyo": ["Grind Tricks"],
+      "cruise_ship": []
+    },
+    "2": {
+    "foundry": [],
+    "canada": [],
+    "rio": [],
+    "suburbia": [],
+    "airport": [],
+    "skater_island": [],
+    "los_angeles": ["Grind Tricks"],
+    "tokyo": ["Grind Tricks"],
+    "cruise_ship": []
+    },
+    "3": {
+      "foundry": [],
+      "canada": ["Grind Tricks"],
+      "rio": [],
+      "suburbia": [],
+      "airport": ["Grind Tricks"],
+      "skater_island": [],
+      "los_angeles": ["Grind Tricks"],
+      "tokyo": [],
+      "cruise_ship": []
+    }
+  },
+  "stat_points": {
+    "1": {
+      "foundry": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "canada": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "rio": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "suburbia": {
+        "Stat Point 1": {"goal_id": 6},
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "airport": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": ["Grind Tricks"],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "skater_island": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "los_angeles": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": ["Grind Tricks"]
+      },
+      "tokyo": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": ["Grind Tricks"],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": ["Grind Tricks"]
+      },
+      "cruise_ship": {
+        "Stat Point 1": {"goal_id": 7},
+        "Stat Point 2": {"all": ["Grind Tricks"], "goal_id": 7},
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      }
+    },
+    "2": {
+    "foundry": {
+      "Stat Point 1": [],
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": [],
+      "Stat Point 5": ["Grind Tricks"]
+    },
+    "canada": {
+      "Stat Point 1": [],
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": [],
+      "Stat Point 5": []
+    },
+    "rio": {
+      "Stat Point 1": [],
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": [],
+      "Stat Point 5": []
+    },
+    "suburbia": {
+      "Stat Point 1": {"goal_id": 6},
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": [],
+      "Stat Point 5": []
+    },
+    "airport": {
+      "Stat Point 1": ["Grind Tricks"],
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": ["Grind Tricks"],
+      "Stat Point 5": ["Grind Tricks"]
+    },
+    "skater_island": {
+      "Stat Point 1": ["Grind Tricks"],
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": [],
+      "Stat Point 5": []
+    },
+    "los_angeles": {
+      "Stat Point 1": ["Grind Tricks"],
+      "Stat Point 2": [],
+      "Stat Point 3": [],
+      "Stat Point 4": ["Grind Tricks"],
+      "Stat Point 5": ["Grind Tricks"]
+    },
+    "tokyo": {
+      "Stat Point 1": ["Grind Tricks"],
+      "Stat Point 2": ["Grind Tricks"],
+      "Stat Point 3": ["Grind Tricks"],
+      "Stat Point 4": [],
+      "Stat Point 5": []
+    },
+    "cruise_ship": {
+      "Stat Point 1": {"goal_id": 7},
+      "Stat Point 2": {"all": ["Grind Tricks"], "goal_id": 7},
+      "Stat Point 3": [],
+      "Stat Point 4": [],
+      "Stat Point 5": []
+    }
+    },
+    "3": {
+      "foundry": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "canada": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "rio": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "suburbia": {
+        "Stat Point 1": {"goal_id": 6},
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "airport": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": ["Grind Tricks"]
+      },
+      "skater_island": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "los_angeles": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": ["Grind Tricks"],
+        "Stat Point 3": [],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": []
+      },
+      "tokyo": {
+        "Stat Point 1": [],
+        "Stat Point 2": ["Grind Tricks"],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": []
+      },
+      "cruise_ship": {
+        "Stat Point 1": {"goal_id": 7},
+        "Stat Point 2": {"all": ["Grind Tricks"], "goal_id": 7},
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": ["Grind Tricks"]
+      }
+    },
+    "4": {
+      "foundry": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "canada": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": []
+      },
+      "rio": {
+        "Stat Point 1": [],
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "suburbia": {
+        "Stat Point 1": { "goal_id": 6 },
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": []
+      },
+      "airport": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "skater_island": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      },
+      "los_angeles": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": [],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": []
+      },
+      "tokyo": {
+        "Stat Point 1": ["Grind Tricks"],
+        "Stat Point 2": [],
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": ["Grind Tricks"],
+        "Stat Point 5": ["Grind Tricks"]
+      },
+      "cruise_ship": {
+        "Stat Point 1": {"goal_id": 7},
+        "Stat Point 2": {"goal_id": 7},
+        "Stat Point 3": ["Grind Tricks"],
+        "Stat Point 4": [],
+        "Stat Point 5": []
+      }
+    }
+  }
+}

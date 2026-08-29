@@ -11,7 +11,9 @@ key_base_id = 9000
 # Filled step by step below for readability
 item_groups = {}
 
-dynamic_level_items = {}
+dynamic_level_automaps = {}
+dynamic_level_unlocks = {}
+dynamic_level_keys = {}
 
 for level in all_levels_incl_special:
     # automap
@@ -26,7 +28,7 @@ for level in all_levels_incl_special:
         unique=True,
     )
     automap_base_id += 1
-    dynamic_level_items[automap.name] = automap
+    dynamic_level_automaps[automap.name] = automap
 
     # unlock
     unlock = ItemDef(
@@ -41,7 +43,7 @@ for level in all_levels_incl_special:
         progression=True,
     )
     unlock_base_id += 1
-    dynamic_level_items[unlock.name] = unlock
+    dynamic_level_unlocks[unlock.name] = unlock
 
     # keys
     for color in level.keys:
@@ -64,7 +66,11 @@ for level in all_levels_incl_special:
             progression=True,
         )
         key_base_id += 1
-        dynamic_level_items[key.name] = key
+        dynamic_level_keys[key.name] = key
+
+item_groups["Automaps"] = set(dynamic_level_automaps)
+item_groups["Level Unlocks"] = set(dynamic_level_unlocks)
+item_groups["Keys"] = set(dynamic_level_keys)
 
 goal_items = {
     "Exit": ItemDef(
@@ -949,7 +955,9 @@ all_items: Dict[str, ItemDef] = {
     **inventory_items_capacity,
     **inventory_items_progressive,
     **abilities,
-    **dynamic_level_items,
+    **dynamic_level_automaps,
+    **dynamic_level_unlocks,
+    **dynamic_level_keys,
     **traps,
     **dynamic_items,
 }

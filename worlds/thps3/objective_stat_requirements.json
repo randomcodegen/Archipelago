@@ -169,7 +169,7 @@
     "airport": [],
     "skater_island": [],
     "los_angeles": ["Grind Tricks"],
-    "tokyo": ["Grind Tricks"],
+    "tokyo": [],
     "cruise_ship": []
     },
     "3": {
@@ -327,7 +327,7 @@
         "Stat Point 1": [],
         "Stat Point 2": [],
         "Stat Point 3": [],
-        "Stat Point 4": [],
+        "Stat Point 4": ["Grind Tricks"],
         "Stat Point 5": []
       },
       "rio": {
@@ -367,10 +367,10 @@
       },
       "tokyo": {
         "Stat Point 1": [],
-        "Stat Point 2": ["Grind Tricks"],
+        "Stat Point 2": [],
         "Stat Point 3": ["Grind Tricks"],
         "Stat Point 4": ["Grind Tricks"],
-        "Stat Point 5": []
+        "Stat Point 5": ["Grind Tricks"]
       },
       "cruise_ship": {
         "Stat Point 1": {"goal_id": 7},

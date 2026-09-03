@@ -1,0 +1,8 @@
+{
+  "version": 7,
+  "compatible_version": 7,
+  "game": "Quake III Arena",
+  "authors": ["Rando"],
+  "world_version": "1.0.0",
+  "minimum_ap_version": "0.6.7"
+}

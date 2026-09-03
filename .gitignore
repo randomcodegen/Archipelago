@@ -199,3 +199,6 @@ _speedups.html
 .LSOverride
 Thumbs.db
 [Dd]esktop.ini
+docs/local/*
+tools/*
+worlds/quake3/data/*.md

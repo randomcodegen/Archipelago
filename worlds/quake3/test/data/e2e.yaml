@@ -1,0 +1,11 @@
+description: Two-map Quake III end-to-end acceptance seed
+name: Ranger
+
+game:
+  Quake III Arena: 1
+
+Quake III Arena:
+  map_pool_size: 2
+  goal_percentage: 50
+  weapon_logic_percentage: 50
+  item_logic_percentage: 50

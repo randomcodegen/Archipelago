@@ -244,6 +244,7 @@ LOCATION_KEY_REQS: dict = {
     "P1 Key 1": (KEY_PARAPA, 1),
     "P1 Key 2": (KEY_PARAPA, 1),
     "P1 Container Piece location": (KEY_PARAPA, 1),
+    "PBag: P1 crumbling bridge": (KEY_PARAPA, 1),
     "P1 Item location": (KEY_PARAPA, 3),
     # ---- Midoro Palace (4 keys) ----
     "P2 Key 1": (KEY_MIDORO, 1),
@@ -253,6 +254,8 @@ LOCATION_KEY_REQS: dict = {
     "P2 Key 4": None,
     "P2 Container Piece location": (KEY_MIDORO, 1),
     "P2 Item location": (KEY_MIDORO, 4),
+    "PBag: P2 falling-block room": (KEY_MIDORO, 2),
+    "PBag: P2 Iron Knuckle room": (KEY_MIDORO, 1),
     # ---- Island Palace (4 keys) ----
     "P3 Key 1": None,
     "P3 Key 2": None,

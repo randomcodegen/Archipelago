@@ -205,3 +205,4 @@ __pycache_check_backup/
 /worlds/zalia/test/
 debug_zalia*
 worlds/zalia/.apignore
+Start-ZaliaTestServer.ps1

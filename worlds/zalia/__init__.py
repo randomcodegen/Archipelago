@@ -477,6 +477,9 @@ class ZALiAWorld(World):
         slot_data["location_catalog_size"] = _catalog_size
         slot_data["created_location_bits"] = "".join(_created_nibbles)
 
+        from .MapLogic import export_map_logic
+        slot_data["map_logic"] = json.dumps(export_map_logic(self), separators=(",", ":"))
+
         # The GML client needs authoritative ids for the six virtual boss checks,
         # which are not represented by native GML location records.
         slot_data["boss_item_location_ids"] = json.dumps(

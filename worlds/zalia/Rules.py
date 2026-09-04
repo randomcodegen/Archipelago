@@ -947,6 +947,10 @@ def set_rules(world: "ZALiAWorld"):
     _add_loc_rule(_gloc("P1 Key 3"), lambda state: _any(state, SPELL_FAIRY, ITEM_GLOVE))
     # Key 2 (room $02): dark room + 1 key
     _add_loc_rule(_gloc("P1 Key 2"), lambda state: _dark_room_ok(state, 1))
+    _add_loc_rule(
+        _gloc("PBag: P1 crumbling bridge"),
+        lambda state: _dark_room_ok(state, 1),
+    )
     _add_loc_rule(_gloc("PBag: P2 entrance"), lambda state: _has(state, SPELL_JUMP))
 
     # --- Palace 2 (Midoro) ---
@@ -960,6 +964,8 @@ def set_rules(world: "ZALiAWorld"):
     )
     # 1-Up (room $16): GLOVE
     _add_loc_rule(_gloc("P2 1up location"), lambda state: _has(state, ITEM_GLOVE))
+    _add_loc_rule(_gloc("PBag: P2 falling-block room"), lambda state: _has(state, ITEM_GLOVE))
+    _add_loc_rule(_gloc("PBag: P2 Iron Knuckle room"), lambda state: _has(state, ITEM_GLOVE))
 
     # --- Palace 3 (Island) ---
 
@@ -1179,11 +1185,18 @@ def set_rules(world: "ZALiAWorld"):
         ITEM_KEY,
         FILLER_ITEM_PBAG,
     }
-    for name in ("P6 Key 4 (falling key)", "PBag: P1 crumbling bridge"):
+    for name in (
+        "P6 Key 4 (falling key)",
+        "PBag: P1 crumbling bridge",
+        "PBag: P2 falling-block room",
+        "PBag: P2 Iron Knuckle room",
+        "PBag: P5 Ra room",
+        "PBag: GP elevator junction",
+    ):
         loc = _gloc(name)
         if loc:
             loc.item_rule = (
-                lambda item: item.player != player or item.name in _stabbable
+                lambda item: item.game != GAME_NAME or item.name in _stabbable
             )
 
     # "Item must have gravity" placement guards.
@@ -1208,6 +1221,7 @@ def set_rules(world: "ZALiAWorld"):
         _gloc("Great Palace Item location (SKELETON KEY)"),
         lambda state: _has(state, ITEM_GLOVE),
     )
+    _add_loc_rule(_gloc("PBag: GP elevator junction"), lambda state: _has(state, ITEM_GLOVE))
     _add_loc_rule(
         _gloc("Great Palace 1up location"),
         lambda state: _all(state, ITEM_KEY, ITEM_GLOVE, SKILL_STAB_DOWN),

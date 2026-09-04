@@ -2307,6 +2307,54 @@
       "item_num": 1,
       "quest": "12",
       "rating": 1
+    },
+    {
+      "location_num": 189,
+      "room_name": "_PalcB_07",
+      "room_loc_num": 1,
+      "category": "_Dngn01",
+      "obscurity": 1,
+      "description": "PBag: P2 falling-block room",
+      "item_type": "_PBAG",
+      "item_num": 1,
+      "quest": "12",
+      "rating": 3
+    },
+    {
+      "location_num": 190,
+      "room_name": "_PalcB_12",
+      "room_loc_num": 1,
+      "category": "_Dngn01",
+      "obscurity": 1,
+      "description": "PBag: P2 Iron Knuckle room",
+      "item_type": "_PBAG",
+      "item_num": 1,
+      "quest": "12",
+      "rating": 2
+    },
+    {
+      "location_num": 191,
+      "room_name": "_PalcE_03",
+      "room_loc_num": 1,
+      "category": "_Dngn01",
+      "obscurity": 1,
+      "description": "PBag: P5 Ra room",
+      "item_type": "_PBAG",
+      "item_num": 1,
+      "quest": "12",
+      "rating": 3
+    },
+    {
+      "location_num": 192,
+      "room_name": "_PalcG_49",
+      "room_loc_num": 1,
+      "category": "_Dngn01",
+      "obscurity": 2,
+      "description": "PBag: GP elevator junction",
+      "item_type": "_PBAG",
+      "item_num": 1,
+      "quest": "12",
+      "rating": 5
     }
   ]
 }

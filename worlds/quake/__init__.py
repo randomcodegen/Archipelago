@@ -58,6 +58,7 @@ class Q1World(World):
         self.included_levels: List[Q1Level] = []
         self.starting_levels: List[Q1Level] = []
         self.used_locations: Set[str] = set()
+        self._tracker_locations: Optional[Set[int]] = None
         # Add the id checksum of our location and item ids for consistency check with clients
         self.slot_data: Dict[str, Any] = {
             "checksum": self.id_checksum,
@@ -335,6 +336,20 @@ class Q1World(World):
         else:
             episode_options = [1, 2, 3, 4]
 
+        passthrough = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game)
+        if isinstance(passthrough, dict):
+            # Other slots consume the shared RNG; restore the actual selected levels.
+            levels_by_id = {
+                self.item_name_to_id[level.unlock]: level
+                for episode in (*all_episodes, special_levels)
+                for level in episode.levels
+            }
+            try:
+                self.included_levels = [levels_by_id[level_id] for level_id in passthrough["levels"]]
+            except KeyError as error:
+                raise RuntimeError("Quake seed contains an unknown level; check the installed APWorld version.") from error
+            return
+
         ep_option_reference = [
             self.options.episode1,
             self.options.episode2,
@@ -425,6 +440,7 @@ class Q1World(World):
     def generate_early(self) -> None:
         passthrough = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game)
         if isinstance(passthrough, dict):
+            self._tracker_locations = set(passthrough["locations"])
             for name, value in passthrough["options"].items():
                 option = getattr(self.options, name)
                 option.value = type(option).from_any(value).value
@@ -463,6 +479,7 @@ class Q1World(World):
             self.options.basegame.value
         ]
         self.slot_data["settings"]["difficulty"] = self.options.skill_level.value
+        self.slot_data["settings"]["ap_vanilla_items"] = self.options.ap_vanilla_items.value.copy()
         self.slot_data["settings"]["lock"] = {}
         self.slot_data["settings"]["shell_recharge"] = self.options.shell_recharge.value
         self.slot_data["settings"][

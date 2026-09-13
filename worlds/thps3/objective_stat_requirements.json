@@ -26,9 +26,9 @@
   },
   "objectives": {
     "foundry": {
-      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "High Score": {"any": ["Grind Tricks", "Grab Tricks", "Flip Tricks", "Lip Tricks"]},
+      "Pro Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Sick Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
       "Trick Spot": {
         "street": ["Grind Tricks"],
         "vert": ["Grab Tricks"]
@@ -39,27 +39,27 @@
       "Soak the Foreman": ["Grind Tricks"]
     },
     "canada": {
-      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "High Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Pro Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Sick Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
       "Trick Spot": {
         "street": ["Grind Tricks"],
         "vert": ["Grab Tricks"]
       },
       "Secret Tape": ["Grind Tricks"],
       "Bury that Bully!": [],
-      "Impress the Skaters": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "Impress the Skaters": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
       "Get Chuck Unstuck": []
     },
     "rio": {
-      "Bronze Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Silver Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Gold Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+      "Bronze Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Silver Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Gold Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]}
     },
     "suburbia": {
-      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "High Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Pro Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Sick Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
       "Trick Spot": {
         "street": ["Flip Tricks"],
         "vert": ["Grab Tricks"]
@@ -70,9 +70,9 @@
       "Squash 5 Pumpkins": []
     },
     "airport": {
-      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "High Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Pro Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Sick Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Grab Tricks", "Reverts"]}]}]},
       "Trick Spot": {
         "street": ["Grind Tricks" ],
         "vert": ["Grab Tricks"]
@@ -83,14 +83,14 @@
       "Visit 10 countries": ["Grind Tricks"]
     },
     "skater_island": {
-      "Bronze Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Silver Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Gold Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+      "Bronze Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Silver Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Gold Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]}
     },
     "los_angeles": {
-      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "High Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Pro Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Sick Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Grab Tricks", "Reverts"]}]}]},
       "Trick Spot": {
         "street": ["Flip Tricks"],
         "vert": ["Grab Tricks"]
@@ -101,14 +101,14 @@
       "Free Ballin'": []
     },
     "tokyo": {
-      "Bronze Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Silver Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Gold Medal": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+      "Bronze Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Silver Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Gold Medal": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Grab Tricks", "Reverts"]}]}]}
     },
     "cruise_ship": {
-      "High Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Pro Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
-      "Sick Score": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 2}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]},
+      "High Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Pro Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]},
+      "Sick Score": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Grab Tricks", "Reverts"]}]}]},
       "Trick Spot": {
         "street": [
           "Grind Tricks"
@@ -120,7 +120,7 @@
       "Secret Tape": ["Grind Tricks"],
       "Raise the Ferry": [],
       "Trash the Museum": [],
-      "Impress the Neversoft Girls": {"all": [{"any": ["Manual Tricks", "Reverts"], "count": 1}, {"any": ["Flip Tricks", "Grab Tricks", "Grind Tricks", "Lip Tricks", "Special Tricks"], "count": 2}]}
+      "Impress the Neversoft Girls": {"all": ["Manual Tricks", {"any": ["Grind Tricks", {"all": ["Reverts", {"any": ["Grab Tricks", "Lip Tricks"]}]}]}]}
     }
   },
   "skate_letters": {
@@ -428,7 +428,7 @@
         "Stat Point 2": [],
         "Stat Point 3": [],
         "Stat Point 4": ["Grind Tricks"],
-        "Stat Point 5": []
+        "Stat Point 5": ["Grind Tricks"]
       },
       "tokyo": {
         "Stat Point 1": ["Grind Tricks"],

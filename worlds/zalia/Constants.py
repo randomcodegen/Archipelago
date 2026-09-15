@@ -254,8 +254,9 @@ LOCATION_KEY_REQS: dict = {
     "P2 Key 4": None,
     "P2 Container Piece location": (KEY_MIDORO, 1),
     "P2 Item location": (KEY_MIDORO, 4),
-    "PBag: P2 falling-block room": (KEY_MIDORO, 2),
-    "PBag: P2 Iron Knuckle room": (KEY_MIDORO, 1),
+    # Three keys cover competing locked-door routes without key-spending lockouts.
+    "PBag: P2 falling-block room": (KEY_MIDORO, 3),
+    "PBag: P2 Iron Knuckle room": (KEY_MIDORO, 3),
     # ---- Island Palace (4 keys) ----
     "P3 Key 1": None,
     "P3 Key 2": None,

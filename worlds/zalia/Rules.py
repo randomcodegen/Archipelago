@@ -1,11 +1,20 @@
 from typing import TYPE_CHECKING, List
 from BaseClasses import CollectionState, Location, Entrance, LocationProgressType
-from worlds.generic.Rules import set_rule, add_rule
+from worlds.generic.Rules import set_rule
 from .Constants import *
 from . import Locations
 
 if TYPE_CHECKING:
     from . import ZALiAWorld
+
+
+def add_rule(spot, rule):
+    # Keep combined rule source in the APWorld for map export on frozen AP builds.
+    old_rule = spot.access_rule
+    if old_rule is Location.access_rule or old_rule is Entrance.access_rule:
+        spot.access_rule = rule
+    else:
+        spot.access_rule = lambda state: rule(state) and old_rule(state)
 
 
 def set_rules(world: "ZALiAWorld"):
@@ -855,15 +864,8 @@ def set_rules(world: "ZALiAWorld"):
     # Palace interior per-loc item requirements
     def _add_loc_rule(loc, extra_fn):
         """AND an extra access function onto an existing location rule."""
-        if loc is None:
-            return
-        base = loc.access_rule
-
-        def _combined(state, _b=base, _e=extra_fn):
-            ok = _b(state) if _b else True
-            return ok and _e(state)
-
-        loc.access_rule = _combined
+        if loc is not None:
+            add_rule(loc, extra_fn)
 
     # Quest-2 Dragmire / MASK / Bulblin field locs
     _add_loc_rule(
@@ -1138,14 +1140,14 @@ def set_rules(world: "ZALiAWorld"):
             else (lambda state: _has(state, ITEM_GLOVE))
         ),
     )
-    _add_loc_rule(
-        _gloc("PBag: Endless pit 3"),
-        (
+    # With vanilla keys, these doors depend on being able to obtain P6's first key.
+    for name in ("P6 Key 4 (falling key)", "PBag: Endless pit 3", "PBag: Falling key room"):
+        _add_loc_rule(
+            _gloc(name),
             (lambda state: _has_key_count(state, KEY_THREE_EYE, 1))
-            if _keys
-            else (lambda state: True)
-        ),
-    )
+            if _keys else (lambda state: _has(state, ITEM_KEY)
+                          or _all(state, ITEM_BRACELET, ITEM_GLOVE, SKILL_STAB_UP)),
+        )
     _add_loc_rule(
         _gloc("PBag: GLOVE locked 1"),
         lambda state: _all(state, ITEM_BRACELET, SKILL_STAB_UP, ITEM_GLOVE),

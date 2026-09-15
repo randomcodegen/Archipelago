@@ -9,6 +9,8 @@ import inspect
 from functools import reduce
 from types import FunctionType, SimpleNamespace
 
+from BaseClasses import Entrance, Location
+
 
 class Expression:
     def __init__(self, op, *args):
@@ -88,6 +90,9 @@ def export_map_logic(world):
         return value
 
     def compile_rule(rule):
+        # Frozen AP builds do not ship source for these always-true core rules.
+        if rule is Entrance.access_rule or rule is Location.access_rule:
+            return rule
         if rule in compiled:
             return compiled[rule]
         module = inspect.getmodule(rule)

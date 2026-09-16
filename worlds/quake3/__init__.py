@@ -218,6 +218,7 @@ class Quake3World(World):
     def fill_slot_data(self) -> dict:
         return {
             "schema_version": 8,
+            "death_link": self.options.death_link.value,
             "cpma": self.options.cpma.value,
             "catalog_hash": CATALOG_HASH,
             "selected_maps": list(self.selected_map_keys),

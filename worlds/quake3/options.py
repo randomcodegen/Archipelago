@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from Options import (
     Choice,
+    DeathLink,
     OptionCounter,
     OptionDict,
     OptionError,
@@ -158,6 +159,7 @@ class ItemLogicPercentage(Range):
 
 @dataclass
 class Quake3Options(PerGameCommonOptions):
+    death_link: DeathLink
     cpma: CPMA
     q3_maps: Q3Maps
     cpma_maps: CPMAMaps

@@ -6,13 +6,14 @@ from ..data.generated import CATALOG_HASH, MAP_BY_KEY
 
 def validate_slot_data(data):
     assert set(data) == {
-        "schema_version", "cpma", "catalog_hash", "selected_maps", "starting_map",
+        "schema_version", "cpma", "death_link", "catalog_hash", "selected_maps", "starting_map",
         "pickup_locations",
         "goal_type", "goal_required", "kill_check_increment",
         "weapon_logic_percentage", "item_logic_percentage",
     }
     assert data["schema_version"] == 8
     assert data["cpma"] in (0, 1)
+    assert data["death_link"] in (0, 1)
     assert data["catalog_hash"] == CATALOG_HASH
     assert data["selected_maps"] == sorted(
         data["selected_maps"], key=lambda key: MAP_BY_KEY[key]["map_index"]
@@ -47,3 +48,10 @@ class TestFullSlotData(Quake3TestBase):
 
     def test_full_slot_data_stays_small(self):
         validate_slot_data(self.world.fill_slot_data())
+
+
+class TestDeathLinkSlotData(Quake3TestBase):
+    options = {"death_link": True}
+
+    def test_death_link(self):
+        self.assertEqual(self.world.fill_slot_data()["death_link"], 1)

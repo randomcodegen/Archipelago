@@ -31,6 +31,11 @@ Multi-powerup spawns sharing one spawner are one shared location.
 
 ## Checks and goals
 
+Filler includes `+1 Health`, `+1 Armor`, and small ammo refills. The client queues these rewards until you are alive in an active match and have room for them:
+health below its normal maximum (usually 100), armor below twice that maximum (usually 200), and ammo below 200 for an unlocked weapon you hold. 
+Only the amount that fits is consumed. 
+The rest carries into later stages during the same connection. Disconnecting or closing the client clears this queue.
+
 Frag milestones count kills credited to the player, not bot-vs-bot kills or self-inflicted deaths.
 Jump pads and teleporters count when touched. 
 The powered-up-frag check requires a credited frag while a major powerup is active. 

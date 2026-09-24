@@ -354,7 +354,7 @@ location_dict_crystals: Dict[str, LocData] = {
 }
 location_dict.update(location_dict_crystals)
 
-# Boss-item locs — one optional real check per palace boss
+# Boss-item locs — one optional real check per palace boss, including Thunderbird
 _BOSS_ITEM_LOC_BASE = _CRYSTAL_LOC_BASE + len(location_dict_crystals)
 location_dict_boss_items: Dict[str, LocData] = {
     loc_name: LocData(_BOSS_ITEM_LOC_BASE + i, "_Dngn01", 0, None)

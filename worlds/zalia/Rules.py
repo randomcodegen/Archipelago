@@ -1220,6 +1220,10 @@ def set_rules(world: "ZALiAWorld"):
 
     # --- Palace 7 (Great Palace) ---
     _add_loc_rule(
+        _gloc(PALACE_BOSS_ITEM[REGION_GREAT_PALACE]),
+        lambda state: _all(state, ITEM_KEY, ITEM_GLOVE, SKILL_STAB_DOWN, SPELL_THUNDER),
+    )
+    _add_loc_rule(
         _gloc("Great Palace Item location (SKELETON KEY)"),
         lambda state: _has(state, ITEM_GLOVE),
     )

@@ -150,10 +150,8 @@ class RandomizeDungeonBoss(Toggle):
 
 
 class BossItemLocations(Toggle):
-    """Add an extra AP location at each of the 6 crystal palace bosses, holding a
-    normal randomized item -- on top of the crystal the boss already grants.\n
-    Each boss item is gated on the full palace clear, exactly like the crystal, and
-    is checked at the same moment (when the crystal is placed)."""
+    """Add an extra randomized AP check at each palace boss, including Thunderbird.
+    Crystal-palace checks trigger when the crystal is placed and on Thunderbird's death."""
 
     display_name = "Boss Item Locations"
 

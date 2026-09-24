@@ -168,8 +168,7 @@ PALACE_CRYSTAL: dict = {
     REGION_THREE_EYE_PALACE: (CRYSTAL_ITEMS[5], "Three Eye Rock Palace: Crystal"),
 }
 
-# TODO: Implement as actual location + option
-# Optional extra loc at each palace boss holding a crystal
+# Optional extra check at each palace boss, including Thunderbird.
 PALACE_BOSS_ITEM: dict = {
     REGION_PARAPA_PALACE: "Parapa Palace: Boss Item",
     REGION_MIDORO_PALACE: "Midoro Palace: Boss Item",
@@ -177,6 +176,7 @@ PALACE_BOSS_ITEM: dict = {
     REGION_MAZE_PALACE: "Maze Island Palace: Boss Item",
     REGION_PALACE_ON_THE_SEA: "Palace on the Sea: Boss Item",
     REGION_THREE_EYE_PALACE: "Three Eye Rock Palace: Boss Item",
+    REGION_GREAT_PALACE: "Great Palace: Thunderbird Boss Item",
 }
 
 # Key names per palace

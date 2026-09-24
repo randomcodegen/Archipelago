@@ -106,8 +106,8 @@ class HintGiverPercent(Range):
 
 
 class ShuffleSpellsAmongWiseMen(Toggle):
-    """Shuffle which spell each Wise Man teaches you. Spells stay locked to
-    Wise Man locations -- only the town-to-spell mapping is randomized.\n
+    """Shuffle which spell each Wise Man teaches you.\n 
+    Spells stay locked to Wise Man locations -- only the town-to-spell mapping is randomized.\n
     Ignored if Randomize Spell Locations is enabled."""
 
     display_name = "Shuffle Spells Among Wise Men"
@@ -115,7 +115,8 @@ class ShuffleSpellsAmongWiseMen(Toggle):
 
 class RandomizeSpellLocations(Toggle):
     """Put spells into the general item/location pool instead of keeping them
-    locked to Wise Man locations. Spells can then turn up anywhere (dungeons,
+    locked to Wise Man locations.\n 
+    Spells can then turn up anywhere (dungeons,
     P-Bags, etc.), and Wise Men can give out any item instead of just a
     spell.\n
     Overrides Shuffle Spells Among Wise Men."""
@@ -130,7 +131,7 @@ class RandomizeSpellCost(DefaultOnToggle):
 
 
 class RandomizeDungeonRooms(Toggle):
-    """Randomize dungeon room layouts."""
+    """-NOT IMPLEMENTED- Randomize dungeon room layouts."""
 
     display_name = "Randomize Dungeon Rooms"
 
@@ -295,7 +296,8 @@ class KakusuRequiredCount(Range):
 class KakusuIndividualLocationCount(Range):
     """Exposes this many of the 12 Gold Slime (Kakusu) kills as their own individual AP locations.\n
     The remaining (unexposed) kills still count toward the bundled
-    kakusu_required_count reward as before --\nthis option only adds extra locations, it never
+    kakusu_required_count reward as before --\n
+    this option only adds extra locations, it never
     removes anything from the bundled reward's requirement."""
 
     display_name = "Individual Kakusu Locations"

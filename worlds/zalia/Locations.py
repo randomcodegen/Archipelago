@@ -256,8 +256,8 @@ def _load_hardcoded() -> Dict[str, LocData]:
     locations.update(rmtn)
 
     east = {
-        "PBag: Kakusu Reward Area; Cave": LocData(46, "_SCon01", 2, FILLER_ITEM_PBAG),
-        "Kakusu Reward Area; SWORD Location": LocData(47, "_SCon01", 2, ITEM_SWORD),
+        "PBag: Kakusu Reward Area, Cave": LocData(46, "_SCon01", 2, FILLER_ITEM_PBAG),
+        "Kakusu Reward Area, SWORD Location": LocData(47, "_SCon01", 2, ITEM_SWORD),
         "Nabooru Bay Cave Container Piece": LocData(
             48, "_Nabo01", 0, ITEM_CONTAINER_HP
         ),

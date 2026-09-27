@@ -15,18 +15,21 @@ PartyMod v1.1.6 can be downloaded here: `https://github.com/PARTYMANX/partymod-t
 
 ## Installation
 
-1. Install THPS3 1.01 and PartyMod 1.1.6.
-2. Copy the AP `partymod.ini` into the THPS3 directory
-3. Copy the AP DLL into the THPS3 directory as `partymod.dll`.
-4. Put `THPS3.apworld` in Archipelago's `custom_worlds` directory.
-5. Configure `partymod.ini` beside the installed DLL:
-
+1. Install THPS3 and the 1.01 patch.
+    * The game directory must contain the unmodified `Skate3.exe`; cracked executables are not supported. Remove the widescreen mod if installed by deleting `dinput8.dll`.
+2. Extract every file from `partymod-thps3_ap-*.zip` directly into the THPS3 installation directory, beside `Skate3.exe`.
+3. From that directory, run partypatcher.exe once.
+   * It validates `Skate3.exe` and creates the supported `THPS3.exe`.
+   * If validation fails, restore the original US English 1.01 executable.
+4. Edit the [Archipelago] connection settings in partymod.ini.
    ```ini
    [Archipelago]
    Server=archipelago.gg:3333
    Slot=Player1
    Password=
    ```
+5. (Optional) Run `partyconfig.exe` to configure graphics and controls.
+6. Launch the game with the newly created `THPS3.exe`, not `Skate3.exe`.
 
 ### Windows download warning
 

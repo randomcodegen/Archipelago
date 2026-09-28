@@ -146,7 +146,10 @@ def set_rules(world: "ZALiAWorld"):
     # Kasuto Area → Valley of Death (invisible enemies need cross)
     set_rule(
         world.get_entrance("Kasuto Area → Valley of Death"),
-        lambda state: _has(state, ITEM_CROSS),
+        lambda state: (
+            _has(state, ITEM_CROSS)
+            and (_any(state, SPELL_JUMP, SPELL_FAIRY) or _hard_logic)
+        ),
     )
 
     # Ruto → Ruto Mountains (near shore -- JUMP only)
@@ -238,7 +241,7 @@ def set_rules(world: "ZALiAWorld"):
         REGION_THREE_EYE_PALACE: lambda state: _has(state, ITEM_FLUTE),
         REGION_GREAT_PALACE: lambda state: (
             _has(state, ITEM_CROSS)
-            and _any(state, SPELL_JUMP, SPELL_FAIRY)
+            and (_any(state, SPELL_JUMP, SPELL_FAIRY) or _hard_logic)
             and _dark_room_ok(state, 2)
             and state.can_reach_region(REGION_KASUTO_AREA, player)
         ),
@@ -622,11 +625,12 @@ def set_rules(world: "ZALiAWorld"):
             _any(state, ITEM_HAMMER, ITEM_BOOTS) and _has(state, SPELL_JUMP)
         )
 
-    # PBag: Secret tile in VOD -- CROSS + JUMP/RESCUE_FAIRY
+    # PBag: Secret tile in VOD -- same trap crossing, no darkness requirement.
     loc = _gloc("PBag: Secret tile in VOD")
     if loc:
         loc.access_rule = lambda state: (
-            _has(state, ITEM_CROSS) and _any(state, SPELL_JUMP, ITEM_RESCUE_FAIRY)
+            _has(state, ITEM_CROSS)
+            and (_any(state, SPELL_JUMP, SPELL_FAIRY) or _hard_logic)
         )
 
     # Nabooru Chimney PBag -- JUMP
@@ -966,8 +970,12 @@ def set_rules(world: "ZALiAWorld"):
     )
     # 1-Up (room $16): GLOVE
     _add_loc_rule(_gloc("P2 1up location"), lambda state: _has(state, ITEM_GLOVE))
-    _add_loc_rule(_gloc("PBag: P2 falling-block room"), lambda state: _has(state, ITEM_GLOVE))
-    _add_loc_rule(_gloc("PBag: P2 Iron Knuckle room"), lambda state: _has(state, ITEM_GLOVE))
+    _add_loc_rule(
+        _gloc("PBag: P2 falling-block room"), lambda state: _has(state, ITEM_GLOVE)
+    )
+    _add_loc_rule(
+        _gloc("PBag: P2 Iron Knuckle room"), lambda state: _has(state, ITEM_GLOVE)
+    )
 
     # --- Palace 3 (Island) ---
 
@@ -1141,12 +1149,21 @@ def set_rules(world: "ZALiAWorld"):
         ),
     )
     # With vanilla keys, these doors depend on being able to obtain P6's first key.
-    for name in ("P6 Key 4 (falling key)", "PBag: Endless pit 3", "PBag: Falling key room"):
+    for name in (
+        "P6 Key 4 (falling key)",
+        "PBag: Endless pit 3",
+        "PBag: Falling key room",
+    ):
         _add_loc_rule(
             _gloc(name),
-            (lambda state: _has_key_count(state, KEY_THREE_EYE, 1))
-            if _keys else (lambda state: _has(state, ITEM_KEY)
-                          or _all(state, ITEM_BRACELET, ITEM_GLOVE, SKILL_STAB_UP)),
+            (
+                (lambda state: _has_key_count(state, KEY_THREE_EYE, 1))
+                if _keys
+                else (
+                    lambda state: _has(state, ITEM_KEY)
+                    or _all(state, ITEM_BRACELET, ITEM_GLOVE, SKILL_STAB_UP)
+                )
+            ),
         )
     _add_loc_rule(
         _gloc("PBag: GLOVE locked 1"),
@@ -1227,7 +1244,9 @@ def set_rules(world: "ZALiAWorld"):
         _gloc("Great Palace Item location (SKELETON KEY)"),
         lambda state: _has(state, ITEM_GLOVE),
     )
-    _add_loc_rule(_gloc("PBag: GP elevator junction"), lambda state: _has(state, ITEM_GLOVE))
+    _add_loc_rule(
+        _gloc("PBag: GP elevator junction"), lambda state: _has(state, ITEM_GLOVE)
+    )
     _add_loc_rule(
         _gloc("Great Palace 1up location"),
         lambda state: _all(state, ITEM_KEY, ITEM_GLOVE, SKILL_STAB_DOWN),

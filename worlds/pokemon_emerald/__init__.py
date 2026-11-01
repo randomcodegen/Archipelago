@@ -8,16 +8,18 @@ import os
 import pkgutil
 from typing import Any, Set, List, Dict, Optional, Tuple, ClassVar, TextIO, Union
 
-from BaseClasses import CollectionState, ItemClassification, MultiWorld, Tutorial, LocationProgressType
+from BaseClasses import CollectionState, Item, ItemClassification, MultiWorld, Tutorial, LocationProgressType
 from Fill import FillError, fill_restrictive
 from Options import OptionError, Toggle
 import settings
 from worlds.AutoWorld import WebWorld, World
 
 from .client import PokemonEmeraldClient  # Unused, but required to register with BizHawkClient
-from .data import LEGENDARY_POKEMON, MapData, SpeciesData, TrainerData, LocationCategory, data as emerald_data
+from .data import (LEGENDARY_POKEMON, PokemonSource, MapData, SpeciesData, TrainerData, LocationCategory,
+                   data as emerald_data)
 from .groups import ITEM_GROUPS, LOCATION_GROUPS
-from .items import PokemonEmeraldItem, create_item_label_to_code_map, get_item_classification, offset_item_value
+from .items import (PokemonEmeraldItem, PokemonEmeraldObtainPokemonEventItem, create_item_label_to_code_map,
+                    get_item_classification, offset_item_value)
 from .locations import (PokemonEmeraldLocation, create_location_label_to_id_map, create_locations_by_category,
                         set_free_fly, set_legendary_cave_entrances)
 from .opponents import randomize_opponent_parties
@@ -26,9 +28,14 @@ from .options import (Goal, DarkCavesRequireFlash, HmRequirements, ItemPoolType,
 from .pokemon import (get_random_move, get_species_id_by_label, randomize_abilities, randomize_learnsets,
                       randomize_legendary_encounters, randomize_misc_pokemon, randomize_starters,
                       randomize_tm_hm_compatibility,randomize_types, randomize_wild_encounters)
-from .rom import PokemonEmeraldProcedurePatch, write_tokens 
+from .rom import PokemonEmeraldProcedurePatch, write_tokens
 from .util import get_encounter_type_label
 
+# Try adding the Pokemon Gen 3 Adjuster
+try:
+    from worlds._pokemon_gen3_adjuster import __init__
+except:
+    pass
 
 class PokemonEmeraldWebWorld(WebWorld):
     """
@@ -53,7 +60,7 @@ class PokemonEmeraldWebWorld(WebWorld):
         "setup/es",
         ["nachocua"]
     )
-    
+
     setup_sv = Tutorial(
         "Multivärld Installations Guide",
         "En guide för att kunna spela Pokémon Emerald med Archipelago.",
@@ -61,6 +68,16 @@ class PokemonEmeraldWebWorld(WebWorld):
         "setup_sv.md",
         "setup/sv",
         ["Tsukino"]
+    )
+
+    # Add this doc file when the adjuster is merged
+    adjuster_en = Tutorial(
+        "Usage Guide",
+        "A guide to use the Pokemon Gen 3 Adjuster with Pokemon Emerald.",
+        "English",
+        "adjuster_en.md",
+        "adjuster/en",
+        ["RhenaudTheLukark"]
     )
 
     tutorials = [setup_en, setup_es, setup_sv]
@@ -108,6 +125,8 @@ class PokemonEmeraldWorld(World):
     blacklisted_wilds: Set[int]
     blacklisted_starters: Set[int]
     blacklisted_opponent_pokemon: Set[int]
+    allowed_dexsanity_species: set[int]
+    enabled_dexsanity_encounter_types: set[PokemonSource]
     hm_requirements: Dict[str, Union[int, List[str]]]
     auth: bytes
 
@@ -127,6 +146,8 @@ class PokemonEmeraldWorld(World):
         self.blacklisted_wilds = set()
         self.blacklisted_starters = set()
         self.blacklisted_opponent_pokemon = set()
+        self.allowed_dexsanity_species = set()
+        self.enabled_dexsanity_encounter_types = set()
         self.modified_maps = copy.deepcopy(emerald_data.maps)
         self.modified_species = copy.deepcopy(emerald_data.species)
         self.modified_tmhm_moves = []
@@ -183,6 +204,16 @@ class PokemonEmeraldWorld(World):
         }
         if "_Legendaries" in self.options.trainer_party_blacklist.value:
             self.blacklisted_opponent_pokemon |= LEGENDARY_POKEMON
+
+        encounter_table = {
+            "Land": PokemonSource.LAND,
+            "Water": PokemonSource.WATER,
+            "Fishing": PokemonSource.FISHING,
+        }
+        self.enabled_dexsanity_encounter_types = {
+            encounter_table[encounter_type] 
+            for encounter_type in self.options.dexsanity_encounter_types.value
+        }
 
         # In race mode we don't patch any item location information into the ROM
         if self.multiworld.is_race and not self.options.remote_items:
@@ -246,10 +277,19 @@ class PokemonEmeraldWorld(World):
         if self.options.hms == RandomizeHms.option_shuffle:
             self.options.local_items.value.update(self.item_name_groups["HM"])
 
+        # Manually enable Latios as a dexsanity location if we're doing legendary hunt (which confines Latios to
+        # the roamer encounter), the player allows Latios as a valid legendary hunt target, and they didn't also
+        # blacklist Latios to remove its dexsanity location
+        if self.options.goal == Goal.option_legendary_hunt and self.options.dexsanity \
+                and "Latios" in self.options.allowed_legendary_hunt_encounters.value \
+                and emerald_data.constants["SPECIES_LATIOS"] not in self.blacklisted_wilds:
+            self.allowed_dexsanity_species.add(emerald_data.constants["SPECIES_LATIOS"])
+
     def create_regions(self) -> None:
         from .regions import create_regions
         all_regions = create_regions(self)
 
+        randomize_wild_encounters(self)
         # Categories with progression items always included
         categories = {
             LocationCategory.BADGE,
@@ -479,7 +519,6 @@ class PokemonEmeraldWorld(World):
         set_rules(self)
 
     def connect_entrances(self):
-        randomize_wild_encounters(self)
         self.shuffle_badges_hms()
         # For entrance randomization, disconnect entrances here, randomize map, then
         # undo badge/HM placement and re-shuffle them in the new map.
@@ -714,9 +753,11 @@ class PokemonEmeraldWorld(World):
             "modify_118",
             "death_link",
             "normalize_encounter_rates",
+            "dexsanity_encounter_types",
         )
         slot_data["free_fly_location_id"] = self.free_fly_location_id
         slot_data["hm_requirements"] = self.hm_requirements
+        slot_data["world_version"] = self.world_version
         return slot_data
 
     def create_item(self, name: str) -> PokemonEmeraldItem:
@@ -737,3 +778,31 @@ class PokemonEmeraldWorld(World):
             None,
             self.player
         )
+
+    def collect(self, state: CollectionState, item: Item) -> bool:
+        changed = super().collect(state, item)
+        if changed:
+            if isinstance(item, PokemonEmeraldObtainPokemonEventItem):
+                if item.source in self.enabled_dexsanity_encounter_types:
+                    state.prog_items[self.player].update({
+                        f"DEXSANITY_{emerald_data.species[item.species].name}": 1,
+                    })
+                if item.species in (emerald_data.constants["SPECIES_WAILORD"], emerald_data.constants["SPECIES_RELICANTH"]):
+                    state.prog_items[self.player].update({
+                        f"REGI_WALL_{emerald_data.species[item.species].name}": 1,
+                    })
+        return changed
+
+    def remove(self, state: CollectionState, item: Item) -> bool:
+        changed = super().remove(state, item)
+        if changed:
+            if isinstance(item, PokemonEmeraldObtainPokemonEventItem):
+                if item.source in self.enabled_dexsanity_encounter_types:
+                    state.prog_items[self.player].subtract({
+                        f"DEXSANITY_{emerald_data.species[item.species].name}": 1,
+                    })
+                if item.species in (emerald_data.constants["SPECIES_WAILORD"], emerald_data.constants["SPECIES_RELICANTH"]):
+                    state.prog_items[self.player].subtract({
+                        f"REGI_WALL_{emerald_data.species[item.species].name}": 1,
+                    })
+        return changed

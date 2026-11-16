@@ -51,6 +51,13 @@ level.
 Required counts are clamped to what the selected level and location pools can
 provide.
 
+## Does this game support DeathLink?
+
+Enable `death_link` in your YAML to share bails with other DeathLink players.  
+Incoming DeathLinks make your skater bail and are deferred until gameplay resumes if you are in a menu.  
+The console command `/deathlink_amnesty X` sends one DeathLink per X local bails.  
+It defaults to 1 and is saved in `partymod.ini`.
+
 ## Is a separate Archipelago client required?
 
 No. The Archipelago client is embedded in the supplied PartyMod DLL. Configure

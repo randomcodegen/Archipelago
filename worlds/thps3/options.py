@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from Options import (
     Choice,
+    DeathLink,
     OptionCounter,
     OptionGroup,
     OptionSet,
@@ -230,6 +231,7 @@ class RequiredObjectivesPerLevel(Range):
 
 @dataclass
 class THPS3Options(PerGameCommonOptions):
+    death_link: DeathLink
     skater_pool: SkaterPool
     level_pool: LevelPool
     level_pool_size: LevelPoolSize
@@ -253,7 +255,7 @@ class THPS3Options(PerGameCommonOptions):
 option_groups = [
     OptionGroup(
         "Game Configuration",
-        [SkaterPool, LevelPool, LevelPoolSize],
+        [SkaterPool, LevelPool, LevelPoolSize, DeathLink],
     ),
     OptionGroup(
         "Locations",

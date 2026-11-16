@@ -5,6 +5,7 @@
     "one_requirement": [
       "Grind Tricks"
     ],
+    "wallride_requirement": ["Wallrides"],
     "either_requirement": {
       "any": ["Grind Tricks", "Lip Tricks"]
     },
@@ -25,7 +26,8 @@
       "Manual Tricks",
       "Lip Tricks",
       "Reverts",
-      "Special Tricks"
+      "Special Tricks",
+      "Wallrides"
     ],
     "note": "Leave null until reviewed. Arrays are shorthand for any/OR. Use an object for all/AND, mixed logic, or a required goal."
   },
@@ -432,7 +434,7 @@
     "Over the Yellow Stone Shack": [],
     "Overpass Aftershock": {"all": ["Grind Tricks"], "goal_id": 6},
     "overpass leap": {"all": ["Grind Tricks"], "goal_id": 6},
-    "Passin' Gas!": ["Grind Tricks"],
+    "Passin' Gas!": ["Wallrides"],
     "Pershing Ramp": ["Grind Tricks"],
     "Pure Air!": [],
     "Purple Skippin'": [],
@@ -495,7 +497,7 @@
     "FUGU JUJU GAP": ["Grind Tricks"],
     "FUGU NO HONE GAP": ["Grind Tricks"],
     "FUGU NO NAKA GAP": ["Manual Tricks"],
-    "FUTO MAKI GAP": ["Grind Tricks"],
+    "FUTO MAKI GAP": {"all": ["Grind Tricks", "Wallrides"]},
     "GESO KARA AGE GAP": ["Lip Tricks"],
     "GYOZA GAP": ["Grind Tricks"],
     "GYU NIKU GAP": ["Grind Tricks"],

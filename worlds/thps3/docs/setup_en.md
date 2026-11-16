@@ -2,9 +2,9 @@
 
 ## Required software
 
-- Tony Hawk's Pro Skater 3 v1.01.
-- PartyMod v1.1.6
-- The combined PartyMod/Archipelago `partymod.dll`.
+- Tony Hawk's Pro Skater 3 with the US English 1.01 update.
+- The matching THPS3 Archipelago client ZIP and `thps3.apworld`.
+- The [Microsoft Visual C++ v14 x86 Redistributable](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
 
 The supported PartyMod-patched `THPS3.exe` has SHA-256
 `1b67409414fc37a406d288098232b9947b21cdc16c80e014e580aa386bd57fef`.
@@ -15,21 +15,18 @@ PartyMod v1.1.6 can be downloaded here: `https://github.com/PARTYMANX/partymod-t
 
 ## Installation
 
-1. Install THPS3 and the 1.01 patch.
-    * The game directory must contain the unmodified `Skate3.exe`; cracked executables are not supported. Remove the widescreen mod if installed by deleting `dinput8.dll`.
-2. Extract every file from `partymod-thps3_ap-*.zip` directly into the THPS3 installation directory, beside `Skate3.exe`.
-3. From that directory, run partypatcher.exe once.
-   * It validates `Skate3.exe` and creates the supported `THPS3.exe`.
-   * If validation fails, restore the original US English 1.01 executable.
-4. Edit the [Archipelago] connection settings in partymod.ini.
+1. Install THPS3 and the US English 1.01 update. Keep the supported, unmodified `Skate3.exe` in the game folder.
+2. Extract every file from the client ZIP into that folder. It includes the combined PartyMod/Archipelago DLL and tools.
+3. Run `partypatcher.exe` once to validate `Skate3.exe` and create `THPS3.exe`.
+4. Install `thps3.apworld` in Archipelago's `custom_worlds` directory before generating a seed.
+5. Configure `partymod.ini` beside the installed DLL:
+
    ```ini
    [Archipelago]
    Server=archipelago.gg:3333
    Slot=Player1
    Password=
    ```
-5. (Optional) Run `partyconfig.exe` to configure graphics and controls.
-6. Launch the game with the newly created `THPS3.exe`, not `Skate3.exe`.
 
 ### Windows download warning
 
@@ -38,13 +35,10 @@ warning. Verify the release's published SHA-256 hash first. If Windows shows an
 **Unblock** checkbox in the downloaded ZIP or DLL's Properties dialog, use it
 only after verifying the source.
 
-It is likely that you will have to disable Windows Smart App Control because the
-DLL connects to the Archipelago Server and reads process memory, which is seen as malicious.
-
-Here is a short guide:
-1. Open the Settings App.
-2. Go to Privacy and Security - Windows Security - App and Browser Control.
-3. Open 'Smart App Control Settings' and you can disable that form in there.
+Launch `THPS3.exe` after configuring the connection. For updates, close the
+game before replacing files and preserve your existing `partymod.ini` and saves.
+Use the 1.0.6 client and APWorld together with a new seed. Older seeds without a
+Wallrides item no longer receive a grind/lip compatibility unlock.
 
 ## Options
 

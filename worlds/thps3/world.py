@@ -31,6 +31,7 @@ from .data import (
     select_all_gap_checks,
     select_skater,
 )
+from .gap_catalog import GAP_CATALOG_FINGERPRINT
 from .options import THPS3Options
 from .web_world import THPS3WebWorld
 
@@ -346,8 +347,10 @@ class THPS3World(World):
         }[completion_mode])
         return {
             "protocol_version": CLIENT_PROTOCOL_VERSION,
+            "death_link": bool(self.options.death_link),
             "ut_seed": self.ut_seed,
             "options": self.options.as_dict(
+                "death_link",
                 "skater_pool",
                 "level_pool",
                 "level_pool_size",
@@ -377,21 +380,13 @@ class THPS3World(World):
             "hidden_decks_are_locations": (
                 "hidden decks" in self.enabled_location_types
             ),
-            "active_gaps": [
-                {
-                    "level": gap.level_key,
-                    "checksum": gap.checksum,
-                    "name": gap.name,
-                    "location_id": locations.GAP_LOCATION_NAME_TO_ID[gap.location_name],
-                    "any_items": sorted(gap.required_trick_items),
-                    "all_items": sorted(gap.required_all_trick_items),
-                    "goal_items": [
-                        GOAL_BY_LEVEL_AND_ID[(gap.level_key, goal_id)].item_name
-                        for goal_id in sorted(gap.required_goal_ids)
-                    ],
-                }
-                for gap in self.selected_gaps
-            ],
+            "gap_selection": {
+                "catalog": GAP_CATALOG_FINGERPRINT,
+                "ids": [
+                    locations.GAP_LOCATION_NAME_TO_ID[gap.location_name]
+                    for gap in self.selected_gaps
+                ],
+            },
             "goal_locations": [
                 {
                     "level": goal.level_key,

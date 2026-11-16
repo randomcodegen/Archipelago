@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Iterable, Sequence
 
 GAME_NAME = "Tony Hawk's Pro Skater 3"
-CLIENT_PROTOCOL_VERSION = 1
+CLIENT_PROTOCOL_VERSION = 2
 
 TRICK_CATEGORY_ITEMS: tuple[str, ...] = (
     "Flip Tricks",
@@ -20,6 +20,7 @@ TRICK_CATEGORY_ITEMS: tuple[str, ...] = (
     "Lip Tricks",
     "Reverts",
     "Special Tricks",
+    "Wallrides",
 )
 
 
@@ -101,7 +102,7 @@ LEVELS: tuple[LevelData, ...] = (
 LEVEL_BY_KEY = {level.key: level for level in LEVELS}
 
 
-# Keep this in native master_skater_list order; the client uses the same order.
+# Keep this in native master_skater_list order, the client uses the same order.
 SKATERS: tuple[SkaterData, ...] = (
     SkaterData("tony_hawk", "Tony Hawk", "vert"),
     SkaterData("steve_caballero", "Steve Caballero", "street"),

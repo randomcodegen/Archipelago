@@ -45,10 +45,12 @@ ITEM_NAME_TO_ID = {
     **{
         name: ITEM_ID_BASE + offset
         for offset, name in enumerate(TRICK_CATEGORY_ITEMS, start=10)
+        if name != "Wallrides"
     },
     SCORE_BONUS_ITEM: ITEM_ID_BASE + 17,
     STAT_POINT_ITEM: ITEM_ID_BASE + 18,
     TIME_BONUS_ITEM: ITEM_ID_BASE + 1_000,
+    "Wallrides": ITEM_ID_BASE + 1_001,
     **{
         name: ITEM_ID_BASE + offset
         for offset, name in enumerate(GOAL_UNLOCK_ITEMS, start=19)

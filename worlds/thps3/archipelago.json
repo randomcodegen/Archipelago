@@ -1,6 +1,8 @@
 {
   "game": "Tony Hawk's Pro Skater 3",
   "minimum_ap_version": "0.6.7",
-  "world_version": "1.0.5",
-  "authors": ["Rando"]
+  "world_version": "1.0.6",
+  "authors": [
+    "Rando"
+  ]
 }

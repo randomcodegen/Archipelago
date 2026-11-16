@@ -23,21 +23,16 @@ class TestScoringRequirements(TestCase):
         routes = (
             {"Grind Tricks", "Manual Tricks"},
             {"Grab Tricks", "Reverts", "Manual Tricks"},
+            {"Lip Tricks", "Reverts", "Manual Tricks"},
+            {"Flip Tricks", "Reverts", "Manual Tricks"},
         )
-        hardest = {
-            ("airport", "Sick Score"), ("los_angeles", "Sick Score"),
-            ("cruise_ship", "Sick Score"), ("tokyo", "Gold Medal"),
-        }
-        lip_route = {"Lip Tricks", "Reverts", "Manual Tricks"}
         world = SimpleNamespace(player=1)
-        # All 128 inventories cover missing links, extra tricks, and the harder goals.
+        # Every inventory covers missing links, extra tricks, and the harder goals.
         for size in range(len(TRICK_CATEGORY_ITEMS) + 1):
             for inventory in combinations(TRICK_CATEGORY_ITEMS, size):
                 state = SimpleNamespace(has=lambda item, player: item in inventory)
                 for level, name, requirement in requirements:
-                    expected = any(route <= set(inventory) for route in routes) or (
-                        (level, name) not in hardest and lip_route <= set(inventory)
-                    )
+                    expected = any(route <= set(inventory) for route in routes)
                     if (level, name) == ("foundry", "High Score"):
                         expected = bool(set(inventory) & {
                             "Grind Tricks", "Grab Tricks", "Flip Tricks", "Lip Tricks",
@@ -48,4 +43,5 @@ class TestScoringRequirements(TestCase):
                                 _meets_requirement(state, requirement, world, level, style),
                                 expected,
                             )
-
+
+

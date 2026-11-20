@@ -97,7 +97,7 @@
       },
       "Secret Tape": {"all": ["Grind Tricks", {"goal_id": 6}]},
       "Start the Earthquake": ["Grind Tricks"],
-      "Block the Car Chase": ["Grind Tricks"],
+      "Block the Car Chase": {"all": ["Grind Tricks", {"goal_id": 6}]},
       "Free Ballin'": []
     },
     "tokyo": {
